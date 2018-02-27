@@ -54,11 +54,6 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: true,
-    },
     status: {
       type: DataTypes.STRING,
       defaultValue: 'active',
@@ -86,17 +81,6 @@ module.exports = (sequelize, DataTypes) => {
 
   users.associate = (models) => {
     // associations can be defined here
-    // user can have many orders
-    users.hasMany(models.order, {
-      foriegnKey: 'clientId',
-      as: 'orders',
-      onDelete: 'CASCADE',
-    });
-    users.hasMany(models.authTokens, {
-      foriegnKey: 'userId',
-      as: 'authToken',
-      onDelete: 'CASCADE',
-    });
   };
   return users;
 };

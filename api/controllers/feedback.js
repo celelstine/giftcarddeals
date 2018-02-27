@@ -16,14 +16,11 @@ module.exports = {
     const {
       content,
       orderId,
-      isclient,
+      email,
     } = req.body;
-    const email = req.user.email;
     const FeedbackDetails = {
       content,
       orderId,
-      from: req.user.userId,
-      isclient,
       email,
     };
     FeedBack.create(FeedbackDetails)

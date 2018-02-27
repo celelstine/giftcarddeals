@@ -165,12 +165,10 @@ const mutations = {
   },
   [types.GETTING_ORDER_FAILURE](state, { message }) {
     state.messageForProducts = true;
-    let incomingMessage = message;
-    if (!incomingMessage) {
-      incomingMessage = 'An Error occurred, please try again';
+    if (message) {
+      state.message = message;
     }
     state.messageForClientOrder = true;
-    state.message = message;
   },
 };
 

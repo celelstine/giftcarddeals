@@ -5,6 +5,7 @@ import * as actions from './actions';
 // import * as mutations from './mutations';
 import auth from './modules/auth';
 import order from './modules/order';
+import staffEmail from './modules/sfaffEmail';
 import * as types from './mutation-types';
 
 Vue.use(Vuex);
@@ -96,6 +97,7 @@ const store = new Vuex.Store({
   modules: {
     auth,
     order,
+    staffEmail,
   },
   plugins: debug ? [createLogger()] : [],
   state: {

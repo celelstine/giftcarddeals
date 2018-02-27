@@ -8,6 +8,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 // package to get request body
 import bodyParser from 'body-parser';
+import fileUpload from 'express-fileupload';
 
 //import model from './api/db/models/index';
 import routes from './api/routes';
@@ -32,7 +33,7 @@ app.use(logger('dev'));
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(fileUpload());
 // Lets us use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
 // https://www.npmjs.com/package/method-override
 app.use(methodOverride());

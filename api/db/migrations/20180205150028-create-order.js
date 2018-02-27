@@ -8,16 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      clientId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users',
-          key: 'id',
-          as: 'clientId',
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
-      },
       status: {
         type: Sequelize.STRING,
         defaultValue: 'pending',

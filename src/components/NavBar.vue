@@ -9,35 +9,15 @@
         w3-padding w3-hover-white w3-large w3-theme-d2"
         href="javascript:void(0);"
         v-on:click="openNav">
-          <i class="fa fa-bars" v-on:click="openNav"></i>
+          <i class="fa fa-bars"></i>
       </a>
       <a
-        href="#"
+        href="/#/"
         class="w3-bar-item w3-button w3-padding w3-theme-d4">
         <i class="fa fa-home w3-margin-right"></i>
         Gift Card Market
       </a>
-      <div v-if="notlogin">
-        <router-link
-          to="/ourRates"
-          class="w3-bar-item w3-button w3-padding w3-hide-small w3-theme-d4 w3-right">
-          Our Rates
-        </router-link>
-      </div>
-      <div v-else>
-        <span
-          class="username w3-bar-item w3-button w3-padding w3-hide-small w3-theme-d4 w3-right"
-          v-on:click="logout"
-        >
-          Log out
-        </span>
-        <span
-          href="#"
-          v-if="userName"
-          class="username w3-bar-item w3-button w3-padding w3-hide-small w3-theme-d4 w3-right"
-        >
-          {{ userName }}
-        </span>
+      <div>
         <router-link
           to="/ourRates"
           class="w3-bar-item w3-button w3-padding w3-hide-small w3-theme-d4 w3-right">
@@ -47,11 +27,6 @@
           to="/feedback"
           class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
           Send Feedback
-        </router-link>
-        <router-link
-          to="/orders"
-          class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
-          Your Orders
         </router-link>
         <router-link
           to="/sellCard"
@@ -77,14 +52,7 @@
       class="w3-bar-item w3-button w3-padding">
       ---------------
     </span>
-    <div v-if="notlogin">
-        <router-link
-          to="/ourRates"
-          class="w3-bar-item w3-button w3-padding">
-          Our Rates
-        </router-link>
-    </div>
-    <div v-else>
+    <div>
       <div v-if="isAdmin">
         <router-link
           to="/products"
@@ -98,11 +66,6 @@
         Sell Card
       </router-link>
       <router-link
-        to="/orders"
-        class="w3-bar-item w3-button w3-padding">
-        Your Orders
-      </router-link>
-      <router-link
         to="/feedback"
         class="w3-bar-item w3-button w3-padding">
         Send Feedback
@@ -112,16 +75,6 @@
         class="w3-bar-item w3-button w3-padding">
         Our Rates
       </router-link>
-      <span href="#"
-        class="username w3-bar-item w3-button w3-padding">
-        {{ userName }}
-      </span>
-       <span
-          class="w3-bar-item w3-button w3-padding"
-          v-on:click="logout"
-        >
-          Log out
-        </span>
     </div>
   </div>
   <!-- product alert modal -->
@@ -179,10 +132,6 @@ export default {
   },
   computed: {
     ...mapState('auth', {
-      message: state => state.message,
-      hasMessage: state => state.fromLogin,
-      notlogin: state => (!state.jwtToken),
-      userName: state => state.userFullname,
       isAdmin: state => (state.userCategory === 'admin'),
     }),
     ...mapState({
@@ -191,7 +140,9 @@ export default {
   },
   methods: {
     openNav() {
+      /* eslint-disable no-console */
       const x = document.getElementById('navDemo');
+      console.log('came here', x.className.indexOf('w3-show'));
       if (x.className.indexOf('w3-show') === -1) {
         x.className += ' w3-show';
       } else {
@@ -207,34 +158,8 @@ export default {
       this.productAlertDiv = { display: 'none' };
       this.$router.push('OurRates');
     },
-    logout(event) {
-      event.preventDefault();
-      this.$store.dispatch('auth/logout', {});
-    },
-    /* eslint-disable no-undef */
-    /* eslint-disable no-console */
-    /**
-     * this function is attached to facebook login api
-     * we only run this content when user is logout
-     */
-    triggerLoginCheck() {
-      if (!this.notlogin) {
-        FB.getLoginStatus((response) => {
-          const { status } = response;
-          // check that the remeberme token does not exist
-          if (status === 'connected'
-            && !(localStorage.getItem('32snksnsknskn'))) {
-            console.log('came here');
-            this.$store.dispatch('auth/signwithThirdParty', {});
-          }
-        });
-      }
-    },
   },
   mounted() {
-    this.triggerLoginCheck();
-    window.triggerLoginCheck = this.triggerLoginCheck;
-    window.checkLoginState = this.checkLoginState;
     socket.on('connect', () => {
       /* eslint-disable no-console */
       console.log('we are connected to the server');

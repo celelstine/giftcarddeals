@@ -19,6 +19,13 @@
             v-model="orderId"
             v-bind:style="customBorder.orderId"
             required>
+          <label><b>Contact Email</b></label>
+          <input
+            class="w3-input  w3-margin-bottom" type="text"
+            placeholder="Enter your email" name="email"
+            v-model="email"
+            v-bind:style="customBorder.email"
+            required>
           <textarea
             placeholder="Write Feedback here..."
             class="w3-input w3-margin-bottom"
@@ -49,14 +56,12 @@
 import { mapState } from 'vuex';
 import {
   isOrderID,
+  isValidEmail,
 } from '../../api/controllers/validators';
 
 export default {
   name: 'Feedback',
   computed: {
-    ...mapState('auth', {
-      email: state => state.email,
-    }),
     ...mapState({
       message: state => state.message,
       messageForFeedback: state => state.messageForFeedback,
@@ -66,6 +71,7 @@ export default {
     return {
       orderId: null,
       content: null,
+      email: null,
       inValidForm: true,
       validInputs: [],
       customBorder: {
@@ -73,6 +79,9 @@ export default {
           border: '1px solid #ccc',
         },
         content: {
+          border: '1px solid #ccc',
+        },
+        email: {
           border: '1px solid #ccc',
         },
       },
@@ -119,7 +128,7 @@ export default {
       this.validInputs = validInputs;
 
       // disable the submit button when every field are not valid
-      if (validInputs.length === 2) {
+      if (validInputs.length === 3) {
         this.inValidForm = false;
       } else {
         this.inValidForm = true;
@@ -139,6 +148,13 @@ export default {
         this.checkForm('content', 'add');
       } else {
         this.checkForm('content', 'remove');
+      }
+    },
+    email(val) {
+      if (!isValidEmail(val)) {
+        this.checkForm('email', 'remove');
+      } else {
+        this.checkForm('email', 'add');
       }
     },
     message(val) {

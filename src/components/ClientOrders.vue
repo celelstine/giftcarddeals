@@ -90,7 +90,7 @@ export default {
       }
       const offset = pageIndex * 3;
       if (page !== this.curPage) {
-        this.$store.dispatch('order/getOrders', { offset });
+        this.$store.dispatch('staffEmail/getOrders', { offset });
       }
     },
   },

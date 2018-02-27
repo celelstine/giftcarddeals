@@ -5,10 +5,11 @@ import Order from '@/components/Order';
 import OurRates from '@/components/OurRates';
 import Products from '@/components/Products';
 import TermsandConditions from '@/components/TermsandConditions';
-import ClientOrders from '@/components/ClientOrders';
+import Emails from '@/components/Emails';
+import Login from '@/components/Login';
 import Feedback from '@/components/Feedback';
 import {
-  checkJwt,
+  // checkJwt,
   checkAdmin,
 } from './auth';
 
@@ -19,18 +20,30 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-      beforeEnter: (to, from, next) => checkJwt(next, to),
+      // beforeEnter: (to, from, next) => checkJwt(next, to),
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
       path: '/sellCard',
       name: 'Order',
       component: Order,
-      beforeEnter: (to, from, next) => checkJwt(next, to),
+      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
-      path: '/products',
+      path: '/admin',
       name: 'Products',
       component: Products,
+      beforeEnter: (to, from, next) => checkAdmin(next, to),
+    },
+    {
+      path: '/emails',
+      name: 'Emails',
+      component: Emails,
       beforeEnter: (to, from, next) => checkAdmin(next, to),
     },
     {
@@ -43,28 +56,28 @@ export default new Router({
       name: 'TermsandConditions',
       component: TermsandConditions,
     },
-    {
-      path: '/orders',
-      name: 'ClientOrders',
-      component: ClientOrders,
-      beforeEnter: (to, from, next) => checkJwt(next, to),
-    },
+    // {
+    //   path: '/orders',
+    //   name: 'ClientOrders',
+    //   component: ClientOrders,
+    //   beforeEnter: (to, from, next) => checkJwt(next, to),
+    // },
     {
       path: '/feedback',
       name: 'Feedback',
       component: Feedback,
-      beforeEnter: (to, from, next) => checkJwt(next, to),
+      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
       path: '/feedback/:orderId',
       name: 'orderFeedback',
       component: Feedback,
-      beforeEnter: (to, from, next) => checkJwt(next, to),
+      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
       path: '*',
       component: Home,
-      beforeEnter: (to, from, next) => checkJwt(next, to),
+      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
   ],
 });

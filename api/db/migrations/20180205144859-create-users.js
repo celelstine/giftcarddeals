@@ -21,17 +21,9 @@ module.exports = {
           },
         }
       },
-      phone: {
-        type: Sequelize.STRING,
-        unique: true,
-      },
       status: {
         type: Sequelize.STRING,
         defaultValue: 'active',
-      },
-      role: {
-        type: Sequelize.STRING,
-        allowNull: true,
       },
       user_category: {
         type: Sequelize.STRING,

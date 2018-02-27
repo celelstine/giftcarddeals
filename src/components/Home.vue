@@ -15,28 +15,14 @@
       <div class="w3-row">
         <div class="w3-card-4">
           <header class="w3-container w3-deep-orange">
-            <Signup v-if="notlogin"></Signup>
-            <h6
-              class="signup"
-              v-else
-              >
+            <h6 class="signup">
                 Welcome, Life can only get better with us!!!
+                <span class="sellit" v-on:click="gotoOurRatePage">
+                  Sell Your card here
+                </span>
             </h6>
           </header>
           <div class="w3-container">
-            <div class="w3-row">
-              <div  v-if="notlogin" class="w3-half">
-                <Login></Login>
-              </div>
-              <div  v-if="notlogin" class="w3-half">
-                <fb:login-button
-                  scope="public_profile,email"
-                  name="fbLogin"
-                  style="margin-top: 10px"
-                  onlogin="checkLoginState">
-                </fb:login-button>
-              </div>
-            </div>
             <ul class="companyAttribute">
               <li>
                 Our rate are awesome, available on our
@@ -46,8 +32,10 @@
                   product page
                 </router-link>
               </li>
-              <li> Our transactions are completed within 10 minutes (maximal) </li>
-               <li> We respond to feedback within few minutes</li>
+              <li>
+                Our transactions are completed within 10 minutes (maximal)
+              </li>
+              <li> We respond to feedback within few minutes</li>
             </ul>
             <div class="row">
               <div class="w3-quarter w3-center">
@@ -103,31 +91,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import Login from './Login';
-import Signup from './Signup';
-
 export default {
   name: 'Home',
-  components: {
-    Login,
-    Signup,
-  },
-  computed: {
-    ...mapState('auth', {
-      notlogin: state => (!state.jwtToken),
-    }),
-  },
   methods: {
-    checkLoginState() {
-      /* eslint-disable no-undef */
-      FB.getLoginStatus((response) => {
-        const { status } = response;
-        if (status === 'connected' &&
-        !(localStorage.getItem('32snksnsknskn'))) {
-          this.$store.dispatch('auth/signwithThirdParty', {});
-        }
-      });
+    gotoOurRatePage(event) {
+      event.preventDefault();
+      this.$router.push('/sellcard');
     },
   },
 };
@@ -167,5 +136,11 @@ a {
   width:100%;
   height:100%;
   max-width:200px;
+}
+.sellit {
+ float: right;
+ color:#292929;
+ text-decoration: underline;
+ cursor: pointer;
 }
 </style>

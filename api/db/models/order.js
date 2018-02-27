@@ -1,15 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const order = sequelize.define('order', {
-    clientId: {
-      type: DataTypes.INTEGER,
-      defaultValue: 1,
-      references: {
-        model: 'users',
-        key: 'id',
-        as: 'clientId',
-        deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE,
-      },
-    },
     status: {
       type: DataTypes.STRING,
       defaultValue: 'pending',

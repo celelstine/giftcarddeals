@@ -1,4 +1,3 @@
-import formidable from 'formidable';
 import model from '../db/models/index';
 import logger from '../logger';
 import {
@@ -24,96 +23,91 @@ module.exports = {
       });
   },
   addProduct(req, res) {
-    // create object from request
-    const form = new formidable.IncomingForm();
-    let productDetails;
-    let imageUrl = null;
     const errorMessage = 'Sorry an error occurred, please try again';
-    form.parse(req, (err, fields, files) => {
-      productDetails = { ...fields };
-    });
-    /* eslint-disable no-param-reassign */
-    form.on('fileBegin', (name, file) => {
-      file.path = `${__dirname}/../../dist/productImages/${file.name}`;
-      imageUrl = file.name;
-    });
-
-    form.on('error', (err) => {
-      logger.error('An error occurred', err);
-      return sendError(res, { errorMessage: `${err.message || err}` });
-    });
-    // send mail when every file has been inserted
-    form.on('end', () => {
-      productDetails = {
-        ...productDetails,
-        image_url: `productImages/${imageUrl}`,
-      };
-      ProductPrice.create(productDetails)
-        .then((addedProduct) => {
-          // send socket message to all client
-          req.app.get('socketio')
-            .emit('newProduct', addedProduct.dataValues);
-          return sendResult(res, addedProduct.dataValues);
-        })
-        .catch((error) => {
-          logger.error('An error occurred', error);
+    const cardimage = req.files.cardimage;
+    const imageUrl = cardimage.name;
+    // Use the mv() method to place the file somewhere on your server
+    cardimage.mv(`${__dirname}/../../dist/productImages/${cardimage.name}`,
+      (err) => {
+        if (err) {
+          logger.error('An error occurred', err);
           return sendError(res, { errorMessage });
-        });
-    });
-  },
-  updateProduct(req, res) {
-    // create object from request
-    const form = new formidable.IncomingForm();
-    const productId = parseInt(req.params.productId, 10);
-    let productDetails;
-    let imageUrl = null;
-    const errorMessage = 'Sorry an error occurred, please try again';
-    form.parse(req, (err, fields, files) => {
-      productDetails = { ...fields };
-    });
-    /* eslint-disable no-param-reassign */
-    form.on('fileBegin', (name, file) => {
-      file.path = `${__dirname}/../../dist/productImages/${file.name}`;
-      imageUrl = file.name;
-    });
-
-    form.on('error', (err) => {
-      logger.error('An error occurred', err);
-      return sendError(res, { errorMessage: `${err.message || err}` });
-    });
-    // send mail when every file has been inserted
-    form.on('end', () => {
-      if (imageUrl) {
-        productDetails = {
-          ...productDetails,
+        }
+        const {
+          name,
+          rate,
+          cardCurrency,
+          extra,
+        } = req.body;
+        const productDetails = {
+          name,
+          rate,
+          cardCurrency,
+          extra,
           image_url: `productImages/${imageUrl}`,
         };
-      }
-
-      ProductPrice.findOne({
-        where: { id: productId },
-      })
-        .then((product) => {
-          if (!product) {
+        ProductPrice.create(productDetails)
+          .then((addedProduct) => {
+            // send socket message to all client
+            req.app.get('socketio')
+              .emit('newProduct', addedProduct.dataValues);
+            return sendResult(res, addedProduct.dataValues);
+          })
+          .catch((error) => {
+            logger.error('An error occurred', error);
             return sendError(res, { errorMessage });
-          }
-          return product
-            .update(productDetails)
-            .then((updatedproduct) => {
-              // send socket message to all client
-              req.app.get('socketio')
-                .emit('ProductUpdate', updatedproduct.dataValues);
-              return sendResult(res, updatedproduct.dataValues);
-            })
-            .catch((error) => {
-              logger.error('An error occurred', error);
-              return sendError(res, { errorMessage });
-            });
-        })
-        .catch((error) => {
-          logger.error('An error occurred', error);
+          });
+      });
+  },
+  updateProduct(req, res) {
+    const productId = parseInt(req.params.productId, 10);
+    const errorMessage = 'Sorry an error occurred, please try again';
+    const cardimage = req.files.cardimage;
+    const imageUrl = cardimage.name;
+    // Use the mv() method to place the file somewhere on your server
+    cardimage.mv(`${__dirname}/../../dist/productImages/${cardimage.name}`,
+      (err) =>{
+        if (err) {
+          logger.error('An error occurred', err);
           return sendError(res, { errorMessage });
-        });
-    });
+        }
+        const {
+          name,
+          rate,
+          cardCurrency,
+          extra,
+        } = req.body;
+        const productDetails = {
+          name,
+          rate,
+          cardCurrency,
+          extra,
+          image_url: `productImages/${imageUrl}`,
+        };
+        ProductPrice.findOne({
+          where: { id: productId },
+        })
+          .then((product) => {
+            if (!product) {
+              return sendError(res, { errorMessage });
+            }
+            return product
+              .update(productDetails)
+              .then((updatedproduct) => {
+                // send socket message to all client
+                req.app.get('socketio')
+                  .emit('ProductUpdate', updatedproduct.dataValues);
+                return sendResult(res, updatedproduct.dataValues);
+              })
+              .catch((error) => {
+                logger.error('An error occurred', error);
+                return sendError(res, { errorMessage });
+              });
+          })
+          .catch((error) => {
+            logger.error('An error occurred', error);
+            return sendError(res, { errorMessage });
+          });
+      });
   },
 };

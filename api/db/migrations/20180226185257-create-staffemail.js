@@ -1,24 +1,21 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('feedbacks', {
+    return queryInterface.createTable('staffemails', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      orderId: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      content: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: {
+            msg: 'Invalid email format'
+          },
+        }
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +28,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('feedbacks');
+    return queryInterface.dropTable('staffemails');
   }
 };

@@ -42,13 +42,6 @@
             v-on:click="handleLogin">
             Login
            </button>
-          <p class="checkitemn">
-           <input
-            class="w3-check w3-margin-top"
-            type="checkbox"
-            v-model="rememberMe"
-            id="rememberMe"> Remember Me
-          </p>
         </div>
       </form>
 
@@ -88,7 +81,6 @@ export default {
         email: this.email,
         password: this.password,
         is3rdParty: false,
-        rememberMe: this.rememberMe,
       };
       this.$store.dispatch('auth/login', credentails);
     },
@@ -131,7 +123,6 @@ export default {
     return {
       email: '',
       password: '',
-      rememberMe: true,
       inValidForm: true,
       validInputs: [],
       customBorder: {

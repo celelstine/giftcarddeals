@@ -198,7 +198,7 @@ export default {
       if (this.uploadedCard) {
         Object.entries(this.uploadedCard).forEach((key, file) => {
           curFile = key[1];
-          formData.append('uploadedCard', curFile, curFile.name);
+          formData.append('cardimage', curFile, curFile.name);
         });
       }
       if (this.productId) {

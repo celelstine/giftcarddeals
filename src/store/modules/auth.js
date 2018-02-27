@@ -38,18 +38,6 @@ const actions = {
         return commit(types.MESSAGE, { from: 'login', message });
       });
   },
-  signup({ commit }, credentials) {
-    axios.post('/api/v1/users/signup', credentials)
-      .then(response => commit(types.SIGN_IN, { ...response.data }))
-      .catch((error) => {
-        localStorage.removeItem('32snksnsknskn');
-        let message = 'An internal error occurred, please try again';
-        if (error.response.status && error.response.status !== 500) {
-          message = error.response.data.errorMessage;
-        }
-        return commit(types.MESSAGE, { from: 'signup', message });
-      });
-  },
   remeberMeLogin({ commit }, credentials, fromHome = false) {
     commit(types.SIGN_IN, { ...credentials, fromHome });
   },

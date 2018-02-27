@@ -4,16 +4,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    from: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'users',
-        key: 'id',
-        as: 'sender',
-        deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE,
-      },
-    },
     content: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -21,11 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    isclient: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
     },
   }, {
     classMethods: {
