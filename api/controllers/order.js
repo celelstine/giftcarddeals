@@ -58,7 +58,6 @@ module.exports = {
     const mailTransporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
-      secure: true,
       auth: {
         user: process.env.SEND_GIFTCARD_MAIL,
         pass: process.env.SEND_GIFTCARD_MAIL_PASSWORD,
@@ -87,6 +86,7 @@ module.exports = {
         }
         const emailList = [];
         emails.forEach(staff => emailList.push(staff.email));
+        console.log('emailList', emailList);
         let mailPayload = {
           sender: process.env.SEND_GIFTCARD_MAIL,
           to: process.env.ADMIN_MAIL,
