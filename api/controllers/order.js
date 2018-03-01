@@ -1,6 +1,7 @@
 
 import nodemailer from 'nodemailer';
 import model from '../db/models/index';
+import logger from '../logger';
 import {
   sendResult,
   sendError,
@@ -81,12 +82,11 @@ module.exports = {
       })
       .then((emails) => {
         if (!emails.length) {
-          console.error('The staff Email table is empty');
+          logger.error('error', 'The staff Email table is empty');
           return sendError(res, { errorMessage });
         }
         const emailList = [];
         emails.forEach(staff => emailList.push(staff.email));
-        console.log('emailList', emailList);
         let mailPayload = {
           sender: process.env.SEND_GIFTCARD_MAIL,
           to: process.env.ADMIN_MAIL,
@@ -97,7 +97,7 @@ module.exports = {
         };
         mailTransporter.sendMail(mailPayload, (error, info) => {
           if (error) {
-            console.error('An error occurred', error);
+            logger.error('error', 'An error occurred', error);
             return sendError(res, { errorMessage });
           }
           // send mail to user email
@@ -118,7 +118,7 @@ module.exports = {
           };
           mailTransporter.sendMail(mailPayload, (err, info) => {
             if (err) {
-              console.error('An error occurred', err);
+              logger.error('error', 'An error occurred', err);
               return sendError(res, { errorMessage });
             }
     
@@ -132,7 +132,7 @@ module.exports = {
                 return sendResult(res, payload);
               })
               .catch((err) => {
-                console.error('An error occurred', err);
+                logger.error('error', 'An error occurred', err);
                 return sendError(res, { errorMessage });
               });
           });
@@ -167,7 +167,7 @@ module.exports = {
     })
       .then(orders => sendResult(res, orders))
       .catch((error) => {
-        console.error('An error occurred', error);
+        logger.error('error', 'An error occurred', error);
         return sendError(res, { errorMessage });
       });
   },
@@ -221,7 +221,7 @@ module.exports = {
         return sendResult(res, ordersPayload);
       })
       .catch((error) => {
-        console.error('An error occurred', error);
+        logger.error('error', 'An error occurred', error);
         return sendError(res, { errorMessage });
       });
   },

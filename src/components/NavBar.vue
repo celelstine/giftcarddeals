@@ -126,10 +126,6 @@ export default {
       productAlertDiv: { display: 'none' },
     };
   },
-  updated() {
-    /* eslint-disable no-console */
-    console.log('productUpdateAlert', this.productUpdateAlert);
-  },
   computed: {
     ...mapState('auth', {
       isAdmin: state => (state.userCategory === 'admin'),
@@ -140,9 +136,7 @@ export default {
   },
   methods: {
     openNav() {
-      /* eslint-disable no-console */
       const x = document.getElementById('navDemo');
-      console.log('came here', x.className.indexOf('w3-show'));
       if (x.className.indexOf('w3-show') === -1) {
         x.className += ' w3-show';
       } else {
@@ -160,21 +154,15 @@ export default {
     },
   },
   mounted() {
-    socket.on('connect', () => {
-      /* eslint-disable no-console */
-      console.log('we are connected to the server');
-    });
     socket.on('ProductUpdate', (data) => {
       this.$store.commit(types.UPDATE_PRODUCT_SUCCESS, { ...data });
       this.$store.commit(types.PRODUCT_UPDATE_ALERT, {});
       this.$store.dispatch('getProducts');
       this.productAlertDiv = { display: 'block' };
-      console.log('message from server', data);
     });
     socket.on('newProduct', (data) => {
       this.$store.commit(types.NEW_PRODUCT_ALERT, { ...data });
       this.$store.dispatch('getProducts');
-      console.log('message from server', data);
       this.productAlertDiv = { display: 'block' };
     });
   },

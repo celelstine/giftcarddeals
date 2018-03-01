@@ -82,8 +82,6 @@ export default {
   },
   methods: {
     getOrders(page = 0) {
-      /* eslint-disable no-console */
-      console.log('current page is', page);
       let pageIndex = page;
       if (page > 0) {
         pageIndex = page - 1;

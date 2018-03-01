@@ -136,7 +136,6 @@
 import { mapState } from 'vuex';
 
 export default {
-  /* eslint-disable no-console */
   name: 'Products',
   mounted() {
     if (this.$store.state.auth.userCategory !== 'admin') {
@@ -163,8 +162,6 @@ export default {
     showProductDetails(event, id = null) {
       this.isProductDetails = true;
       if (id) {
-        /* eslint-disable no-console */
-        console.log('cam here with', id);
         const currentProduct = this.products
           .filter(product => product.id === id)[0];
         this.productId = currentProduct.id;

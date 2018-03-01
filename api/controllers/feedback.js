@@ -42,14 +42,14 @@ module.exports = {
         });
         mailTransporter.sendMail(mailPayload, (err, info) => {
           if (err) {
-            console.error('An error occurred', err);
+            logger.error('error', 'An error occurred', err);
             return sendError(res, { err });
           }
           return sendResult(res, result.dataValues);
         });
       })
       .catch((error) => {
-        console.error('An error occurred', error);
+        logger.error('error', 'An error occurred', error);
         return sendError(res, { error });
       });
   },

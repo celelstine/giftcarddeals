@@ -55,7 +55,7 @@ module.exports = {
             });
           })
           .catch((error) => {
-            console.error('An error occurred', error);
+            logger.error('error', 'An error occurred', error);
             return sendError(
               res,
               { errorMessage: 'An  error occurred, please try again' },
@@ -63,7 +63,7 @@ module.exports = {
           });
       })
       .catch((error) => {
-        console.error('An error occurred', error);
+        logger.error('error', 'An error occurred', error);
         return sendError(
           res,
           { errorMessage: 'An  error occurred, please try again' },
@@ -88,7 +88,7 @@ module.exports = {
             .create({ email })
             .then(newEmail => sendResult(res, newEmail ))
             .catch((error) => {
-              console.error('An error occurred', error);
+              logger.error('error', 'An error occurred', error);
               return sendError(
                 res,
                 { errorMessage: 'An  error occurred, please try again' },
@@ -98,7 +98,7 @@ module.exports = {
         return sendError(res, { errorMessage: 'email already  exist' });
       })
       .catch((error) => {
-        console.error('An error occurred', error);
+        logger.error('error', 'An error occurred', error);
         return sendError(
           res,
           { errorMessage: 'An  error occurred, please try again' },

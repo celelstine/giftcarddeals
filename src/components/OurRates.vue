@@ -16,7 +16,7 @@
         <div class="w3-card">
 
           <img v-if="product.image_url" v-bind:src="product.image_url" style="width:100%">
-          <img v-else src="/gift_card_blue.png" style="width:100%">
+          <img v-else src="../assets/images/gift_card_blue.png" style="width:100%">
           <div class="w3-container">
             <h4> {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}</h4>
           </div>

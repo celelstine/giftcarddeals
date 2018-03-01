@@ -64,8 +64,6 @@ const store = new Vuex.Store({
     [types.GETPRODUCTS_FAILURE](state, { message }) {
       state.messageForGetProducts = true;
       let incomingMessage = message;
-      /* eslint-disable no-console */
-      console.log('message', message);
       if (!incomingMessage) {
         incomingMessage = 'An Error occurred, please try again';
       }

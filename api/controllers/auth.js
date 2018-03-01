@@ -84,7 +84,7 @@ module.exports = {
         return sendError(res, { errorMessage }, 401);
       })
       .catch((err) => {
-        console.error('An error occurred', err);
+        logger.error('error', 'An error occurred', err);
         return sendError(res, { errorMessage: 'An  error occurred, please try again' });
       });
   },
@@ -172,7 +172,7 @@ module.exports = {
               return sendResult(res, payload);
             })
             .catch((err) => {
-              console.error('An error occurred', err);
+              logger.error('error', 'An error occurred', err);
               return sendError(res, { errorMessage: 'An  error occurred, please try again' });
             });
         })
@@ -224,7 +224,7 @@ module.exports = {
       const errorMessage = 'Invalid session, Please login again.';
       return sendError(res, { errorMessage }, 401);
     }).catch((err) => {
-      console.error('An error occurred', err);
+      logger.error('error', 'An error occurred', err);
       return sendError(res, { errorMessage: 'An  error occurred, please try again' });
     });
   },

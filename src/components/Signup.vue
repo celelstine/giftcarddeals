@@ -247,8 +247,6 @@ export default {
       }
     },
     TCagree(val) {
-      /* eslint-disable no-console */
-      console.log('val', val);
       if (val) {
         this.checkForm('TCagree', 'add');
       } else {
