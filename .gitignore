@@ -6,6 +6,7 @@ yarn-error.log*
 /test/unit/coverage/
 /test/e2e/reports/
 selenium-debug.log
+
 .env
 # Editor directories and files
 .idea
@@ -21,3 +22,5 @@ selenium-debug.log
 /dist/
 # test vue progressive app
 /vue-pwa/
+# server log file
+server.log
