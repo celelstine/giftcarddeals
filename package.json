@@ -17,7 +17,7 @@
     "build": "rimraf lib && npm run build:client",
     "build:client": "node build/build.js && npm run build:server",
     "build:server": "babel api  -d lib/api --copy-files --ignore tests/ && npm run build-app",
-    "build-app": "babel server.js  -d lib --copy-files  && node lib/server.js"
+    "build-app": "babel server.js  -d lib --copy-files"
   },
   "dependencies": {
     "axios": "^0.17.1",
