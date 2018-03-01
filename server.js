@@ -38,16 +38,9 @@ app.use(fileUpload());
 // https://www.npmjs.com/package/method-override
 app.use(methodOverride());
 
-// Require all routes into the application.
-routes(router);
-app.use('/api/v1', router);
-
-
 // serve static files in public folder
 const publicPath = path.join(__dirname, '/dist/');
-console.log('publicPath', publicPath);
 app.use(express.static(publicPath));
-console.log('serving, ', `${publicPath}index.html`);
 // server compressed javascript file
 app.get('*.js', (req, res, next) => {
   req.url = `${req.url}.gz`;
@@ -55,16 +48,21 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
+// Require all routes into the application.
+routes(router);
+app.use('/api/v1', router);
+
 // seed the database
 require('./api/db/seeders');
 
-app.all('*', (req, res) =>
+app.all('*', (req, res) => {
+  console.log('serving, ', `${publicPath}index.html`);
   res.sendFile(`${publicPath}index.html`)
-);
+});
 
 // catch errors
 app.use((err, req, res, next) => {
-  res.status(500).json({message: err.message });
+  res.status(500).json({message: err.message, serving:  `${publicPath}index.html`});
 });
 
 // start server
