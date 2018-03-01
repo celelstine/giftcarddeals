@@ -96,12 +96,5 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  },
-  // externals: [
-  //   "mysql2",
-  //   "sqlite3",
-  //   "tedious",
-  //   "pg-native",
-  //   "dns"
-  // ] npm uninstall  aws-sdk mysql2 sqlite3 dns pg-native tedious
+  }
 }

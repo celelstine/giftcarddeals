@@ -44,9 +44,10 @@ app.use('/api/v1', router);
 
 
 // serve static files in public folder
-const publicPath = path.join(__dirname, 'dist/');
+const publicPath = path.join(__dirname, '/dist/');
+console.log('publicPath', publicPath);
 app.use(express.static(publicPath));
-
+console.log('serving, ', `${publicPath}index.html`);
 // server compressed javascript file
 app.get('*.js', (req, res, next) => {
   req.url = `${req.url}.gz`;
@@ -58,13 +59,12 @@ app.get('*.js', (req, res, next) => {
 require('./api/db/seeders');
 
 app.all('*', (req, res) =>
-res.sendFile(`${publicPath}index.html`)
+  res.sendFile(`${publicPath}index.html`)
 );
 
-
 // catch errors
-app.use((err, req, res) => {
-  res.send(500, { message: err.message });
+app.use((err, req, res, next) => {
+  res.status(500).json({message: err.message });
 });
 
 // start server

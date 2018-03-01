@@ -7,7 +7,7 @@ module.exports = {
     database: process.env.DATABASE_NAME,
     host: '127.0.0.1',
     dialect: 'postgres',
-    logging: true,
+    logging: false,
   },
   test: {
     use_env_variable: 'DATABASE_URL',
