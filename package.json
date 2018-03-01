@@ -18,7 +18,9 @@
     "build": "rimraf lib && npm run build:client",
     "build:client": "node build/build.js && npm run build:server",
     "build:server": "babel api  -d lib/api --copy-files --ignore tests/ && npm run build-app",
-    "build-app": "babel server.js  -d lib --copy-files"
+    "build-app": "babel server.js  -d lib --copy-files",
+    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;"
   },
   "dependencies": {
     "axios": "^0.17.1",
