@@ -57,6 +57,10 @@ app.get('*.js', (req, res, next) => {
 // seed the database
 require('./api/db/seeders');
 
+app.all('/', (req, res) =>
+res.sendFile(`${publicPath}index.html`)
+);
+
 // catch unknown routes
 app.all('*', (req, res) => res.status(404).send({
   message: 'Route was not found.'
