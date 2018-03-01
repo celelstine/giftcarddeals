@@ -66,7 +66,7 @@ module.exports = {
     const imageUrl = cardimage.name;
     // Use the mv() method to place the file somewhere on your server
     cardimage.mv(`${__dirname}/../../dist/productImages/${cardimage.name}`,
-      (err) =>{
+      (err) => {
         if (err) {
           logger.error('An error occurred', err);
           return sendError(res, { errorMessage });
