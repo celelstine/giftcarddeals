@@ -20,4 +20,4 @@ selenium-debug.log
 # vue distribution folder
 /dist/
 # test vue progressive app
-vue-pwa/
+/vue-pwa/
