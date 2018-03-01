@@ -160,8 +160,6 @@ const mutations = {
     state.curPage = curPage;
     state.pageCount = pageCount;
     state.messageForClientOrder = false;
-    /* eslint-disable no-console */
-    console.log('current state', state);
   },
   [types.GETTING_ORDER_FAILURE](state, { message }) {
     state.messageForProducts = true;
