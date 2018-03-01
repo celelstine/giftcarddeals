@@ -15,11 +15,11 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "prepare_dir": "rimraf lib  && mkdir lib  && mkdir lib/api && mkdir lib/dist",
     "build": "npm run prepare_dir && npm run build:client",
+    "prepare_dir": "rimraf lib  && mkdir lib  && mkdir lib/api && mkdir lib/dist",
     "build:client": "node build/build.js && npm run build:server",
     "build:server": "babel api  -d lib/api --copy-files --ignore tests/ && npm run build-app",
-    "build-app": "babel server.js  -d lib --copy-files"
+    "build-app": "babel server.js  -d lib --copy-files && node lib/server.js"
   },
   "dependencies": {
     "axios": "^0.17.1",
