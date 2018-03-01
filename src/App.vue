@@ -7,7 +7,7 @@
     <footer class="w3-container w3-theme-d2">
       <p>
         Copyright 2017
-        <i class="fa fa-phone w3-right" > 08149677155 </i>
+        <i class="fa fa-phone w3-right"> 08149677155 </i>
         <a
           className="w3-xlarge w3-right"
           href="mailto:giftcardcontact@gmail.com?Subject=User's%20Feedback"
