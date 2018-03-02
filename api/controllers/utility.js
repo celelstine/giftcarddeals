@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import model from '../db/models/index';
 
 const User = model.users;
-
+const AuthToken = model.authtoken;
 module.exports = {
   // helper functions
   sendResult(res, result) {
@@ -90,6 +90,36 @@ module.exports = {
       // if there is no token available return a message
       res.status(401).send({ message: 'No token provided.' });
     }
+  },
+  storeAuthToken(userId, selector) {
+    const today = new Date();
+    const expires = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + 7,
+    );
+    const newAuthTokenObj = {
+      selector,
+      userId,
+      hashedValidator: 'placeholder',
+      expires,
+    };
+
+    // delete existing token
+    AuthToken.destroy({
+      where: {
+        userId,
+      },
+    })
+      .then(() => {
+        AuthToken.create(newAuthTokenObj)
+          .then(() => selector)
+          .catch((err) => {
+            logger.error('An error occurred', err);
+            return null;
+          });
+      })
+      .catch(() => null);
   },
 };
 
