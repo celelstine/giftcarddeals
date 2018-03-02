@@ -35,6 +35,11 @@
         </router-link>
         <div v-if="isAdmin">
           <router-link
+            to="/emails"
+            class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
+            Manage Emails
+          </router-link>
+          <router-link
             to="/products"
             class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
             Manage Card
@@ -58,6 +63,11 @@
           to="/products"
           class="w3-bar-item w3-button w3-padding">
           Manage Card
+        </router-link>
+        <router-link
+          to="/emails"
+          class="w3-bar-item w3-button w3-padding">
+          Manage Emails
         </router-link>
       </div>
       <router-link

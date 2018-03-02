@@ -58,10 +58,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 'active',
     },
-    role: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     user_category: {
       type: DataTypes.STRING,
       allowNull: true,

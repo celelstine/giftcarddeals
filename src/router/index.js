@@ -35,7 +35,7 @@ export default new Router({
       // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
-      path: '/admin',
+      path: '/products',
       name: 'Products',
       component: Products,
       beforeEnter: (to, from, next) => checkAdmin(next, to),
