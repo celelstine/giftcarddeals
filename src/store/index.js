@@ -53,9 +53,8 @@ const store = new Vuex.Store({
       state.messageForProducts = true;
       state.message = `${curProduct.name} has been updated successfully`;
     },
-    [types.UPDATE_PRODUCT_FAILURE](state, { message, err }) {
+    [types.UPDATE_PRODUCT_FAILURE](state, { message }) {
       state.messageForProducts = true;
-      state.err = err;
       let incomingMessage = message;
       if (!incomingMessage) {
         incomingMessage = 'An Error occurred, please try again';
@@ -107,7 +106,6 @@ const store = new Vuex.Store({
     messageForGetProducts: null,
     messageForFeedback: null,
     productUpdateAlert: null,
-    err: null,
   },
   strict: debug,
 });

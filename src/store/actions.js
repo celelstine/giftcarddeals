@@ -43,11 +43,11 @@ export const updateProduct = ({ commit }, { formData, productId }) => {
       let err = '';
       if (error.response.status && error.response.status !== 500) {
         message = error.response.data.message;
-        err = error.response.data;
       }
-      return commit(types.UPDATE_PRODUCT_FAILURE, { message, err });
+      return commit(types.UPDATE_PRODUCT_FAILURE, { message });
     });
 };
+
 
 export const getProducts = ({ commit }) => {
   commit(types.GETTINGPRODUCTS, {});

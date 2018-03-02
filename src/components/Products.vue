@@ -7,7 +7,6 @@
       v-bind:style="CurrentProductDiv"
       style="max-width:600px">
       <div class="w3-center">
-        <p> {{ err }} </p>
         <p class=" w3-block w3-padding w3-pink">
           Ensure that this card does not exist already, existing cards listed below the form.
           <span v-on:click="closeCurrentProductDiv"
@@ -178,7 +177,6 @@ export default {
     ...mapState({
       products: state => state.products,
       message: state => state.message,
-      err: state => state.err,
       messageForProducts: state => state.messageForProducts,
     }),
   },
