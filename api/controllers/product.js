@@ -12,7 +12,11 @@ module.exports = {
   /* eslint-disable consistent-return  */
   ourRate(req, res) {
     ProductPrice
-      .findAll()
+      .findAll({
+        where: {
+          isActive: true,
+        },
+      })
       .then(products => sendResult(res, { products }))
       .catch((error) => {
         logger.error('An error occurred', error);
@@ -39,6 +43,7 @@ module.exports = {
           cardCurrency,
           extra,
           bulkrate,
+          isActive,
         } = req.body;
         const productDetails = {
           name,
@@ -46,6 +51,7 @@ module.exports = {
           cardCurrency,
           extra,
           bulkrate,
+          isActive,
           image_url: `productImages/${imageUrl}`,
         };
         ProductPrice.create(productDetails)
@@ -56,6 +62,7 @@ module.exports = {
             return sendResult(res, addedProduct.dataValues);
           })
           .catch((error) => {
+            console.log('addProduct An error occurred', error);
             logger.error('An error occurred', error);
             return sendError(res, { errorMessage });
           });
@@ -78,6 +85,7 @@ module.exports = {
           rate,
           cardCurrency,
           extra,
+          isActive,
           bulkrate,
         } = req.body;
         const productDetails = {
@@ -85,6 +93,7 @@ module.exports = {
           rate,
           cardCurrency,
           extra,
+          isActive,
           bulkrate,
           image_url: `productImages/${imageUrl}`,
         };
@@ -109,6 +118,7 @@ module.exports = {
               });
           })
           .catch((error) => {
+            console.log('updateProduct An error occurred', error);
             logger.error('An error occurred', error);
             return sendError(res, { errorMessage });
           });

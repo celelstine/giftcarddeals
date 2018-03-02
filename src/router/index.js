@@ -40,7 +40,7 @@ export default new Router({
       path: '/products',
       name: 'Products',
       component: Products,
-      beforeEnter: (to, from, next) => checkAdmin(next),
+      // beforeEnter: (to, from, next) => checkAdmin(next),
     },
     {
       path: '/emails',

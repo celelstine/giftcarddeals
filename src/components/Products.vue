@@ -64,6 +64,11 @@
             class="w3-input w3-margin-bottom"
             v-model="extra">
           </textarea>
+          <input
+              class="checkitemn w3-check"
+              type="checkbox"
+              v-model="isActive"
+              id="isActive"> isActive
           <p v-if="messageForProducts" class="w3-pink w3-center" autofocus>{{ message }}</p>
           <button
             class="w3-button w3-block w3-green w3-section w3-padding"
@@ -71,6 +76,12 @@
             v-bind:disabled="inValidForm"
             v-on:click="registerProduct"
             >
+              <span class="salesstatus" v-if="isActive">
+                On Sales
+              </span>
+              <span class="salesstatus" v-else>
+                Not on Sales
+              </span>
              {{ submitBtnText }}
            </button>
             <button
@@ -78,7 +89,6 @@
               class="w3-button w3-block w3-grey w3-hover-red">
               Close
             </button>
-                <br/>
         </div>
       </form>
     </div>
@@ -133,6 +143,12 @@
               v-on:click="showProductDetails($event, product.id)"
               title="Edit the card"
               >
+              <span class="salesstatus" v-if="product.isActive">
+                On Sales
+              </span>
+              <span class="salesstatus" v-else>
+                Not on Sales
+              </span>
               Edit this card
             </button>
             <br />
@@ -149,10 +165,10 @@ import { mapState } from 'vuex';
 export default {
   name: 'Products',
   mounted() {
-    if (this.$store.state.auth.userCategory !== 'admin') {
-      this.$router.push('Home');
-    }
-    this.$store.dispatch('getProducts');
+    // if (this.$store.state.auth.userCategory !== 'admin') {
+    //   this.$router.push('Home');
+    // }
+    // this.$store.dispatch('getProducts');
   },
   computed: {
     ...mapState('auth', {
@@ -177,20 +193,23 @@ export default {
           .filter(product => product.id === id)[0];
         this.productId = currentProduct.id;
         this.name = currentProduct.name;
+        this.isActive = currentProduct.isActive;
         this.cardCurrency = currentProduct.cardCurrency;
         this.rate = currentProduct.rate;
         this.bulkrate = currentProduct.bulkrate;
         this.image_url = currentProduct.image_url;
         this.extra = currentProduct.extra;
+        this.isActive = currentProduct.isActive;
         this.submitBtnText = 'Update Card';
       } else {
         this.productId = null;
         this.name = null;
+        this.isActive = false;
         this.cardCurrency = null;
         this.rate = null;
         this.bulkrate = null;
         this.image_url = null;
-        this.extra = null;
+        this.extra = '';
         this.submitBtnText = 'Register card';
       }
       this.CurrentProductDiv = { display: 'block' };
@@ -200,6 +219,7 @@ export default {
       const formData = new FormData();
       // add user input to form data
       formData.append('name', this.name);
+      formData.append('isActive', this.isActive);
       formData.append('rate', this.rate);
       formData.append('bulkrate', this.bulkrate);
       formData.append('cardCurrency', this.cardCurrency);
@@ -267,6 +287,7 @@ export default {
       isProductDetails: false,
       isSaving: false,
       name: null,
+      isActive: false,
       rate: null,
       bulkrate: null,
       cardCurrency: null,
@@ -327,6 +348,7 @@ export default {
       if (val.toString().includes('success')) {
         this.name = null;
         this.rate = null;
+        this.isActive = false;
         this.bulkrate = null;
         this.cardCurrency = null;
         this.isSaving = null;
@@ -381,5 +403,12 @@ export default {
     font-size: 1.2em;
     text-align: center;
     padding: 50px 0;
+  }
+
+  .salesstatus {
+    float: left;
+    font-size: xx-small;
+    padding-top: 4px;
+    text-decoration: underline;
   }
 </style>

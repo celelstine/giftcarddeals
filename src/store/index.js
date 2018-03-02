@@ -99,7 +99,8 @@ const store = new Vuex.Store({
   },
   plugins: debug ? [createLogger()] : [],
   state: {
-    products: [],
+    /* eslint-disable */
+    products: [{"id":2,"name":"testing","rate":33,"bulkrate":40,"isActive":false,"image_url":"productImages/itunes-gift-card-pile.png","extra":null,"cardCurrency":"#","createdAt":"2018-02-15T14:42:37.959Z","updatedAt":"2018-02-15T14:42:37.959Z"},{"id":3,"name":"skskb","rate":22,"bulkrate":34,"isActive":true,"image_url":"productImages/IMG-20170424-WA0003.jpg","extra":"null","cardCurrency":"$","createdAt":"2018-03-02T14:39:27.317Z","updatedAt":"2018-03-02T15:34:01.015Z"},{"id":4,"name":"Generic card","rate":30,"bulkrate":35,"isActive":true,"image_url":"/gift_card_blue.png","extra":"US gift card","cardCurrency":"$","createdAt":"2018-02-13T09:47:28.336Z","updatedAt":"2018-02-20T05:20:20.759Z"},{"id":1,"name":"Generic card","rate":30,"bulkrate":35,"isActive":true,"image_url":"/gift_card_blue.png","extra":"US gift card","cardCurrency":"$","createdAt":"2018-02-13T09:47:28.336Z","updatedAt":"2018-02-20T05:20:20.759Z"}],
     messageForProducts: null,
     message: null,
     messageForGetProducts: null,
