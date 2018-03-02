@@ -39,7 +39,7 @@ app.use(fileUpload());
 app.use(methodOverride());
 
 // serve static files in public folder
-const publicPath = path.join(__dirname, 'lib/dist/');
+const publicPath = path.join(__dirname, 'dist/');
 app.use(express.static(publicPath));
 // server compressed javascript file
 app.get('*.js', (req, res, next) => {
@@ -55,6 +55,16 @@ app.use('/api/v1', router);
 // seed the database
 require('./api/db/seeders');
 
+app.all('/', (req, res) => {
+  return res.sendFile(publicPath + 'index.html');
+});
+
+// catch unknown routes
+app.all('*', function (req, res) {
+  return res.status(404).send({
+    message: 'Route was not found.'
+  });
+});
 app.all('*', (req, res) => {
   console.log('serving, ', `${publicPath}index.html`);
   res.sendFile(`${publicPath}index.html`)
