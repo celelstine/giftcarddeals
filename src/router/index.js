@@ -26,7 +26,7 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
-      // beforeEnter: (to, from, next) => checkJwt(next, to),
+      beforeEnter: (to, from, next) => checkAdmin(next, to),
     },
     {
       path: '/sellCard',

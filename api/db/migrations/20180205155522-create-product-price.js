@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
+      bulkrate: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
       image_url: {
         type: Sequelize.STRING,
         allowNull: true,

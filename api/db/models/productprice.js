@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    bulkrate: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
     image_url: {
       type: DataTypes.STRING,
       allowNull: true,

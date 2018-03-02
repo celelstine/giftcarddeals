@@ -40,6 +40,7 @@ module.exports = {
       bankAccountNumber,
       email,
       extra,
+      bulkrate,
       rate,
       productName,
       cardCurrency,
@@ -51,6 +52,7 @@ module.exports = {
       email,
       extra,
       rate,
+      bulkrate,
       productName,
       cardCurrency,
       orderId,
@@ -67,9 +69,9 @@ module.exports = {
     const text = `
       Card Details
       ---------------------------------
-      card type: ${productName}
-      rate: ${rate}
-
+      Card type: ${productName}
+      Rate: ${rate}
+      Bulk rate: ${bulkrate}
       Bank Details
       -----------------------------------
       Bank Name: ${bankName}
@@ -156,6 +158,7 @@ module.exports = {
         'status',
         'orderId',
         'rate',
+        'bulkrate',
         'productName',
         'cardCurrency',
         'email',
@@ -192,6 +195,7 @@ module.exports = {
         'status',
         'orderId',
         'rate',
+        'bulkrate',
         'productName',
         'cardCurrency',
         'email',

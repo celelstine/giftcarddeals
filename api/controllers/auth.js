@@ -224,7 +224,7 @@ module.exports = {
       const errorMessage = 'Invalid session, Please login again.';
       return sendError(res, { errorMessage }, 401);
     }).catch((err) => {
-      logger.error('error', 'An error occurred', err);
+      console.error('error', 'An error occurred', err);
       return sendError(res, { errorMessage: 'An  error occurred, please try again' });
     });
   },

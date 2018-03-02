@@ -5,7 +5,10 @@
       <div class="w3-center">
         <p class=" w3-block w3-padding w3-pink">
           Endeavour to review your application,this transaction
-          can not be altered after submission
+          can not be altered after submission. Please review our
+          <span v-on:click="gotoTermsPage" class="linkspan">
+            Terms and Conditions
+          </span>
         </p>
         <img
           src="../assets/images/sell-gift-cards.jpg" alt="sell Cards"
@@ -24,7 +27,8 @@
               v-bind:key="product.id"
               v-bind:value="product.id"
             >
-              {{ product.name }} - &#8358;{{ product.rate }} per {{ product.cardCurrency }}
+              {{ product.name }} - &#8358; {{ product.rate }} / {{ product.bulkrate}}
+              per {{ product.cardCurrency }}
             </option>
           </select>
           <label><b>Upload Gift Cards</b></label>
@@ -134,6 +138,10 @@ export default {
     this.email = this.userEmail;
   },
   methods: {
+    gotoTermsPage(event) {
+      event.preventDefault();
+      this.$router.push('TermsandConditions');
+    },
     placeOrder(event) {
       event.preventDefault();
       // get the selected product
@@ -146,7 +154,9 @@ export default {
       formData.append('bankAccountNumber', this.bankAccountNumber);
       formData.append('email', this.email);
       formData.append('extra', this.extra);
-      const productRate = `${selectProduct.rate} per ${selectProduct.cardCurrency}`;
+      const productRate = `&#8358; ${selectProduct.rate} per ${selectProduct.cardCurrency}`;
+      const bulkrate = `&#8358; ${selectProduct.bulkrate} per ${selectProduct.cardCurrency}`;
+      formData.append('bulkrate', bulkrate);
       formData.append('rate', productRate);
       formData.append('productName', selectProduct.name);
       formData.append('cardCurrency', selectProduct.cardCurrency);
@@ -336,6 +346,11 @@ export default {
 
 <!-- SASS styling -->
 <style>
+.linkspan{
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: Georgia, serif;
+}
 .dropbox {
     outline: 2px dashed grey; /* the dash box */
     outline-offset: -10px;

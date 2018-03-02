@@ -64,6 +64,10 @@ import {
 export default {
   name: 'Emails',
   mounted() {
+    if (this.$store.state.auth.userCategory !== 'admin') {
+      
+      this.$router.push('Home');
+    }
     this.getEmails();
   },
   methods: {

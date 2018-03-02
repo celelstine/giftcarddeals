@@ -17,7 +17,7 @@ selenium-debug.log
 *.sln
 
 # the build folder
-/lib/
+/lib*/
 # vue distribution folder
 /dist/
 # test vue progressive app

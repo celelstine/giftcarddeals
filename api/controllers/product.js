@@ -38,12 +38,14 @@ module.exports = {
           rate,
           cardCurrency,
           extra,
+          bulkrate,
         } = req.body;
         const productDetails = {
           name,
           rate,
           cardCurrency,
           extra,
+          bulkrate,
           image_url: `productImages/${imageUrl}`,
         };
         ProductPrice.create(productDetails)
@@ -76,12 +78,14 @@ module.exports = {
           rate,
           cardCurrency,
           extra,
+          bulkrate,
         } = req.body;
         const productDetails = {
           name,
           rate,
           cardCurrency,
           extra,
+          bulkrate,
           image_url: `productImages/${imageUrl}`,
         };
         ProductPrice.findOne({

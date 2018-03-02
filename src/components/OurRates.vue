@@ -19,6 +19,9 @@
           <img v-else src="../assets/images/gift_card_blue.png" style="width:100%">
           <div class="w3-container">
             <h4> {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}</h4>
+            <h5>
+              Bulk Rate &#8358; {{ product.bulkrate }} per {{ product.cardCurrency }}
+            </h5>
           </div>
         </div>
       </div>

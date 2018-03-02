@@ -45,6 +45,13 @@
             v-model="rate"
             v-bind:style="customBorder.rate"
             required>
+          <label><b>Bulk Rate in &#8358;</b></label>
+          <input
+            class="w3-input  w3-margin-bottom" type="text"
+            placeholder="Enter the bulk rate" name="bulkrate"
+            v-model="bulkrate"
+            v-bind:style="customBorder.bulkrate"
+            required>
           <label><b>Base Currency</b></label>
           <input
             class="w3-input  w3-margin-bottom" type="text"
@@ -117,6 +124,9 @@
               >
               {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>
+            <span>
+              Bulk Rate &#8358; {{ product.bulkrate }} per {{ product.cardCurrency }}
+            </span>
             <button
               class="w3-button w3-block w3-light-blue"
               type="submit"
@@ -168,6 +178,7 @@ export default {
         this.name = currentProduct.name;
         this.cardCurrency = currentProduct.cardCurrency;
         this.rate = currentProduct.rate;
+        this.bulkrate = currentProduct.bulkrate;
         this.image_url = currentProduct.image_url;
         this.extra = currentProduct.extra;
         this.submitBtnText = 'Update Card';
@@ -176,6 +187,7 @@ export default {
         this.name = null;
         this.cardCurrency = null;
         this.rate = null;
+        this.bulkrate = null;
         this.image_url = null;
         this.extra = null;
         this.submitBtnText = 'Register card';
@@ -188,6 +200,7 @@ export default {
       // add user input to form data
       formData.append('name', this.name);
       formData.append('rate', this.rate);
+      formData.append('bulkrate', this.bulkrate);
       formData.append('cardCurrency', this.cardCurrency);
       formData.append('extra', this.extra);
       let curFile = null;
@@ -254,6 +267,7 @@ export default {
       isSaving: false,
       name: null,
       rate: null,
+      bulkrate: null,
       cardCurrency: null,
       extra: '',
       image_url: null,
@@ -268,6 +282,9 @@ export default {
           border: '1px solid #ccc',
         },
         rate: {
+          border: '1px solid #ccc',
+        },
+        bulkrate: {
           border: '1px solid #ccc',
         },
         cardCurrency: {
@@ -291,6 +308,13 @@ export default {
         this.checkForm('rate', 'remove');
       }
     },
+    bulkrate(val) {
+      if (val.toString().trim() && this.rate <= val) {
+        this.checkForm('bulkrate', 'add');
+      } else {
+        this.checkForm('bulkrate', 'remove');
+      }
+    },
     cardCurrency(val) {
       if (val.toString().trim()) {
         this.checkForm('cardCurrency', 'add');
@@ -300,9 +324,10 @@ export default {
     },
     message(val) {
       if (val.toString().includes('success')) {
-        this.name = '';
-        this.rate = '';
-        this.cardCurrency = '';
+        this.name = null;
+        this.rate = null;
+        this.bulkrate = null;
+        this.cardCurrency = null;
         this.isSaving = null;
         this.isInitial = true;
         this.CurrentProductDiv = { display: 'none' };
@@ -311,6 +336,9 @@ export default {
             border: '1px solid #ccc',
           },
           rate: {
+            border: '1px solid #ccc',
+          },
+          bulkrate: {
             border: '1px solid #ccc',
           },
           cardCurrency: {
