@@ -23,6 +23,7 @@ selenium-debug.log
 /src/
 /static/
 /test/
+/lib.1/
 w3.css
 # vue distribution folder
 /dist/
