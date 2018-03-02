@@ -25,7 +25,7 @@
           <div class="w3-container">
             <ul class="companyAttribute">
               <li>
-                Our rate are awesome, available on our
+                Our rate are awesome, they are displayed on our
                 <router-link
                   class="inlineLinks"
                   to="/ourRates">
@@ -36,6 +36,7 @@
                 Our transactions are completed within 10 minutes (maximal)
               </li>
               <li> We respond to feedback within few minutes</li>
+              <li> We offer special rates for bulk cards sold (above $1000 worth) </li>
             </ul>
             <div class="row">
               <div class="w3-quarter w3-center">

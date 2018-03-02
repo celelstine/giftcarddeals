@@ -7,6 +7,12 @@
       <div class="w3-center">
         <p class=" w3-block w3-padding w3-pink">
           *********TERMS OF TRADE*********
+          <span
+            class="spanLink"
+            title="return to previous page"
+            v-on:click="gotoPreviousPage">
+            « Back
+          </span>
         </p>
       </div>
 
@@ -36,5 +42,21 @@
 /* eslint-disable */
 export default {
   name: 'TermsandConditions',
+  methods: {
+    gotoPreviousPage(event) {
+      event.preventDefault();
+      this.$router.go(-1);
+    },
+  },
 };
 </script>
+<style>
+  .spanLink {
+    float: left;
+    font-size: x-small;
+    padding-top: 4px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
+

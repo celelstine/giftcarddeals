@@ -6,7 +6,10 @@
     <br />
     <footer class="w3-container w3-theme-d2">
       <p>
-        Copyright 2017
+        &copy; Copyright 2017
+        <span class="spanLink1" v-on:click="gotoTermsPage">
+          Terms and Conditions
+        </span>
         <i class="fa fa-phone w3-right"> 08149677155 </i>
         <a
           className="w3-xlarge w3-right"
@@ -28,12 +31,23 @@ export default {
   components: {
     NavBar,
   },
+  methods: {
+    gotoTermsPage(event) {
+      event.preventDefault();
+      this.$router.push('TermsandConditions');
+    },
+  },
 };
 </script>
 
 <style scoped>
+.spanLink1 {
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: Georgia, serif;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Karma', Georgia, 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height:100vh;
