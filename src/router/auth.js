@@ -8,26 +8,20 @@ export const logout = (commit, next) => {
 };
 
 export const checkRemeberme = (next, to) => {
-  if (localStorage.getItem('32snksnsknskn')) {
+  /* eslint-disable */
+  if ('32snksnsknskn' in localStorage) {
     const rememberText = localStorage.getItem('32snksnsknskn');
+    console.log('rememberText', rememberText);
     axios.post('/api/v1/getUserwithRememberMeToken', { rememberText })
       .then((response) => {
         localStorage.getItem('32snksnsknskn', response.data.payload.rememberText);
         store.dispatch('auth/remeberMeLogin', response.data.payload, true);
         next();
       })
-      .catch(() => {
-        if (to.fullPath !== '/') {
-          next('/');
-        } else {
-          next();
-        }
-      });
+      .catch(() =>  next('/login_without_admincheck'));
     next();
-  } else if (to.fullPath !== '/') {
-    next('/');
   } else {
-    next();
+    next('/login_without_admincheck');
   }
 };
 

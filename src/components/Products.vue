@@ -124,9 +124,9 @@
               >
               {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>
-            <span>
+            <button class="w3-button w3-block w3-dark-grey">
               Bulk Rate &#8358; {{ product.bulkrate }} per {{ product.cardCurrency }}
-            </span>
+            </button>
             <button
               class="w3-button w3-block w3-light-blue"
               type="submit"

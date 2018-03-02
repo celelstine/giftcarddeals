@@ -9,7 +9,6 @@ import Emails from '@/components/Emails';
 import Login from '@/components/Login';
 import Feedback from '@/components/Feedback';
 import {
-  // checkJwt,
   checkAdmin,
 } from './auth';
 
@@ -20,7 +19,6 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
       path: '/login',
@@ -29,10 +27,14 @@ export default new Router({
       beforeEnter: (to, from, next) => checkAdmin(next, to),
     },
     {
+      path: '/login_without_admincheck',
+      name: 'login_without_admincheck',
+      component: Login,
+    },
+    {
       path: '/sellCard',
       name: 'Order',
       component: Order,
-      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
       path: '/products',
@@ -56,28 +58,19 @@ export default new Router({
       name: 'TermsandConditions',
       component: TermsandConditions,
     },
-    // {
-    //   path: '/orders',
-    //   name: 'ClientOrders',
-    //   component: ClientOrders,
-    //   beforeEnter: (to, from, next) => checkJwt(next, to),
-    // },
     {
       path: '/feedback',
       name: 'Feedback',
       component: Feedback,
-      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
       path: '/feedback/:orderId',
       name: 'orderFeedback',
       component: Feedback,
-      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
     {
       path: '*',
       component: Home,
-      // beforeEnter: (to, from, next) => checkJwt(next, to),
     },
   ],
 });

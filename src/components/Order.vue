@@ -27,8 +27,8 @@
               v-bind:key="product.id"
               v-bind:value="product.id"
             >
-              {{ product.name }} - &#8358; {{ product.rate }} / {{ product.bulkrate}}
-              per {{ product.cardCurrency }}
+              {{ product.name }} - &#8358;{{ product.rate }}
+              per {{ product.cardCurrency }}, bulk  &#8358;{{ product.bulkrate}}
             </option>
           </select>
           <label><b>Upload Gift Cards</b></label>

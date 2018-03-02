@@ -35,6 +35,13 @@
             name="password"
             v-bind:style="customBorder.password"
             required>
+           <p class="checkitemn">
+            <input
+              class="w3-check"
+              type="checkbox"
+              v-model="rememberMe"
+              id="rememberMe"> Remember Me
+            </p>
           <button
             class="w3-button w3-block w3-green w3-section w3-padding"
             type="submit"
@@ -42,13 +49,6 @@
             v-on:click="handleLogin">
             Login
            </button>
-           <p class="checkitemn">
-            <input
-              class="w3-check w3-margin-top"
-              type="checkbox"
-              v-model="rememberMe"
-              id="rememberMe"> Remember Me
-            </p>
         </div>
       </form>
 
