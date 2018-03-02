@@ -16,8 +16,14 @@ selenium-debug.log
 *.njsproj
 *.sln
 
-# the build folder
-/lib/
+# we dont to ignore every folder that does not contain bundled file
+/api/
+/build/
+/config/
+/src/
+/static/
+/test/
+w3.css
 # vue distribution folder
 /dist/
 # test vue progressive app
