@@ -18,10 +18,10 @@ export const checkRemeberme = (next, to) => {
         store.dispatch('auth/remeberMeLogin', response.data.payload, true);
         next();
       })
-      .catch(() =>  next('/login_without_admincheck'));
+      .catch(() =>  next('/login1'));
     next();
   } else {
-    next('/login_without_admincheck');
+    next('/login1');
   }
 };
 

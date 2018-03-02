@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken';
 import model from '../db/models/index';
 
 const User = model.users;
-const AuthToken = model.authtoken;
+const AuthToken = model.authTokens;
+
 module.exports = {
   // helper functions
   sendResult(res, result) {

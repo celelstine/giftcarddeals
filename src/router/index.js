@@ -27,7 +27,7 @@ export default new Router({
       beforeEnter: (to, from, next) => checkAdmin(next, to),
     },
     {
-      path: '/login_without_admincheck',
+      path: '/login1',
       name: 'login_without_admincheck',
       component: Login,
     },

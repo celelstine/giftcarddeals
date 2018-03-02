@@ -135,6 +135,7 @@
               >
               Edit this card
             </button>
+            <br />
           </div>
         </div>
       </div>
@@ -252,7 +253,7 @@ export default {
       this.validInputs = validInputs;
 
       // disable the submit button when every field are not valid
-      if (validInputs.length === 3) {
+      if (validInputs.length === 4) {
         this.inValidForm = false;
       } else {
         this.inValidForm = true;
