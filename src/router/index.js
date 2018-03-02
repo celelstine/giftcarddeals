@@ -24,7 +24,7 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
-      beforeEnter: (to, from, next) => checkAdmin(next, to),
+      beforeEnter: (to, from, next) => checkAdmin(next),
     },
     {
       path: '/login1',
@@ -40,13 +40,13 @@ export default new Router({
       path: '/products',
       name: 'Products',
       component: Products,
-      beforeEnter: (to, from, next) => checkAdmin(next, to),
+      beforeEnter: (to, from, next) => checkAdmin(next),
     },
     {
       path: '/emails',
       name: 'Emails',
       component: Emails,
-      beforeEnter: (to, from, next) => checkAdmin(next, to),
+      beforeEnter: (to, from, next) => checkAdmin(next),
     },
     {
       path: '/ourRates',

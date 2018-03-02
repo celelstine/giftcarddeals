@@ -7,11 +7,10 @@ export const logout = (commit, next) => {
   next('/');
 };
 
-export const checkRemeberme = (next, to) => {
+export const checkRemeberme = (next) => {
   /* eslint-disable */
   if ('32snksnsknskn' in localStorage) {
     const rememberText = localStorage.getItem('32snksnsknskn');
-    console.log('rememberText', rememberText);
     axios.post('/api/v1/getUserwithRememberMeToken', { rememberText })
       .then((response) => {
         localStorage.getItem('32snksnsknskn', response.data.payload.rememberText);
@@ -25,15 +24,15 @@ export const checkRemeberme = (next, to) => {
   }
 };
 
-export const checkJwt = (next, to) => {
+export const checkJwt = (next) => {
   if (store.state.auth.jwtToken) {
     next();
   } else {
-    checkRemeberme(next, to);
+    checkRemeberme(next);
   }
 };
 
-export const checkAdmin = (next, to) => {
+export const checkAdmin = (next) => {
   if (store.state.auth.jwtToken) {
     if (store.state.auth.userCategory !== 'admin') {
       next('/');
@@ -41,6 +40,6 @@ export const checkAdmin = (next, to) => {
       next();
     }
   } else {
-    checkRemeberme(next, to);
+    checkRemeberme(next);
   }
 };
