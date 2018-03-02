@@ -35,7 +35,7 @@ module.exports = {
       (err) => {
         if (err) {
           logger.error('An error occurred', err);
-          return sendError(res, { errorMessage });
+          return sendError(res, { errorMessage, err });
         }
         const {
           name,
