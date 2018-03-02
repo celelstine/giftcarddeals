@@ -165,10 +165,10 @@ import { mapState } from 'vuex';
 export default {
   name: 'Products',
   mounted() {
-    // if (this.$store.state.auth.userCategory !== 'admin') {
-    //   this.$router.push('Home');
-    // }
-    // this.$store.dispatch('getProducts');
+    if (this.$store.state.auth.userCategory !== 'admin') {
+      this.$router.push('Home');
+    }
+    this.$store.dispatch('getProducts');
   },
   computed: {
     ...mapState('auth', {
