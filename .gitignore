@@ -1,0 +1,33 @@
+.DS_Store
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/test/unit/coverage/
+/test/e2e/reports/
+selenium-debug.log
+
+.env
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# we dont to ignore every folder that does not contain bundled file
+/api/
+/build/
+/config/
+/src/
+/static/
+/test/
+/lib.1/
+w3.css
+# vue distribution folder
+/dist/
+# test vue progressive app
+/vue-pwa/
+# server log file
+server.log
