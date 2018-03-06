@@ -32,8 +32,8 @@ module.exports = {
           text: content,
         };
         const mailTransporter = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
-          port: 465,
+          host: 'mail.exchangezone9ja.com',
+          port: 25,
           secure: true,
           auth: {
             user: process.env.FEEDBACK_MAIL,

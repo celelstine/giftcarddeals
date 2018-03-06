@@ -59,8 +59,8 @@ module.exports = {
       subject: `New order from ${email}`,
     };
     const mailTransporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
+      host: 'mail.exchangezone9ja.com',
+      port: 25,
       auth: {
         user: process.env.SEND_GIFTCARD_MAIL,
         pass: process.env.SEND_GIFTCARD_MAIL_PASSWORD,
@@ -73,6 +73,7 @@ module.exports = {
       Rate: ${rate}
       Bulk rate: ${bulkrate}
       Bank Details
+
       -----------------------------------
       Bank Name: ${bankName}
       Bank Account Number: ${bankAccountNumber}
@@ -123,7 +124,6 @@ module.exports = {
               logger.error('error', 'An error occurred', err);
               return sendError(res, { errorMessage });
             }
-    
             Order.create(orderObject)
               .then(() => {
                 // send response to client

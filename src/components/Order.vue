@@ -27,8 +27,8 @@
               v-bind:key="product.id"
               v-bind:value="product.id"
             >
-              {{ product.name }} - &#8358;{{ product.rate }}
-              per {{ product.cardCurrency }}, bulk  &#8358;{{ product.bulkrate}}
+              {{ product.name }} - ₦{{ product.rate }}
+              per {{ product.cardCurrency }}, bulk  ₦{{ product.bulkrate}}
             </option>
           </select>
           <label><b>Upload Gift Cards</b></label>
@@ -154,8 +154,8 @@ export default {
       formData.append('bankAccountNumber', this.bankAccountNumber);
       formData.append('email', this.email);
       formData.append('extra', this.extra);
-      const productRate = `&#8358; ${selectProduct.rate} per ${selectProduct.cardCurrency}`;
-      const bulkrate = `&#8358; ${selectProduct.bulkrate} per ${selectProduct.cardCurrency}`;
+      const productRate = `₦ ${selectProduct.rate} per ${selectProduct.cardCurrency}`;
+      const bulkrate = `₦ ${selectProduct.bulkrate} per ${selectProduct.cardCurrency}`;
       formData.append('bulkrate', bulkrate);
       formData.append('rate', productRate);
       formData.append('productName', selectProduct.name);

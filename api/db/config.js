@@ -14,9 +14,18 @@ module.exports = {
     logging: false,
     dialect: 'postgres',
   },
+  dev2: {
+    username: process.env.MYSQL_DATABASE_USERNAME,
+    password: process.env.MYSQL_DATABASE_PASSWORD,
+    database: process.env.MYSQL_DATABASE_NAME,
+    host: '127.0.0.1',
+    dialect: 'mysql',
+  },
   production: {
-    use_env_variable: 'DATABASE_URL',
-    logging: false,
-    dialect: 'postgres',
+    username: process.env.MYSQL_DATABASE_USERNAME,
+    password: process.env.MYSQL_DATABASE_PASSWORD,
+    database: process.env.MYSQL_DATABASE_NAME,
+    host: '127.0.0.1',
+    dialect: 'mysql',
   },
 };
