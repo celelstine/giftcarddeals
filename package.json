@@ -21,7 +21,9 @@
     "build:client": "node build/build.js && npm run build:server",
     "build:server": "babel api  -d lib/api --copy-files --ignore tests/ && npm run build-app",
     "build-app": "babel server.js  -d lib --copy-files && npm run db:migrate && node lib/server.js",
-    "db:migrate": "sequelize db:migrate "
+    "db:migrate": "sequelize db:migrate ",
+    "run:build": "NODE_ENV=production node lib/server.js",
+    "main": "pm2 start npm -- run:build"
   },
   "dependencies": {
     "axios": "^0.17.1",
