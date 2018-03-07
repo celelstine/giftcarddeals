@@ -99,8 +99,7 @@ export default {
       const credentails = {
         content: this.content,
         orderId: this.orderId,
-        from: this.email,
-        isclient: true,
+        email: this.email,
       };
       this.$store.dispatch('sendFeedback', credentails);
     },
