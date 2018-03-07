@@ -12,7 +12,7 @@ import fileUpload from 'express-fileupload';
 
 //import model from './api/db/models/index';
 import routes from './api/routes';
-import logger from 'api/logger';
+import winstonlogger from './api/logger';
 // initailize dotenv
 dotenv.config();
 
@@ -56,6 +56,7 @@ app.use('/api/v1', router);
 require('./api/db/seeders');
 
 app.all('/', (req, res) => {
+  winstonlogger.error("came here");
   return res.sendFile(publicPath + 'index.html');
 });
 
@@ -64,10 +65,6 @@ app.all('*', function (req, res) {
   return res.status(404).send({
     message: 'Route was not found.'
   });
-});
-app.all('*', (req, res) => {
-  console.log('serving, ', `${publicPath}index.html`);
-  res.sendFile(`${publicPath}index.html`)
 });
 
 // catch errors
@@ -78,7 +75,7 @@ app.use((err, req, res, next) => {
 // start server
 const server = app.listen(app.get('port'),  () => {
   console.log("Server started on port", app.get('port'));
-  logger.error("Server started on port", app.get('port'));
+  winstonlogger.error("Server started on port", app.get('port'));
 });
 
 const io = require('socket.io').listen(server);
@@ -86,5 +83,6 @@ const io = require('socket.io').listen(server);
 app.set('socketio', io);
 io.on('connection', (socket) => {
   console.log("Server socket  started on port", app.get('port'));
+  winstonlogger.error("Server socket started on port", app.get('port'));
 });
 export default app;

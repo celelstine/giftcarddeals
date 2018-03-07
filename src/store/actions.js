@@ -40,7 +40,6 @@ export const updateProduct = ({ commit }, { formData, productId }) => {
     })
     .catch((error) => {
       let message = 'An internal error occurred, please try again';
-      let err = '';
       if (error.response.status && error.response.status !== 500) {
         message = error.response.data.message;
       }

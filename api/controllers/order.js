@@ -91,7 +91,7 @@ module.exports = {
         const emailList = [];
         emails.forEach(staff => emailList.push(staff.email));
         let mailPayload = {
-          sender: process.env.SEND_GIFTCARD_MAIL,
+          sender: 'Exchange Zone 9ja',
           to: process.env.ADMIN_MAIL,
           subject: `order from ${email}, Order ID ${orderId}`,
           text,

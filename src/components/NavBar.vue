@@ -15,7 +15,7 @@
         href="/#/"
         class="w3-bar-item w3-button w3-padding w3-theme-d4">
         <i class="fa fa-home w3-margin-right"></i>
-        Gift Card Market
+        Exchange Zone 9ja
       </a>
       <div>
         <router-link
