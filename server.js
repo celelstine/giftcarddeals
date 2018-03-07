@@ -12,7 +12,7 @@ import fileUpload from 'express-fileupload';
 
 //import model from './api/db/models/index';
 import routes from './api/routes';
-
+import logger from 'api/logger';
 // initailize dotenv
 dotenv.config();
 
@@ -78,6 +78,7 @@ app.use((err, req, res, next) => {
 // start server
 const server = app.listen(app.get('port'),  () => {
   console.log("Server started on port", app.get('port'));
+  logger.error("Server started on port", app.get('port'));
 });
 
 const io = require('socket.io').listen(server);

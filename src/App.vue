@@ -13,7 +13,7 @@
         <i class="fa fa-phone w3-right"> 08149677155 </i>
         <a
           className="w3-xlarge w3-right"
-          href="mailto:giftcardcontact@gmail.com?Subject=User's%20Feedback"
+          href="mailto:sales@exchangezone9ja.com?Subject=User's%20Feedback"
           target="_top"
         >
           Send us a mail <i class="fa fa-envelope"></i>
