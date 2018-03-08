@@ -42,17 +42,18 @@ module.exports = {
                   color: black
                 "
             >
-              <header
+              <h6
                 style="
                   color: #fff!important;
                   background-color: #ff5722!important;
+                  font-size: larger;
+                  padding: 5px 5px; 
+                  margin-bottom: 5px
                 "
               >
-                <h6>
                   Feedback for order ${orderId} from 
                   <i>${email}</i>
-                </h6>
-              </header>
+              </h6>
               <div 
                 style="
                   text-align: justify;

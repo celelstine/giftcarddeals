@@ -72,8 +72,8 @@ module.exports = {
       Card type: ${productName}
       Rate: ${rate}
       Bulk rate: ${bulkrate}
-      Bank Details
 
+      Bank Details
       -----------------------------------
       Bank Name: ${bankName}
       Bank Account Number: ${bankAccountNumber}
@@ -123,6 +123,66 @@ module.exports = {
               thanks for choosing us.
     
               ${text}
+            `,
+            html: `
+              <div
+                style="
+                  font-family: Helvetica, sans-serif;
+                  padding: 0.01em 16px;
+                  max-width: 800px;
+                  color: black
+                  "
+              >
+                <h6
+                  style="
+                  color: #fff!important;
+                  background-color: #ff5722!important;
+                  font-size: larger;
+                  padding: 5px 5px; 
+                  margin-bottom: 5px
+                ">
+                  You order with order ID <span style="text-decoration: underline;">
+                  ${orderId}</span> has been recieved
+                </h6>
+                <div 
+                  style="
+                    text-align: justify;
+                    text-justify: inter-word;
+                  "
+                >
+                  <p>
+                    We would load the cards and transfer the money to your account.
+                      Our average response time is 10 minutes.
+                  </p>
+                  <fieldset>
+                    <legend>Order Detials:</legend>
+                    Card Details <br />
+                    --------------------------------- <br />
+                      
+                    Card Type: ${productName} <br />
+                    Rate: ${rate} <br />
+                    Bulk Rate: ${bulkrate} <br />
+
+                    Bank Details <br />
+                    ----------------------------------- <br />
+                    Bank Name:  ${bankName} <br />
+                    Bank Account Number:  ${bankAccountNumber} <br />
+                    Bank Account Name: ${bankAccountName} <br />
+                    
+                  </fieldset>
+                  <p>
+                    You can contact us via
+                    <span style="text-decoration: underline;">
+                    ${process.env.FEEDBACK_MAIL} or ${process.env.ADMIN_PHONE} </span>
+                  </p>
+                  <p>Thanks for choosing us.<p>
+                  <p>
+                    ExchangeZone9ja <span style="float: right"> 
+                    ${new Date().toLocaleDateString('en-US')}
+                    </span>
+                  </p>
+                </div>
+              </div>
             `,
           };
           mailTransporter.sendMail(mailPayload, (err, info) => {
