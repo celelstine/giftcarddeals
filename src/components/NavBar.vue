@@ -210,6 +210,5 @@ export default {
   }
   .w3-bar {
     overflow: hidden;
-    margin: 5px;
   }
 </style>

@@ -27,7 +27,8 @@
             v-bind:style="customBorder.email"
             required>
           <textarea
-            placeholder="Write Feedback here..."
+            placeholder="Write your Feedback here...
+            Not more than 800 characters"
             class="w3-input w3-margin-bottom"
              v-bind:style="customBorder.content"
             v-model="content">
@@ -143,7 +144,8 @@ export default {
       }
     },
     content(val) {
-      if (val) {
+      const inputLenght = val.toString.trim().length;
+      if (inputLenght <= 800) {
         this.checkForm('content', 'add');
       } else {
         this.checkForm('content', 'remove');
@@ -160,6 +162,7 @@ export default {
       if (val.toString().includes('success')) {
         this.orderId = null;
         this.content = null;
+        this.email = null;
         this.customBorder = {
           orderId: {
             border: '1px solid #ccc',

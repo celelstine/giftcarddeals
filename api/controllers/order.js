@@ -91,11 +91,14 @@ module.exports = {
         const emailList = [];
         emails.forEach(staff => emailList.push(staff.email));
         let mailPayload = {
-          sender: 'Exchange Zone 9ja',
+          sender: process.env.SEND_GIFTCARD_MAIL,
+          from: process.env.SEND_GIFTCARD_MAIL,
           to: process.env.ADMIN_MAIL,
+          replyTo: process.env.SEND_GIFTCARD_MAIL,
+          date: new Date(),
+          bcc: emailList,
           subject: `order from ${email}, Order ID ${orderId}`,
           text,
-          bcc: emailList,
           attachments,
         };
         mailTransporter.sendMail(mailPayload, (error, info) => {
@@ -106,7 +109,10 @@ module.exports = {
           // send mail to user email
           mailPayload = {
             sender: process.env.SEND_GIFTCARD_MAIL,
+            from: process.env.SEND_GIFTCARD_MAIL,
             to: email,
+            replyTo: process.env.SEND_GIFTCARD_MAIL,
+            date: new Date(),
             subject: `Your order has been recieved, Order ID ${orderId}`,
             text: `
               You order with order ID ${orderId} has been recieved.
