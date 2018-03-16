@@ -25,9 +25,9 @@
           <div class="w3-container">
             <ul class="companyAttribute">
               <li>
-                Our rate are awesome, they are displayed on our
+                Our rate are awesome, they are proudly displayed on our
                 <router-link
-                  class="inlineLinks"
+                  class="actionLinks"
                   to="/ourRates">
                   product page
                 </router-link>
@@ -36,7 +36,22 @@
                 Our transactions are completed within 10 minutes (maximal)
               </li>
               <li> We respond to feedback within few minutes</li>
-              <li> We offer special rates for bulk cards sold (above $1000 worth) </li>
+              <li>
+                We offer special rates for <i>Bulk Cards</i> (more than 8 single cards)
+              </li>
+              <li>
+                We offer an expectional rate for
+                <i>Higher Denominations</i>
+                cards (single card(s) that is above $100)
+              </li>
+              <li>
+                Please read our
+                <router-link
+                  class="actionLinks"
+                  to="/TermsandConditions">
+                  Terms and Conditions
+                </router-link> before you make any transaction.
+              </li>
             </ul>
             <div class="row">
               <div class="w3-quarter w3-center">
@@ -88,12 +103,20 @@
         </div>
       </div>
     </div>
+    <div class="w3-container">
+      <OurRates> </OurRates>
+    </div>
   </div>
 </template>
 
 <script>
+import OurRates from './OurRates';
+
 export default {
   name: 'Home',
+  components: {
+    OurRates,
+  },
   methods: {
     gotoOurRatePage(event) {
       event.preventDefault();
@@ -121,9 +144,10 @@ a {
   padding: 5px;
 }
 
-.inlineLinks {
+.actionLinks {
   display: inline;
-  color: #292929;
+  color: #FC5830;
+  cursor: pointer;
 }
 .non_margin_top{
   margin-top: 0px;

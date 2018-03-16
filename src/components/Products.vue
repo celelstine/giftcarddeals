@@ -45,10 +45,10 @@
             v-model="rate"
             v-bind:style="customBorder.rate"
             required>
-          <label><b>Bulk Rate in &#8358;</b></label>
+          <label><b>Higher Denomination Rate in &#8358;</b></label>
           <input
             class="w3-input  w3-margin-bottom" type="text"
-            placeholder="Enter the bulk rate" name="bulkrate"
+            placeholder="Enter the Higher Denomination rate" name="bulkrate"
             v-model="bulkrate"
             v-bind:style="customBorder.bulkrate"
             required>
@@ -135,7 +135,7 @@
               {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>
             <button class="w3-button w3-block w3-dark-grey">
-              Bulk Rate &#8358; {{ product.bulkrate }} per {{ product.cardCurrency }}
+              Higher Denomination &#8358; {{ product.bulkrate }} per {{ product.cardCurrency }}
             </button>
             <button
               class="w3-button w3-block w3-light-blue"

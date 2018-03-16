@@ -4,11 +4,14 @@
       class="w3-modal-content w3-card-4 w3-animate-zoom">
       <div class="w3-center">
         <p class=" w3-block w3-padding w3-pink">
-          Endeavour to review your application,this transaction
-          can not be altered after submission. Please review our
+          Endeavour to review your application as
+           we won't be held responsible for funding a wrong Account Number provided by you
+          <br />This transaction can not be altered after submission.
+          <br /> Please review our
           <span v-on:click="gotoTermsPage" class="linkspan">
             Terms and Conditions
           </span>
+          before you proceed
         </p>
         <img
           src="../assets/images/sell-gift-cards.jpg" alt="sell Cards"
@@ -28,9 +31,20 @@
               v-bind:value="product.id"
             >
               {{ product.name }} - ₦{{ product.rate }}
-              per {{ product.cardCurrency }}, bulk  ₦{{ product.bulkrate}}
+              per {{ product.cardCurrency }}, bulk  ₦{{ product.bigDenominationrate}}
             </option>
           </select>
+
+          <input class="w3-radio" type="radio" name="cardType" value="normalCards">
+          <label>Normal Card</label>
+
+          <input class="w3-radio" type="radio" name="cardType" value="BulkCard">
+          <label>Bulk Cards</label>
+
+          <input class="w3-radio" type="radio" name="cardType" value="higherDenomination">
+          <label>Higher Denomination Card</label>
+          <br />
+
           <label><b>Upload Gift Cards</b></label>
           <div class="dropbox">
             <input
@@ -134,8 +148,8 @@ export default {
   mounted() {
     this.$store.dispatch('getProducts');
     // autofill the email and bank account name with the auth object
-    this.bankAccountName = this.userFullname;
-    this.email = this.userEmail;
+    // this.bankAccountName = this.userFullname;
+    // this.email = this.userEmail;
   },
   methods: {
     gotoTermsPage(event) {
@@ -346,11 +360,15 @@ export default {
 
 <!-- SASS styling -->
 <style>
-.linkspan{
-  text-decoration: underline;
-  cursor: pointer;
-  font-family: Georgia, serif;
-}
+  input[type="radio"]:checked + label{
+    text-decoration: underline;
+    font-size: larger
+  }
+  .linkspan{
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: Georgia, serif;
+  }
 .dropbox {
     outline: 2px dashed grey; /* the dash box */
     outline-offset: -10px;
