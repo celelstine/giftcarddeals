@@ -53,6 +53,7 @@ module.exports = {
       extra,
       highDenominationRate,
       rate,
+      ishighDenominationRate,
       productName,
       cardCurrency,
     } = req.body;
@@ -91,6 +92,10 @@ module.exports = {
       Bank Name: ${bankName}
       Bank Account Number: ${bankAccountNumber}
       Bank Account Name: ${bankAccountName}
+
+      Extra
+      ------------------------------------
+      ${extra}
     `;
     StaffEmail
       .findAll({

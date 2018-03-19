@@ -17,23 +17,24 @@
       </div>
 
       <p class=" w3-block w3-padding">
-        Upload the full picture of your itunes gift cards showing its denomination
+        Upload the full picture of your gift cards showing its denomination
         or attach the receipt if the denomination isn't visible.
       </p>
-       <p class=" w3-block w3-padding">
-      We accept only PHYSICAL Itunes Gift Card denominations of $5, $10, $15,
-      $25, $50, & $100 or Pounds(£) or AUD or CAD are accepted.
+      <p class=" w3-block w3-padding">
+       Gift Card denominations of $5, $10, $15, $25, $50, & $100 are termed Normal cards,
+       while cards that are above $100 or its equivalent are terms Higher Denomination cards.
        </p>
-       <p class=" w3-block w3-padding">
-      Itunes Gift Card denominations of $101 & £101 above are not accepted.
-        For AUD & CAD, maximum denomination accepted is $500.
-        These Giftcards usually start with "X"
+      <p class=" w3-block w3-padding">
+      Ensure to indicate the category of cards that you intend to sell using the
+       checkbox in the form.
       </p>
       <p class=" w3-block w3-padding">
-      We won't credit your account if you upload ECODES, USED or UNACTIVATED or
-      INVALID Cards or Card Denominations greater than $100 or £100 or 500AUD or
-      500CAD Itunes Gift Card.
-       </p>
+      A notepad is provided to describe the denominations of the cards, please be
+       sincere with your description.
+      </p>
+      <p class=" w3-block w3-padding">
+        We won't credit your account if you upload ECODES, USED or UNACTIVATED or INVALID Cards.
+      </p>
     </div>
   </div>
 </template>

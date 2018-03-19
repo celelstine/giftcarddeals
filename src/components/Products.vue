@@ -48,9 +48,9 @@
           <label><b>Higher Denomination Rate in &#8358;</b></label>
           <input
             class="w3-input  w3-margin-bottom" type="text"
-            placeholder="Enter the Higher Denomination rate" name="bulkrate"
-            v-model="bulkrate"
-            v-bind:style="customBorder.bulkrate"
+            placeholder="Enter the Higher Denomination rate" name=""
+            v-model="highDenominationRate"
+            v-bind:style="customBorder.highDenominationRate"
             required>
           <label><b>Base Currency</b></label>
           <input
@@ -142,7 +142,8 @@
               {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>
             <button class="w3-button w3-block w3-dark-grey">
-              Higher Denomination &#8358; {{ product.bulkrate }} per {{ product.cardCurrency }}
+              Higher Denomination &#8358; {{ product.highDenominationRate }} per
+              {{ product.cardCurrency }}
             </button>
             <button
               class="w3-button w3-block w3-light-blue"
@@ -203,7 +204,7 @@ export default {
         this.isActive = currentProduct.isActive;
         this.cardCurrency = currentProduct.cardCurrency;
         this.rate = currentProduct.rate;
-        this.bulkrate = currentProduct.bulkrate;
+        this.highDenominationRate = currentProduct.highDenominationRate;
         this.image_url = currentProduct.image_url;
         this.extra = currentProduct.extra;
         this.acronym = currentProduct.acronym;
@@ -215,7 +216,7 @@ export default {
         this.isActive = false;
         this.cardCurrency = null;
         this.rate = null;
-        this.bulkrate = null;
+        this.highDenominationRate = null;
         this.image_url = null;
         this.acronym = null;
         this.extra = '';
@@ -230,7 +231,7 @@ export default {
       formData.append('name', this.name);
       formData.append('isActive', this.isActive);
       formData.append('rate', this.rate);
-      formData.append('bulkrate', this.bulkrate);
+      formData.append('highDenominationRate', this.highDenominationRate);
       formData.append('cardCurrency', this.cardCurrency);
       formData.append('extra', this.extra);
       formData.append('acronym', this.acronym);
@@ -299,7 +300,7 @@ export default {
       name: null,
       isActive: false,
       rate: null,
-      bulkrate: null,
+      highDenominationRate: null,
       cardCurrency: null,
       extra: '',
       acronym: null,
@@ -317,7 +318,7 @@ export default {
         rate: {
           border: '1px solid #ccc',
         },
-        bulkrate: {
+        highDenominationRate: {
           border: '1px solid #ccc',
         },
         cardCurrency: {
@@ -344,11 +345,11 @@ export default {
         this.checkForm('rate', 'remove');
       }
     },
-    bulkrate(val) {
+    highDenominationRate(val) {
       if (val.toString().trim() && this.rate <= val) {
-        this.checkForm('bulkrate', 'add');
+        this.checkForm('highDenominationRate', 'add');
       } else {
-        this.checkForm('bulkrate', 'remove');
+        this.checkForm('', 'remove');
       }
     },
     cardCurrency(val) {
@@ -370,7 +371,7 @@ export default {
         this.name = null;
         this.rate = null;
         this.isActive = false;
-        this.bulkrate = null;
+        this.highDenominationRate = null;
         this.cardCurrency = null;
         this.isSaving = null;
         this.isInitial = true;
@@ -383,7 +384,7 @@ export default {
           rate: {
             border: '1px solid #ccc',
           },
-          bulkrate: {
+          highDenominationRate: {
             border: '1px solid #ccc',
           },
           cardCurrency: {

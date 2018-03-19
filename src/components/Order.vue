@@ -36,7 +36,7 @@
             </option>
           </select>
 
-          <input class="w3-radio" type="radio" name="cardType" value="higherDenomination">
+          <input class="w3-checkbox" type="checkbox" v-model="highDenominationRate">
           <label>Higher Denomination Card</label>
           <br />
 
@@ -99,7 +99,10 @@
               placeholder="Enter your email address"
               required>
           <textarea
-            placeholder="Write additonal note..."
+            placeholder="
+            Write additonal note...
+            e.g. $100x2, $50x6, $20x4.
+            Also type out the Gift card code here if your image is blurred and not clear"
             class="w3-input w3-margin-bottom"
             v-model="extra">
           </textarea>
@@ -172,6 +175,7 @@ export default {
       const highDenominationRate = `₦ ${selectProduct.highDenominationRate} per ${cardCurrency}`;
       const productAcronym = selectProduct.acronym;
       formData.append('highDenominationRate', highDenominationRate);
+      formData.append('ishighDenominationRate', this.highDenominationRate);
       formData.append('rate', productRate);
       formData.append('acronym', productAcronym);
       formData.append('productName', selectProduct.name);
@@ -252,6 +256,7 @@ export default {
       bankName: null,
       bankAccountName: null,
       bankAccountNumber: null,
+      highDenominationRate: false,
       email: '',
       extra: '',
       fileCount: 0,
