@@ -59,6 +59,13 @@
             v-model="cardCurrency"
             v-bind:style="customBorder.cardCurrency"
             required>
+          <label><b>acronym</b></label>
+          <input
+            class="w3-input  w3-margin-bottom" type="text"
+            placeholder="Enter a unique acronym for this card" name="acronym"
+            v-model="acronym"
+            v-bind:style="customBorder.acronym"
+            required>
           <textarea
             placeholder="Write additonal note..."
             class="w3-input w3-margin-bottom"
@@ -199,6 +206,7 @@ export default {
         this.bulkrate = currentProduct.bulkrate;
         this.image_url = currentProduct.image_url;
         this.extra = currentProduct.extra;
+        this.acronym = currentProduct.acronym;
         this.isActive = currentProduct.isActive;
         this.submitBtnText = 'Update Card';
       } else {
@@ -209,6 +217,7 @@ export default {
         this.rate = null;
         this.bulkrate = null;
         this.image_url = null;
+        this.acronym = null;
         this.extra = '';
         this.submitBtnText = 'Register card';
       }
@@ -224,6 +233,7 @@ export default {
       formData.append('bulkrate', this.bulkrate);
       formData.append('cardCurrency', this.cardCurrency);
       formData.append('extra', this.extra);
+      formData.append('acronym', this.acronym);
       let curFile = null;
       /* eslint-disable no-unused-vars  */
       if (this.uploadedCard) {
@@ -273,7 +283,7 @@ export default {
       this.validInputs = validInputs;
 
       // disable the submit button when every field are not valid
-      if (validInputs.length === 4) {
+      if (validInputs.length === 5) {
         this.inValidForm = false;
       } else {
         this.inValidForm = true;
@@ -292,6 +302,7 @@ export default {
       bulkrate: null,
       cardCurrency: null,
       extra: '',
+      acronym: null,
       image_url: null,
       productId: null,
       uploadedCard: null,
@@ -310,6 +321,9 @@ export default {
           border: '1px solid #ccc',
         },
         cardCurrency: {
+          border: '1px solid #ccc',
+        },
+        acronym: {
           border: '1px solid #ccc',
         },
       },
@@ -344,6 +358,13 @@ export default {
         this.checkForm('cardCurrency', 'remove');
       }
     },
+    acronym(val) {
+      if (val.toString().trim().length === 3) {
+        this.checkForm('acronym', 'add');
+      } else {
+        this.checkForm('acronym', 'remove');
+      }
+    },
     message(val) {
       if (val.toString().includes('success')) {
         this.name = null;
@@ -353,6 +374,7 @@ export default {
         this.cardCurrency = null;
         this.isSaving = null;
         this.isInitial = true;
+        this.acronym = null;
         this.CurrentProductDiv = { display: 'none' };
         this.customBorder = {
           name: {
@@ -365,6 +387,9 @@ export default {
             border: '1px solid #ccc',
           },
           cardCurrency: {
+            border: '1px solid #ccc',
+          },
+          acronym: {
             border: '1px solid #ccc',
           },
         };

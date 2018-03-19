@@ -5,11 +5,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
+    acronym: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     rate: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    bulkrate: {
+    highDenominationRate: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },

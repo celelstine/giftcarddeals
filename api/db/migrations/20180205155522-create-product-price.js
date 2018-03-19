@@ -13,6 +13,11 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      acronym: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
       rate: {
         type: Sequelize.FLOAT,
         allowNull: false,
@@ -21,7 +26,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
       },
-      bulkrate: {
+      highDenominationRate: {
         type: Sequelize.FLOAT,
         allowNull: false,
       },

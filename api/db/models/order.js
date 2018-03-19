@@ -12,10 +12,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    highDenominationRate: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
     productName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    giftcardsUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     cardCurrency: {
       type: DataTypes.STRING,

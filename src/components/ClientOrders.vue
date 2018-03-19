@@ -18,6 +18,7 @@
             <th>Order ID</th>
             <th>Card Name</th>
             <th>Rate</th>
+            <th>High Dem. Rate</th>
             <th>Bank Details</th>
             <th>Status</th>
             <th>Date</th>
@@ -30,15 +31,12 @@
           <td>{{ order.orderId }}</td>
           <td>{{ order.productName}}</td>
           <td>&#8358;{{ order.rate}} per {{ order.cardCurrency }} </td>
+          <td>&#8358;{{ order.highDenominationRate}} per {{ order.cardCurrency }} </td>
           <td>{{ order.bankAccountNumber}}  {{ order.bankName }} </td>
           <td>{{ order.status }}</td>
           <td>{{ new Date(order.createdAt).toLocaleDateString() }}</td>
-          <td>
-            <router-link
-              :to="{ name: 'orderFeedback', params: { orderId: order.orderId }}"
-              class="w3-w3-blue-grey">
-              Send Feedback
-            </router-link>
+          <td v-on:click="viewCards(order.orderId)" class="viewCardButton">
+            View cards
           </td>
         </tr>
       </table>
@@ -69,6 +67,18 @@
         </a>
       </div>
     </div>
+
+    <!-- giftcard modal -->
+    <div
+      class="w3-third"
+      v-for="(giftcardUrl,index) in giftcardsUrl"
+      v-bind:key="index"
+    >
+      <div class="w3-card">
+        <img v-bind:src="giftcardUrl" style="width:100%">
+      </div>
+    </div>
+    <!-- modal ends here -->
   </div>
 </template>
 
@@ -81,6 +91,16 @@ export default {
     this.getOrders();
   },
   methods: {
+    viewCards(orderId) {
+      this.showCards = true;
+      const currentOrder = this.orders
+        .filter(order => order.orderId === orderId)[0];
+      const giftcardsUrl = currentOrder.giftcardsUrl.split('||');
+      // to remove the last empty item in the list
+      giftcardsUrl.pop();
+      this.giftcardsUrl = giftcardsUrl;
+      this.CurrentOrderDiv = { display: 'block' };
+    },
     getOrders(page = 0) {
       let pageIndex = page;
       if (page > 0) {
@@ -88,7 +108,7 @@ export default {
       }
       const offset = pageIndex * 3;
       if (page !== this.curPage) {
-        this.$store.dispatch('staffEmail/getOrders', { offset });
+        this.$store.dispatch('order/getOrders', { offset });
       }
     },
   },
@@ -101,6 +121,12 @@ export default {
       pageCount: state => state.pageCount,
     }),
   },
+  data() {
+    return {
+      giftcardsUrl: null,
+      CurrentOrderDiv: { display: 'none' },
+    };
+  },
 };
 </script>
 <style>
@@ -109,5 +135,9 @@ export default {
 }
 .otherPage {
   color: blue;
+}
+.viewCardButton {
+  cursor: pointer;
+  font-style: italic;
 }
 </style>

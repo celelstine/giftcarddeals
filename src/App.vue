@@ -10,11 +10,14 @@
         <span class="spanLink1" v-on:click="gotoTermsPage">
           Terms and Conditions
         </span>
-        <i class="fa fa-phone w3-right"> 08149677155 </i>
+        <i class="fa fa-phone w3-right">
+          09095113492
+           whatsapp only » 08149677155</i>
         <a
           className="w3-xlarge w3-right"
           href="mailto:sales@exchangezone9ja.com?Subject=User's%20Feedback"
           target="_top"
+          title="sales@exchangezone9ja.com"
         >
           Send us a mail <i class="fa fa-envelope"></i>
         </a>

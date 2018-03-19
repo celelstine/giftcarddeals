@@ -22,7 +22,8 @@
               {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>
             <button style="margin-bottom: 8px" class="w3-button w3-block w3-light-blue">
-              Higher Denomination Rate &#8358; {{ product.bulkrate }} per {{ product.cardCurrency }}
+              Higher Denomination Rate &#8358; {{ product.highDenominationRate }} per
+              {{ product.cardCurrency }}
             </button>
           </div>
         </div>

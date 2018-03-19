@@ -48,16 +48,18 @@ module.exports = {
       rate,
       cardCurrency,
       extra,
-      bulkrate,
+      highDenominationRate,
       isActive,
+      acronym,
     } = req.body;
     const productDetails = {
       name,
       rate,
       cardCurrency,
       extra,
-      bulkrate,
+      highDenominationRate,
       isActive,
+      acronym,
     };
     if (req.files && req.files.cardimage) {
       productDetails['image_url'] = `productImages/${imageUrl}`;
@@ -99,7 +101,8 @@ module.exports = {
       cardCurrency,
       extra,
       isActive,
-      bulkrate,
+      highDenominationRate,
+      acronym,
     } = req.body;
 
     const productDetails = {
@@ -108,7 +111,8 @@ module.exports = {
       cardCurrency,
       extra,
       isActive,
-      bulkrate,
+      highDenominationRate,
+      acronym,
     };
     if (req.files && req.files.cardimage) {
       productDetails['image_url'] = `productImages/${imageUrl}`;

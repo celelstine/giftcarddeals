@@ -31,15 +31,10 @@
               v-bind:value="product.id"
             >
               {{ product.name }} - ₦{{ product.rate }}
-              per {{ product.cardCurrency }}, bulk  ₦{{ product.bigDenominationrate}}
+              per {{ product.cardCurrency }},
+              Big Denomination  ₦{{ product.highDenominationRate}}
             </option>
           </select>
-
-          <input class="w3-radio" type="radio" name="cardType" value="normalCards">
-          <label>Normal Card</label>
-
-          <input class="w3-radio" type="radio" name="cardType" value="BulkCard">
-          <label>Bulk Cards</label>
 
           <input class="w3-radio" type="radio" name="cardType" value="higherDenomination">
           <label>Higher Denomination Card</label>
@@ -55,10 +50,14 @@
               v-on:change="filesChange"
               required>
               <p v-if="isInitial">
-                Drag your gift cards(s) here to begin<br> or click to browse
+                Drag your gift cards here to begin<br> or click to browse <br />
+                You can upload up to 10 images, 20MB at once
               </p>
               <h3 v-if="isSaving" style="color: indigo" class="w3-center">
-                You uploaded {{ fileCount }} gift card(s)...
+                <span v-if="exceedUpload" style="color: red">
+                  You exceeded the upload limit <br />
+                </span>
+                {{ fileCount }} gift card(s) were uploaded...
               </h3>
           </div>
           <label><b>Bank Name</b></label>
@@ -168,12 +167,15 @@ export default {
       formData.append('bankAccountNumber', this.bankAccountNumber);
       formData.append('email', this.email);
       formData.append('extra', this.extra);
-      const productRate = `₦ ${selectProduct.rate} per ${selectProduct.cardCurrency}`;
-      const bulkrate = `₦ ${selectProduct.bulkrate} per ${selectProduct.cardCurrency}`;
-      formData.append('bulkrate', bulkrate);
+      const cardCurrency = selectProduct.cardCurrency;
+      const productRate = `₦ ${selectProduct.rate} per ${cardCurrency}`;
+      const highDenominationRate = `₦ ${selectProduct.highDenominationRate} per ${cardCurrency}`;
+      const productAcronym = selectProduct.acronym;
+      formData.append('highDenominationRate', highDenominationRate);
       formData.append('rate', productRate);
+      formData.append('acronym', productAcronym);
       formData.append('productName', selectProduct.name);
-      formData.append('cardCurrency', selectProduct.cardCurrency);
+      formData.append('cardCurrency', cardCurrency);
       let curFile = null;
       /* eslint-disable no-unused-vars  */
       Object.entries(this.uploadedCards).forEach((key, file) => {
@@ -186,11 +188,30 @@ export default {
     },
     filesChange(event) {
       const uploadedFiles = event.target.files;
-      if (uploadedFiles.length) {
-        this.uploadedCards = uploadedFiles;
-        this.fileCount = uploadedFiles.length;
+      const numberOfFiles = uploadedFiles.length;
+      if (numberOfFiles) {
+        this.fileCount = numberOfFiles;
         this.isInitial = false;
         this.isSaving = true;
+        if (numberOfFiles > 10) {
+          this.uploadedCards = [];
+          this.exceedUpload = true;
+        } else {
+          // calculate the total size of uploaded files
+          let totalUploadedByte = 0;
+          Object.keys(uploadedFiles).forEach((key) => {
+            if (key !== 'length') {
+              totalUploadedByte += uploadedFiles[key].size;
+            }
+          });
+          if (uploadedFiles > 20000000) {
+            this.uploadedCards = [];
+            this.exceedUpload = true;
+          } else {
+            this.uploadedCards = uploadedFiles;
+            this.exceedUpload = false;
+          }
+        }
       }
     },
     checkForm(field, operation) {
@@ -238,6 +259,7 @@ export default {
       uploadedCards: null,
       uploadedCardsPreview: [],
       validInputs: [],
+      exceedUpload: null,
       inValidForm: true,
       customBorder: {
         bankName: {

@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      giftcardsUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -36,6 +40,10 @@ module.exports = {
         unique: true,
       },
       rate: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
+      highDenominationRate: {
         type: Sequelize.FLOAT,
         allowNull: false,
       },

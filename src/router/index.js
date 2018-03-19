@@ -8,6 +8,7 @@ import TermsandConditions from '@/components/TermsandConditions';
 import Emails from '@/components/Emails';
 import Login from '@/components/Login';
 import Feedback from '@/components/Feedback';
+import ClientOrders from '@/components/ClientOrders';
 import {
   checkAdmin,
 } from './auth';
@@ -46,6 +47,12 @@ export default new Router({
       path: '/emails',
       name: 'Emails',
       component: Emails,
+      beforeEnter: (to, from, next) => checkAdmin(next),
+    },
+    {
+      path: '/orders',
+      name: 'ClientOrders',
+      component: ClientOrders,
       beforeEnter: (to, from, next) => checkAdmin(next),
     },
     {

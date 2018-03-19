@@ -13,12 +13,14 @@ import fileUpload from 'express-fileupload';
 //import model from './api/db/models/index';
 import routes from './api/routes';
 import winstonlogger from './api/logger';
+import {
+  adminPass,
+} from './api/controllers/utility';
 // initailize dotenv
 dotenv.config();
 
 // create new express app
 const app = express();
-
 
 app.set('port', process.env.PORT || 1142);
 const router = express.Router();
@@ -55,8 +57,10 @@ app.use('/api/v1', router);
 // seed the database
 require('./api/db/seeders');
 
+const giftcardsPath = path.join(__dirname, 'giftcards/');
+app.use('/nngiftCards', express.static(giftcardsPath));
+
 app.all('/', (req, res) => {
-  winstonlogger.error("came here");
   return res.sendFile(publicPath + 'index.html');
 });
 
@@ -69,20 +73,19 @@ app.all('*', function (req, res) {
 
 // catch errors
 app.use((err, req, res, next) => {
+  winstonlogger.error(err);
   res.status(500).json({message: err.message, serving:  `${publicPath}index.html`});
 });
 
 // start server
 const server = app.listen(app.get('port'),  () => {
-  console.log("Server started on port", app.get('port'));
-  winstonlogger.error("Server started on port", app.get('port'));
+  winstonlogger.info("Server started on port", app.get('port'));
 });
 
 const io = require('socket.io').listen(server);
 // expose socket to other route
 app.set('socketio', io);
 io.on('connection', (socket) => {
-  console.log("Server socket  started on port", app.get('port'));
-  winstonlogger.error("Server socket started on port", app.get('port'));
+  winstonlogger.info("Server socket started on port", app.get('port'));
 });
 export default app;

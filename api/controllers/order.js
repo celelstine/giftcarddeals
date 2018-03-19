@@ -20,8 +20,19 @@ module.exports = {
     // create object from request
     const incomingFiles = req.files['uploadedCards[]'];
     let attachments = [];
+    let giftcardsUrl = '';
+    let randomFilename;
     if (incomingFiles.length) {
       incomingFiles.forEach((file) => {
+        randomFilename = genereateOrderNumber() + file.name;
+        file.mv(`${__dirname}/../../giftcards/${randomFilename}`,
+          (err) => {
+            if (err) {
+              logger.error('An error occurred', err);
+            }
+          });
+        // build the url for all files
+        giftcardsUrl += `nngiftCards/${randomFilename}||`;
         attachments.push({
           filename: file.name,
           content: new Buffer(file.data),
@@ -33,18 +44,19 @@ module.exports = {
         content: new Buffer(incomingFiles.data),
       };
     }
-    const orderId = genereateOrderNumber();
     const {
+      acronym,
       bankName,
       bankAccountName,
       bankAccountNumber,
       email,
       extra,
-      bulkrate,
+      highDenominationRate,
       rate,
       productName,
       cardCurrency,
     } = req.body;
+    const orderId = genereateOrderNumber(acronym);
     const orderObject = {
       bankName,
       bankAccountName,
@@ -52,11 +64,12 @@ module.exports = {
       email,
       extra,
       rate,
-      bulkrate,
+      highDenominationRate,
       productName,
       cardCurrency,
       orderId,
       subject: `New order from ${email}`,
+      giftcardsUrl,
     };
     const mailTransporter = nodemailer.createTransport({
       host: 'mail.exchangezone9ja.com',
@@ -71,7 +84,7 @@ module.exports = {
       ---------------------------------
       Card type: ${productName}
       Rate: ${rate}
-      Bulk rate: ${bulkrate}
+      High Denomination rate: ${highDenominationRate}
 
       Bank Details
       -----------------------------------
@@ -154,26 +167,22 @@ module.exports = {
                     We would load the cards and transfer the money to your account.
                       Our average response time is 10 minutes.
                   </p>
-                  <fieldset>
-                    <legend>Order Detials:</legend>
-                    Card Details <br />
-                    --------------------------------- <br />
-                      
-                    Card Type: ${productName} <br />
-                    Rate: ${rate} <br />
-                    Bulk Rate: ${bulkrate} <br />
+                  <h4 style="text-decoration: underline; margin: 0px"> Card Details </h4>
+                  Card Type: ${productName} <br />
+                  Rate: ${rate} <br />
+                  High Denomination Rate: ${highDenominationRate} <br />
 
-                    Bank Details <br />
-                    ----------------------------------- <br />
-                    Bank Name:  ${bankName} <br />
-                    Bank Account Number:  ${bankAccountNumber} <br />
-                    Bank Account Name: ${bankAccountName} <br />
-                    
-                  </fieldset>
+                  <h4 style="text-decoration: underline; margin: 0px"> Bank Details </h4>
+                  Bank Name:  ${bankName} <br />
+                  Bank Account Number:  ${bankAccountNumber} <br />
+                  Bank Account Name: ${bankAccountName} <br />
                   <p>
                     You can contact us via
                     <span style="text-decoration: underline;">
-                    ${process.env.FEEDBACK_MAIL} or ${process.env.ADMIN_PHONE} </span>
+                    ${process.env.FEEDBACK_MAIL}
+                    </span>
+                    or ${process.env.ADMIN_PHONE}
+                    whatsapp only » ${process.env.ADMIN_WHATSAPP_NUMBER}
                   </p>
                   <p>Thanks for choosing us.<p>
                   <p>
@@ -185,7 +194,7 @@ module.exports = {
               </div>
             `,
           };
-          mailTransporter.sendMail(mailPayload, (err, info) => {
+          mailTransporter.sendMail(mailPayload, (err, info1) => {
             if (err) {
               logger.error('error', 'An error occurred', err);
               return sendError(res, { errorMessage });
@@ -199,8 +208,8 @@ module.exports = {
                 };
                 return sendResult(res, payload);
               })
-              .catch((err) => {
-                logger.error('error', 'An error occurred', err);
+              .catch((error1) => {
+                logger.error('error', 'An error occurred', error1);
                 return sendError(res, { errorMessage });
               });
           });
@@ -214,41 +223,38 @@ module.exports = {
         );
       });
   },
-  getClientOrders(req, res) {
-    Order.findAll({
-      where: {
-        clientId: req.user.userId,
-      },
-      attributes: [
-        'id',
-        'status',
-        'orderId',
-        'rate',
-        'bulkrate',
-        'productName',
-        'cardCurrency',
-        'email',
-        'bankName',
-        'bankAccountNumber',
-        'bankAccountName',
-        'createdAt',
-      ],
-    })
-      .then(orders => sendResult(res, orders))
-      .catch((error) => {
-        logger.error('error', 'An error occurred', error);
-        return sendError(res, { errorMessage });
-      });
-  },
+  // getClientOrders(req, res) {
+  //   Order.findAll({
+  //     where: {
+  //       clientId: req.user.userId,
+  //     },
+  //     attributes: [
+  //       'id',
+  //       'status',
+  //       'orderId',
+  //       'rate',
+  //       'highDenominationRate',
+  //       'productName',
+  //       'cardCurrency',
+  //       'email',
+  //       'bankName',
+  //       'bankAccountNumber',
+  //       'bankAccountName',
+  //       'createdAt',
+  //     ],
+  //   })
+  //     .then(orders => sendResult(res, orders))
+  //     .catch((error) => {
+  //       logger.error('error', 'An error occurred', error);
+  //       return sendError(res, { errorMessage });
+  //     });
+  // },
   getOrders(req, res) {
     const limit = parseInt(req.query.limit, 10) || 10;
     const offset = parseInt(req.query.offset, 10) || 0;
     const query = {};
     if (req.query.orderId) {
       query.orderId = req.query.orderId;
-    }
-    if (req.user.user_category !== 'admin') {
-      query.clientId = req.user.userId;
     }
 
     Order.findAndCountAll({
@@ -261,7 +267,7 @@ module.exports = {
         'status',
         'orderId',
         'rate',
-        'bulkrate',
+        'highDenominationRate',
         'productName',
         'cardCurrency',
         'email',
@@ -269,12 +275,13 @@ module.exports = {
         'bankAccountNumber',
         'bankAccountName',
         'createdAt',
+        'giftcardsUrl',
       ],
     })
       .then((orders) => {
         if (orders.pageSize) {
           return sendError(res,
-            { errorMessage: 'No document was found.' }
+            { errorMessage: 'No record was found.' }
             , 409);
         }
         const count = orders.count;

@@ -54,6 +54,7 @@ const actions = {
     /* eslint-disable comma-dangle */
     // const test = {
     //   count: 9,
+    //   offset,
     //   orders: [
     //     {
     //       'id': 12,
@@ -66,7 +67,8 @@ const actions = {
     //       'bankName': 'First City Monument Bank',
     //       'bankAccountNumber': '4444444444',
     //       'bankAccountName': 'okwudiri Okoro',
-    //       'createdAt': '2018-02-20T06:27:33.755Z'
+    //       'createdAt': '2018-02-20T06:27:33.755Z',
+    //       'highDenominationRate': 444,
     //     },
     //     {
     //       'id': 11,
@@ -79,7 +81,9 @@ const actions = {
     //       'bankName': 'First City Monument Bank',
     //       'bankAccountNumber': '4444444444',
     //       'bankAccountName': 'okwudiri Okoro',
-    //       'createdAt': '2018-02-20T06:24:46.761Z'
+    //       'createdAt': '2018-02-20T06:24:46.761Z',
+    //       'highDenominationRate': 444,
+    //       'giftcardsUrl': 'nngiftCards/IMG-20170426-WA0000.jpg||'
     //     },
     //     {
     //       'id': 10,
@@ -92,7 +96,9 @@ const actions = {
     //       'bankName': 'Ecobank Nigeria',
     //       'bankAccountNumber': '4444444444',
     //       'bankAccountName': 'okoro celestine',
-    //       'createdAt': '2018-02-20T06:21:54.680Z'
+    //       'createdAt': '2018-02-20T06:21:54.680Z',
+    //       'highDenominationRate': 444,
+    //       'giftcardsUrl': 'nngiftCards/IMG-20170426-WA0000.jpg||'
     //     },
     //     {
     //       'id': 9,
@@ -105,7 +111,9 @@ const actions = {
     //       'bankName': 'Wema Bank',
     //       'bankAccountNumber': '4444444444',
     //       'bankAccountName': 'ww ww',
-    //       'createdAt': '2018-02-15T13:47:49.825Z'
+    //       'createdAt': '2018-02-15T13:47:49.825Z',
+    //       'highDenominationRate': 444,
+    //       'giftcardsUrl': 'nngiftCards/IMG-20170426-WA0000.jpg||'
     //     },
     //   ],
     //   'curPage': 1,
@@ -120,7 +128,12 @@ const actions = {
       })
       .catch((error) => {
         let message = 'An internal error occurred, please try again';
-        if (error.response.status && error.response.status !== 500) {
+        if (error.response.status
+          &&
+          error.response.status !== 500
+          &&
+          error.response.data.message
+        ) {
           message = error.response.data.message;
         }
         return commit(types.GETTING_ORDER_FAILURE, { message });
@@ -162,7 +175,6 @@ const mutations = {
     state.messageForClientOrder = false;
   },
   [types.GETTING_ORDER_FAILURE](state, { message }) {
-    state.messageForProducts = true;
     if (message) {
       state.message = message;
     }

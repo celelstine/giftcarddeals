@@ -35,6 +35,11 @@
         </router-link>
         <div v-if="isAdmin">
           <router-link
+            to="/orders"
+            class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
+            View Orders
+          </router-link>
+          <router-link
             to="/emails"
             class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
             Manage Emails
@@ -51,8 +56,8 @@
 
   <!-- Navbar on small screens -->
   <div
-    id="navDemo"
-    class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+    id="MobileNav"
+    class="w3-bar-block w3-theme-d2 w3-show w3-hide-large w3-hide-medium w3-large">
     <span href="#"
       class="w3-bar-item w3-button w3-padding">
       ---------------
@@ -68,6 +73,11 @@
           to="/emails"
           class="w3-bar-item w3-button w3-padding">
           Manage Emails
+        </router-link>
+        <router-link
+          to="/orders"
+          class="w3-bar-item w3-button w3-padding">
+          View Orders
         </router-link>
       </div>
       <router-link
@@ -146,11 +156,11 @@ export default {
   },
   methods: {
     openNav() {
-      const x = document.getElementById('navDemo');
+      const x = document.getElementById('MobileNav');
       if (x.className.indexOf('w3-show') === -1) {
-        x.className += ' w3-show';
+        x.className = x.className.replace(' w3-hide', ' w3-show');
       } else {
-        x.className = x.className.replace(' w3-show', '');
+        x.className = x.className.replace(' w3-show', ' w3-hide');
       }
     },
     closeproductAlertDiv(event) {
