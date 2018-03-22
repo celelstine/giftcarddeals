@@ -41,7 +41,7 @@ import { mapState } from 'vuex';
 export default {
   name: 'OurRates',
   mounted() {
-    // this.$store.dispatch('getProducts');
+    this.$store.dispatch('getProducts');
   },
   computed: {
     ...mapState({

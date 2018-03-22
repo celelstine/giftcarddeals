@@ -7,11 +7,10 @@
       {{ message }}
     </p>
     <div class="w3-row-padding w3-margin-top" v-if="product">
-      <!-- <img v-if="product.image_url" v-bind:src="product.image_url" style="width:100%"> -->
       <h3 class="productName">
           {{ product.name }}
       </h3>
-      <img  src="../assets/images/itunes-gift-card-pile.png" style="width:100%">
+       <img v-if="product.image_url" v-bind:src="product.image_url" style="width:100%"> 
       <button
         style=" margin-bottom: 2px"
         class="rating w3-button w3-block">
@@ -45,10 +44,6 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'CardSlide',
-  mounted() {
-    // this.$store.dispatch('getProducts');
-    this.startSlide();
-  },
   computed: {
     ...mapState({
       products: state => state.products,

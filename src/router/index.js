@@ -86,7 +86,7 @@ export default new Router({
       path: '/adminFeedback',
       name: 'AdminFeedback1',
       component: AdminFeedback,
-      // beforeEnter: (to, from, next) => checkAdmin(next),
+      beforeEnter: (to, from, next) => checkAdmin(next),
     },
     {
       path: '*',
