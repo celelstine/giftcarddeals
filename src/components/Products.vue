@@ -346,7 +346,7 @@ export default {
       }
     },
     highDenominationRate(val) {
-      if (val.toString().trim() && this.rate <= val) {
+      if (val.toString().trim()) {
         this.checkForm('highDenominationRate', 'add');
       } else {
         this.checkForm('', 'remove');

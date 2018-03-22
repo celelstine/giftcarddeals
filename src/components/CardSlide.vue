@@ -13,7 +13,7 @@
        <img v-if="product.image_url" v-bind:src="product.image_url" style="width:100%">
        <img
        v-else
-       src="../assets/images/gift_card_blue.png" style="width:100%"> 
+       src="../assets/images/gift_card_blue.png" style="width:100%">
       <button
         style=" margin-bottom: 2px"
         class="rating w3-button w3-block">
@@ -95,10 +95,10 @@ export default {
       this.startSlide();
     },
     slideCount(val) {
-      if (val >= (this.productCount *2)) {
+      if (val >= (this.productCount * 2)) {
         this.autoSlide = false;
       }
-    }
+    },
   },
 };
 </script>
