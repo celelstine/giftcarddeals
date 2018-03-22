@@ -10,7 +10,10 @@
       <h3 class="productName">
           {{ product.name }}
       </h3>
-       <img v-if="product.image_url" v-bind:src="product.image_url" style="width:100%"> 
+       <img v-if="product.image_url" v-bind:src="product.image_url" style="width:100%">
+       <img
+       v-else
+       src="../assets/images/gift_card_blue.png" style="width:100%"> 
       <button
         style=" margin-bottom: 2px"
         class="rating w3-button w3-block">
@@ -58,6 +61,7 @@ export default {
       currentIndex: 0,
       time: null,
       autoSlide: true,
+      slideCount: 0,
     };
   },
   methods: {
@@ -73,6 +77,7 @@ export default {
       this.currentIndex = currentIndex;
       this.time = setTimeout(() => {
         if (this.autoSlide) {
+          this.slideCount += 1;
           this.startSlide();
         }
       }, 2000);
@@ -89,6 +94,11 @@ export default {
       this.product = val[this.currentIndex];
       this.startSlide();
     },
+    slideCount(val) {
+      if (val >= (this.productCount *2)) {
+        this.autoSlide = false;
+      }
+    }
   },
 };
 </script>
