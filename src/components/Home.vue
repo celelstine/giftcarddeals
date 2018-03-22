@@ -40,11 +40,6 @@
                 We respond to feedback within few minutes
               </li>
               <li>
-                We offer an expectional rate for
-                <i>Higher Denominations</i>
-                cards (single card(s) that is above $100)
-              </li>
-              <li>
                 Please read our
                 <router-link
                   class="actionLinks"

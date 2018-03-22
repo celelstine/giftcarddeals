@@ -44,7 +44,7 @@
             v-model="cardDenomination" value="high">
             <label>
               Higher Denomination Card (above $100)
-              ₦{{ selectProduct.rate }} per {{ selectProduct.cardCurrency }}
+              ₦{{ selectProduct.highDenominationRate }} per {{ selectProduct.cardCurrency }}
             </label>
           </p>
           <label><b>Upload Gift Cards</b></label>
