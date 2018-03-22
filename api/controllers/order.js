@@ -53,10 +53,11 @@ module.exports = {
       extra,
       highDenominationRate,
       rate,
-      ishighDenominationRate,
+      cardDenomination,
       productName,
       cardCurrency,
     } = req.body;
+
     const orderId = genereateOrderNumber(acronym);
     const orderObject = {
       bankName,
@@ -86,6 +87,7 @@ module.exports = {
       Card type: ${productName}
       Rate: ${rate}
       High Denomination rate: ${highDenominationRate}
+      Card Denomination: ${cardDenomination}
 
       Bank Details
       -----------------------------------
