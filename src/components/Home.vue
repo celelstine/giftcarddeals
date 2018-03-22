@@ -6,10 +6,11 @@
         class="non_margin_top w3-container w3-deep-orange w3-center">
         We buy ITUNES giftcards at awesome Rate
       </h6>
-       <img
+       <!-- <img
         src="../assets/images/itunes-gift-card-pile.png"
         alt="boat"
-        style="width:90%; height:100%">
+        style="width:90%; height:100%"> -->
+      <CardSlide> </CardSlide>
     </div>
     <div class="w3-half w3-padding">
       <div class="w3-row">
@@ -35,9 +36,8 @@
               <li>
                 Our transactions are completed within 10 minutes (maximal)
               </li>
-              <li> We respond to feedback within few minutes</li>
               <li>
-                We offer special rates for <i>Bulk Cards</i> (more than 8 single cards)
+                We respond to feedback within few minutes
               </li>
               <li>
                 We offer an expectional rate for
@@ -53,7 +53,7 @@
                 </router-link> before you make any transaction.
               </li>
             </ul>
-            <div class="row">
+            <!-- <div class="row">
               <div class="w3-quarter w3-center">
                 <img
                   src="../assets/images/itunes-100.png"
@@ -98,24 +98,24 @@
                   $15 itunes card
                 </span>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
-    <div class="w3-container">
-      <OurRates> </OurRates>
-    </div>
+    <OurRates> </OurRates>
   </div>
 </template>
 
 <script>
 import OurRates from './OurRates';
+import CardSlide from './CardSlide';
 
 export default {
   name: 'Home',
   components: {
     OurRates,
+    CardSlide,
   },
   methods: {
     gotoOurRatePage(event) {

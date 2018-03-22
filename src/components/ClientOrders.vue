@@ -35,8 +35,13 @@
           <td>{{ order.bankAccountNumber}}  {{ order.bankName }} </td>
           <td>{{ order.status }}</td>
           <td>{{ new Date(order.createdAt).toLocaleDateString() }}</td>
-          <td v-on:click="viewCards(order.orderId)" class="viewCardButton">
-            View cards
+          <td class="viewCardButton">
+            <span v-on:click="viewCards(order.orderId)" class="actionSpan">
+              View cards &nbsp;
+            </span>
+             <span v-on:click="sendFeedback(order.orderId)" class="actionSpan">
+              Send Feedback
+            </span>
           </td>
         </tr>
       </table>
@@ -101,6 +106,12 @@ export default {
       this.giftcardsUrl = giftcardsUrl;
       this.CurrentOrderDiv = { display: 'block' };
     },
+    sendFeedback(orderId) {
+      const currentOrder = this.orders
+        .filter(order => order.orderId === orderId)[0];
+      const email = currentOrder.email;
+      this.$router.push({ path: `/adminFeedback/${orderId}/${email}` });
+    },
     getOrders(page = 0) {
       let pageIndex = page;
       if (page > 0) {
@@ -139,5 +150,8 @@ export default {
 .viewCardButton {
   cursor: pointer;
   font-style: italic;
+}
+.actionSpan:hover{
+  text-decoration: underline;
 }
 </style>

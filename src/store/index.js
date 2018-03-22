@@ -47,7 +47,7 @@ const store = new Vuex.Store({
       if (!incomingMessage) {
         incomingMessage = 'An Error occurred, please try again';
       }
-      state.message = message;
+      state.message = incomingMessage;
     },
     [types.UPDATING_PRODUCT](state) {
       state.messageForProducts = true;
@@ -75,7 +75,7 @@ const store = new Vuex.Store({
       if (!incomingMessage) {
         incomingMessage = 'An Error occurred, please try again';
       }
-      state.message = message;
+      state.message = incomingMessage;
     },
     [types.GETPRODUCTS_FAILURE](state, { message }) {
       state.messageForGetProducts = true;
@@ -85,7 +85,7 @@ const store = new Vuex.Store({
       if (!incomingMessage) {
         incomingMessage = 'An Error occurred, please try again';
       }
-      state.message = message;
+      state.message = incomingMessage;
     },
     [types.SENDING_FEEDBACK](state) {
       state.messageForFeedback = true;
@@ -101,7 +101,7 @@ const store = new Vuex.Store({
       if (!incomingMessage) {
         incomingMessage = 'An Error occurred, please try again';
       }
-      state.message = message;
+      state.message = incomingMessage;
     },
     [types.SENDING_FEEDBACK_SUCCESS](state) {
       state.messageForFeedback = true;
@@ -115,6 +115,31 @@ const store = new Vuex.Store({
     [types.NEW_PRODUCT_ALERT](state) {
       state.productUpdateAlert = 'A New Product has been added to the product catalog';
     },
+    [types.SENDING_ADMIN_FEEDBACK](state) {
+      state.messageForFeedback = false;
+      state.messageForAdminFeedback = true;
+      state.messageForGetProducts = null;
+      state.messageForProducts = null;
+      state.message = 'Sending feedback to the client.....';
+    },
+    [types.SEND_ADMIN_FEEDBACK_FAILURE](state, { message }) {
+      state.messageForFeedback = false;
+      state.messageForAdminFeedback = true;
+      state.messageForGetProducts = null;
+      state.messageForProducts = null;
+      let incomingMessage = message;
+      if (!incomingMessage) {
+        incomingMessage = 'An Error occurred, please try again';
+      }
+      state.message = incomingMessage;
+    },
+    [types.SENT_ADMIN_FEEDBACK](state) {
+      state.messageForFeedback = false;
+      state.messageForAdminFeedback = true;
+      state.messageForGetProducts = null;
+      state.messageForProducts = null;
+      state.message = 'The feedback has been sent successfully';
+    },
   },
   modules: {
     auth,
@@ -124,12 +149,92 @@ const store = new Vuex.Store({
   plugins: debug ? [createLogger()] : [],
   state: {
     /* eslint-disable */
-    products: [],
+    products: [
+      {
+        id: 3,
+        name: "skskb",
+        acronym: "tts",
+        rate: 22,
+        highDenominationRate: 34,
+        isActive: true,
+        image_url: "/static/assests/images/itunes-gift-card-pile.4728efc.png",
+        extra: "null",
+        cardCurrency: "$",
+        createdAt: "2018-03-02T14:39:27.317Z",
+        updatedAt: "2018-03-02T21:01:30.171Z"
+      },
+      {
+        id: 1,
+        name: "Generic card",
+        acronym: "usi",
+        rate: 33,
+        highDenominationRate: 35,
+        isActive: true,
+        image_url: "/static/assests/images/itunes-gift-card-pile.4728efc.png",
+        extra: "US gift card",
+        cardCurrency: "$",
+        createdAt: "2018-02-13T09:47:28.336Z",
+        updatedAt: "2018-03-02T21:50:28.854Z"
+      },
+      {
+        id: 3,
+        name: "skskb",
+        acronym: "tts",
+        rate: 22,
+        highDenominationRate: 34,
+        isActive: true,
+        image_url: "/static/assests/images/itunes-gift-card-pile.4728efc.png",
+        extra: "null",
+        cardCurrency: "$",
+        createdAt: "2018-03-02T14:39:27.317Z",
+        updatedAt: "2018-03-02T21:01:30.171Z"
+      },
+      {
+        id: 1,
+        name: "Generic card",
+        acronym: "usi",
+        rate: 33,
+        highDenominationRate: 35,
+        isActive: true,
+        image_url: "/static/assests/images/itunes-gift-card-pile.4728efc.png",
+        extra: "US gift card",
+        cardCurrency: "$",
+        createdAt: "2018-02-13T09:47:28.336Z",
+        updatedAt: "2018-03-02T21:50:28.854Z"
+      },
+      {
+        id: 3,
+        name: "skskb",
+        acronym: "tts",
+        rate: 22,
+        highDenominationRate: 34,
+        isActive: true,
+        image_url: "/static/assests/images/itunes-gift-card-pile.4728efc.png",
+        extra: "null",
+        cardCurrency: "$",
+        createdAt: "2018-03-02T14:39:27.317Z",
+        updatedAt: "2018-03-02T21:01:30.171Z"
+      },
+      {
+        id: 1,
+        name: "Generic card",
+        acronym: "usi",
+        rate: 33,
+        highDenominationRate: 35,
+        isActive: true,
+        image_url: "/static/assests/images/itunes-gift-card-pile.4728efc.png",
+        extra: "US gift card",
+        cardCurrency: "$",
+        createdAt: "2018-02-13T09:47:28.336Z",
+        updatedAt: "2018-03-02T21:50:28.854Z"
+      },
+    ],
     messageForProducts: null,
     message: null,
     messageForGetProducts: null,
     messageForFeedback: null,
     productUpdateAlert: null,
+    messageForAdminFeedback: null,
   },
   strict: debug,
 });

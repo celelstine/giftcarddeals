@@ -35,6 +35,11 @@
         </router-link>
         <div v-if="isAdmin">
           <router-link
+            to="/adminFeedback"
+            class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
+            Sales Feedback
+          </router-link>
+          <router-link
             to="/orders"
             class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
             View Orders
@@ -78,6 +83,11 @@
           to="/orders"
           class="w3-bar-item w3-button w3-padding">
           View Orders
+        </router-link>
+        <router-link
+          to="/adminFeedback"
+          class="w3-bar-item w3-button w3-padding">
+          Sales Feedback
         </router-link>
       </div>
       <router-link

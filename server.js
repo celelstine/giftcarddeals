@@ -85,7 +85,5 @@ const server = app.listen(app.get('port'),  () => {
 const io = require('socket.io').listen(server);
 // expose socket to other route
 app.set('socketio', io);
-io.on('connection', (socket) => {
-  winstonlogger.info("Server socket started on port", app.get('port'));
-});
+io.on('connection', (socket) => {});
 export default app;

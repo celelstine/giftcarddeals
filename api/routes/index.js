@@ -24,6 +24,7 @@ module.exports = (app) => {
   app.post('/order', orderController.placeOrder);
   app.post('/sendfeedback', feedbackController.sendFeedback);
 
+  app.post('/adminFeedback', feedbackController.SendAdminFeedback);
   // admin middleware here
   app.use(adminPass);
   app.get('/orders', orderController.getOrders);

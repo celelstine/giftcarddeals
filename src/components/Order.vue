@@ -22,24 +22,31 @@
           <label><b>Gift Cards Type</b></label>
           <select
             class="w3-input w3-margin-bottom"
-            v-model="product"
-            v-bind:style="customBorder.product">
+            v-model="selectProduct"
+            v-bind:style="customBorder.selectProduct">
             <option value=0> Select the category of Card </option>
             <option
               v-for="product in products"
               v-bind:key="product.id"
-              v-bind:value="product.id"
+              v-bind:value="product"
             >
-              {{ product.name }} - ₦{{ product.rate }}
-              per {{ product.cardCurrency }},
-              Big Denomination  ₦{{ product.highDenominationRate}}
+              {{ product.name }}
             </option>
           </select>
-
-          <input class="w3-checkbox" type="checkbox" v-model="highDenominationRate">
-          <label>Higher Denomination Card</label>
-          <br />
-
+          <p v-if="selectProduct">
+            <input class="w3-radio" type="radio" name="cardDenomination"
+            v-model="cardDenomination" value="normal">
+            <label>
+              Normal Card ($5 - $100)
+              ₦{{ selectProduct.rate }} per {{ selectProduct.cardCurrency }}
+            </label> <br />
+            <input class="w3-radio" type="radio" name="cardDenomination"
+            v-model="cardDenomination" value="high">
+            <label>
+              Higher Denomination Card (above $100)
+              ₦{{ selectProduct.rate }} per {{ selectProduct.cardCurrency }}
+            </label>
+          </p>
           <label><b>Upload Gift Cards</b></label>
           <div class="dropbox">
             <input
@@ -160,9 +167,6 @@ export default {
     },
     placeOrder(event) {
       event.preventDefault();
-      // get the selected product
-      const selectProduct = this.products
-        .find(product => product.id === this.product);
       const formData = new FormData();
       // add user input to form data
       formData.append('bankName', this.bankName);
@@ -170,12 +174,13 @@ export default {
       formData.append('bankAccountNumber', this.bankAccountNumber);
       formData.append('email', this.email);
       formData.append('extra', this.extra);
+      const selectProduct = this.selectProduct;
       const cardCurrency = selectProduct.cardCurrency;
       const productRate = `₦ ${selectProduct.rate} per ${cardCurrency}`;
       const highDenominationRate = `₦ ${selectProduct.highDenominationRate} per ${cardCurrency}`;
       const productAcronym = selectProduct.acronym;
       formData.append('highDenominationRate', highDenominationRate);
-      formData.append('ishighDenominationRate', this.highDenominationRate);
+      formData.append('cardDenomination', this.cardDenomination);
       formData.append('rate', productRate);
       formData.append('acronym', productAcronym);
       formData.append('productName', selectProduct.name);
@@ -257,10 +262,11 @@ export default {
       bankAccountName: null,
       bankAccountNumber: null,
       highDenominationRate: false,
+      cardDenomination: 'normal',
       email: '',
       extra: '',
       fileCount: 0,
-      product: 0,
+      selectProduct: 0,
       uploadedCards: null,
       uploadedCardsPreview: [],
       validInputs: [],
@@ -279,7 +285,7 @@ export default {
         email: {
           border: '1px solid #ccc',
         },
-        product: {
+        selectProduct: {
           border: '1px solid #ccc',
         },
       },
@@ -374,7 +380,7 @@ export default {
         };
       }
     },
-    product(val) {
+    selectProduct(val) {
       if (val !== 0) {
         this.checkForm('product', 'add');
       } else {
@@ -388,8 +394,8 @@ export default {
 <!-- SASS styling -->
 <style>
   input[type="radio"]:checked + label{
-    text-decoration: underline;
-    font-size: larger
+    color:dodgerblue;
+    /* font-size: larger */
   }
   .linkspan{
     text-decoration: underline;

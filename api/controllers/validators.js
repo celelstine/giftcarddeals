@@ -59,7 +59,7 @@ module.exports = {
     return false;
   },
   isOrderID(number) {
-    const regex = /^([0-9]{5}-[0-9]{5}-[0-9]{5})$/;
+    const regex = /^([0-9]{4,5}-[0-9]{4,5}-[0-9]{4,5})$/;
     if (regex.test(number)) {
       return true;
     }
