@@ -113,7 +113,7 @@
             class="w3-input w3-margin-bottom"
             v-model="extra">
           </textarea>
-          <p v-if="message" class="w3-pink w3-center" autofocus>{{ message }}</p>
+          <p v-if="forPlaceOrder" class="w3-pink w3-center" autofocus>{{ message }}</p>
           <button
             class="w3-button w3-block w3-green w3-section w3-padding"
             type="submit"
@@ -149,6 +149,7 @@ export default {
     }),
     ...mapState('order', {
       message: state => state.message,
+      forPlaceOrder: state => state.forPlaceOrder,
     }),
     ...mapState({
       products: state => state.products,
@@ -262,7 +263,7 @@ export default {
       bankAccountName: null,
       bankAccountNumber: null,
       highDenominationRate: false,
-      cardDenomination: 'normal',
+      cardDenomination: 'Normal Denomination card($0-$100)',
       email: '',
       extra: '',
       fileCount: 0,

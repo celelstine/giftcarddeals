@@ -14,15 +14,22 @@
         v-bind:key="product.id"
       >
         <div class="w3-card">
-
-          <img v-if="product.image_url" v-bind:src="product.image_url" style="width:100%">
+          <h5 class="productName">
+            {{ product.name }}
+          </h5>
           <img
-           v-else src="../assets/images/gift_card_blue.png" style="width:100%">
+            v-if="product.image_url"
+            class="productImage"
+            v-bind:src="product.image_url">
+          <img
+           v-else
+           src="../assets/images/gift_card_blue.png"
+           class="productImage">
           <div class="w3-container">
             <button
               style=" margin-bottom: 2px"
               class="rating w3-button w3-block">
-              {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
+              Normal Denomination Rate - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>
             <button style="margin-bottom: 8px"
             class="rating w3-button w3-block">
@@ -62,5 +69,14 @@ export default {
 .rating {
   background-color: #134255;
   color: #fff
+}
+.productImage {
+  width: 100%;
+  height: 220px;
+}
+
+.productName {
+  color:darkblue;
+  text-align: center;
 }
 </style>

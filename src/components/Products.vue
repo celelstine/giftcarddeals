@@ -29,7 +29,10 @@
               <h3 v-if="isSaving" style="color: indigo" class="w3-center">
                 The image has been uploaded, you can proceed with other fields
               </h3>
-              <img v-if="image_url" v-bind:src="image_url" />
+              <img
+                v-if="image_url"
+                v-bind:src="image_url"
+                style="width: 100%; height: 220px"/>
           </div>
           <label><b>Card Title</b></label>
           <input
@@ -126,27 +129,30 @@
           v-bind:key="product.id"
         >
           <div class="w3-card">
-
+            <h5 class="productName">
+              {{ product.name }}
+            </h5>
             <img
               v-if="product.image_url"
               v-bind:src="product.image_url"
               alt="Card image"
-              style="width:100%">
+              class="productImage">
             <img
             v-else src="/gift_card_blue.png"
             alt="Card image"
-            style="width:100%">
+            class="productImage">
             <button
-              class="w3-button w3-block w3-grey"
+              class="rating w3-button w3-block"
+              style=" margin-bottom: 2px"
               >
-              {{ product.name }} - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
+              Normal Denomination - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>
-            <button class="w3-button w3-block w3-dark-grey">
-              Higher Denomination &#8358; {{ product.highDenominationRate }} per
+            <button class="rating w3-button w3-block">
+              Higher Denomination - &#8358; {{ product.highDenominationRate }} per
               {{ product.cardCurrency }}
             </button>
             <button
-              class="w3-button w3-block w3-light-blue"
+              class=" editproductbtn w3-button w3-block"
               type="submit"
               v-on:click="showProductDetails($event, product.id)"
               title="Edit the card"
@@ -436,5 +442,32 @@ export default {
     font-size: xx-small;
     padding-top: 4px;
     text-decoration: underline;
+  }
+  .rating {
+    background-color: #134255;
+    color: #fff;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: 12px;
+  }
+
+  .editproductbtn{
+    color: #134255;
+    background-color: #fff;
+  }
+
+  .productImage {
+    width: 100%;
+    height: 220px;
+  }
+
+  .w3-quarter {
+    padding: 8px 8px !important;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: 12px;
+  }
+
+  .productName {
+    color:darkblue;
+    text-align: center;
   }
 </style>

@@ -45,7 +45,7 @@ const store = new Vuex.Store({
       state.messageForGetProducts = null;
       let incomingMessage = message;
       if (!incomingMessage) {
-        incomingMessage = 'An Error occurred, please try again';
+        incomingMessage = 'An Error occurred, please try again. ';
       }
       state.message = incomingMessage;
     },
@@ -73,7 +73,7 @@ const store = new Vuex.Store({
       state.messageForGetProducts = null;
       let incomingMessage = message;
       if (!incomingMessage) {
-        incomingMessage = 'An Error occurred, please try again';
+        incomingMessage = 'An Error occurred, please try again.';
       }
       state.message = incomingMessage;
     },
@@ -83,7 +83,7 @@ const store = new Vuex.Store({
       state.messageForProducts = null;
       let incomingMessage = message;
       if (!incomingMessage) {
-        incomingMessage = 'An Error occurred, please try again';
+        incomingMessage = 'An Error occurred, please try again. ';
       }
       state.message = incomingMessage;
     },
@@ -99,7 +99,7 @@ const store = new Vuex.Store({
       state.messageForProducts = null;
       let incomingMessage = message;
       if (!incomingMessage) {
-        incomingMessage = 'An Error occurred, please try again';
+        incomingMessage = 'An Error occurred, please try again. ';
       }
       state.message = incomingMessage;
     },
@@ -129,7 +129,7 @@ const store = new Vuex.Store({
       state.messageForProducts = null;
       let incomingMessage = message;
       if (!incomingMessage) {
-        incomingMessage = 'An Error occurred, please try again';
+        incomingMessage = 'An Error occurred, please try again.';
       }
       state.message = incomingMessage;
     },

@@ -10,6 +10,7 @@ const state = {
   placeOrderStatus: false,
   placingOrder: false,
   messageForClientOrder: false,
+  forPlaceOrder: false,
   count: null,
   curPage: null,
   pageCount: null,
@@ -77,6 +78,7 @@ const mutations = {
   [types.PLACING_ORDER](state) {
     state.message = 'Registering your order...';
     state.currentOrder = null;
+    state.forPlaceOrder = true;
     state.orderSerialNumber = null;
     state.placeOrderStatus = false;
   },
@@ -84,6 +86,7 @@ const mutations = {
     state.message = `You Order has been successfully registered, orderID: ${orderId}`;
     state.currentOrder = { orderId, status };
     state.placeOrderStatus = true;
+    state.forPlaceOrder = true;
     state.orders = [state.currentOrder, ...state.orders];
   },
   [types.PLACE_ORDER_FAILURE](state, { message }) {
@@ -92,10 +95,12 @@ const mutations = {
     }
     state.currentOrder = null;
     state.orderSerialNumber = null;
+    state.forPlaceOrder = true;
     state.placeOrderStatus = false;
   },
   [types.GETTING_ORDER](state) {
     state.messageForClientOrder = true;
+    state.forPlaceOrder = false;
     state.message = 'Processing your request';
   },
   [types.GETTING_ORDER_SUCCESS](state, { orders, count, curPage, pageCount }) {
@@ -103,12 +108,14 @@ const mutations = {
     state.count = count;
     state.curPage = curPage;
     state.pageCount = pageCount;
+    state.forPlaceOrder = false;
     state.messageForClientOrder = false;
   },
   [types.GETTING_ORDER_FAILURE](state, { message }) {
     if (message) {
       state.message = message;
     }
+    state.forPlaceOrder = false;
     state.messageForClientOrder = true;
   },
 };

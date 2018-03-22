@@ -10,10 +10,14 @@
       <h3 class="productName">
           {{ product.name }}
       </h3>
-       <img v-if="product.image_url" v-bind:src="product.image_url" style="width:100%">
        <img
-       v-else
-       src="../assets/images/gift_card_blue.png" style="width:100%">
+        v-if="product.image_url"
+        v-bind:src="product.image_url"
+        class="productImage">
+       <img
+        v-else
+        src="../assets/images/gift_card_blue.png"
+        class="productImage">
       <button
         style=" margin-bottom: 2px"
         class="rating w3-button w3-block">
@@ -116,5 +120,10 @@ export default {
   color: #fff;
   font-family: 'IBM Plex Sans Condensed', sans-serif;
   font-size: 14px;
+}
+
+.productImage {
+  width: 100%;
+  max-height: 320px;
 }
 </style>

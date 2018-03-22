@@ -48,52 +48,34 @@
                 </router-link> before you make any transaction.
               </li>
             </ul>
-            <!-- <div class="row">
-              <div class="w3-quarter w3-center">
-                <img
-                  src="../assets/images/itunes-100.png"
-                  alt="$100 itunes card"
-                  class="cards">
-                <br />
-                <span
-                  class="ituneTitle">
-                  $100 itunes card
-                </span>
-              </div>
-              <div class="w3-quarter w3-center">
-                <img
-                  src="../assets/images/itunes-50.png"
-                  alt="$50 itunes card"
-                  class="cards">
-                  <br />
-                  <span
-                  class="ituneTitle">
-                  $50 itunes card
-                </span>
-              </div>
-              <div class="w3-quarter w3-center">
-                <img
-                  src="../assets/images/itunes-25.jpeg"
-                  alt="$25 itunes card"
-                  class="cards">
-                  <br />
-                <span
-                  class="ituneTitle">
-                  $25 itunes card
-                </span>
-              </div>
-              <div class="w3-quarter w3-center">
-                <img
-                  src="../assets/images/itunes-gift-card-15.png"
-                  alt="$15 itunes card"
-                  class="cards">
-                  <br />
-                <span
-                  class="ituneTitle">
-                  $15 itunes card
-                </span>
-              </div>
-            </div> -->
+            <fieldset>
+              <legend class="actionLinks"> How to Sell your Cards </legend>
+              <ol>
+                Please ensure that your browser is updated
+                <li>
+                  Go to the
+                  <span class="sellitList" v-on:click="gotoOurRatePage">
+                    Sell card page.
+                  </span>
+                </li>
+                <li>
+                  Select your card Category, then the Card Denomination.
+                </li>
+                <li>
+                  Upload your Cards, we accept at most 10 cards at once.
+                </li>
+                <li>
+                  Enter your correct bank Account Details.
+                </li>
+                <li>
+                  Enter a valid email, we would contact you via this email.
+                </li>
+                <li>
+                  Click the <i> Sell it </i> Button
+                </li>
+              </ol>
+            </fieldset>
+            <br />
           </div>
         </div>
       </div>
@@ -162,5 +144,10 @@ a {
  color:#292929;
  text-decoration: underline;
  cursor: pointer;
+}
+.sellitList {
+  color:#292929;
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>
