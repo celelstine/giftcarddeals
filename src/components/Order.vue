@@ -41,7 +41,7 @@
               ₦{{ selectProduct.rate }} per {{ selectProduct.cardCurrency }}
             </label> <br />
             <input class="w3-radio" type="radio" name="cardDenomination"
-            v-model="cardDenomination" value="high Denomination card (above $100)">
+            v-model="cardDenomination" value="High Denomination card (above $100)">
             <label>
               Higher Denomination Card (above $100)
               ₦{{ selectProduct.highDenominationRate }} per {{ selectProduct.cardCurrency }}

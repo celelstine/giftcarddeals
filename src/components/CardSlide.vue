@@ -1,5 +1,5 @@
 <template>
- <div class="w3-container">
+ <div class="slide w3-card w3-container">
     <p
       v-if="messageForGetProducts"
       class="w3-pink w3-center"
@@ -19,7 +19,7 @@
         src="../assets/images/gift_card_blue.png"
         class="productImage">
       <button
-        style=" margin-bottom: 2px"
+        style="margin: 10px 0px 2px 0px"
         class="rating w3-button w3-block">
           Normal Card &#8358; {{ product.rate }} per {{ product.cardCurrency }}
       </button>
@@ -125,5 +125,10 @@ export default {
 .productImage {
   width: 100%;
   max-height: 320px;
+}
+
+.slide{
+  max-width: 400px;
+  margin: auto;
 }
 </style>

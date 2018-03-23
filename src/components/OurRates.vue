@@ -27,7 +27,7 @@
            class="productImage">
           <div class="w3-container">
             <button
-              style=" margin-bottom: 2px"
+              style=" margin: 10px 0px 2px 0px"
               class="rating w3-button w3-block">
               Normal Denomination Rate - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>

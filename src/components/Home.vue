@@ -6,10 +6,6 @@
         class="non_margin_top w3-container w3-deep-orange w3-center">
         We buy ITUNES giftcards at awesome Rate
       </h6>
-       <!-- <img
-        src="../assets/images/itunes-gift-card-pile.png"
-        alt="boat"
-        style="width:90%; height:100%"> -->
       <CardSlide> </CardSlide>
     </div>
     <div class="w3-half w3-padding">

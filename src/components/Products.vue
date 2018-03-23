@@ -122,7 +122,7 @@
           +</button>
         </div>
       </div>
-      <div class="w3-row-padding w3-margin-top">
+      <div class="w3-card w3-row-padding w3-margin-top">
         <div
           class="w3-quarter"
           v-for="product in products"
@@ -143,7 +143,7 @@
             class="productImage">
             <button
               class="rating w3-button w3-block"
-              style=" margin-bottom: 2px"
+              style=" margin: 10px 0px 2px 0px"
               >
               Normal Denomination - &#8358; {{ product.rate }} per {{ product.cardCurrency }}
             </button>
