@@ -68,22 +68,20 @@
               </h3>
           </div>
           <label><b>Bank Name</b></label>
-          <input
-            class="w3-input  w3-margin-bottom" type="text"
-            placeholder="Enter your bank name" name="bankName"
+          <select
+            class="w3-input w3-margin-bottom"
             v-model="bankName"
             v-bind:style="customBorder.bankName"
-            list="banks"
             required>
-            <datalist id="banks">
-              <option
-                v-for="bank in banks"
-                v-bind:value="bank"
-                v-bind:key="bank"
-              >
-                {{ bank }}
-              </option>
-            </datalist>
+            <option value=0> Select your Bank name </option>
+            <option
+              v-for="bank in banks"
+              v-bind:value="bank"
+              v-bind:key="bank"
+            >
+              {{ bank }}
+            </option>
+          </select>
           <label><b>Account Name</b></label>
           <input
             class="w3-input  w3-margin-bottom" type="text"
@@ -259,7 +257,7 @@ export default {
       additonalNote: null,
       isInitial: true,
       isSaving: false,
-      bankName: null,
+      bankName: 0,
       bankAccountName: null,
       bankAccountNumber: null,
       highDenominationRate: false,
