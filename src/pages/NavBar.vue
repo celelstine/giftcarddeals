@@ -147,8 +147,6 @@ import io from 'socket.io-client';
 import { mapState } from 'vuex';
 import * as types from '../store/mutation-types';
 
-const socket = io('/');
-
 export default {
   name: 'NavBar',
   data() {
@@ -184,6 +182,7 @@ export default {
     },
   },
   mounted() {
+    const socket = io('/');
     socket.on('ProductUpdate', (data) => {
       this.$store.commit(types.UPDATE_PRODUCT_SUCCESS, { ...data });
       this.$store.commit(types.PRODUCT_UPDATE_ALERT, {});

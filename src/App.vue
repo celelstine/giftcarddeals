@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar';
+import NavBar from './pages/NavBar';
 
 export default {
   name: 'App',

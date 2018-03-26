@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/components/Home';
-import Order from '@/components/Order';
-import OurRates from '@/components/OurRates';
-import Products from '@/components/Products';
-import TermsandConditions from '@/components/TermsandConditions';
-import Emails from '@/components/Emails';
-import Login from '@/components/Login';
-import Feedback from '@/components/Feedback';
-import AdminFeedback from '@/components/AdminFeedback';
-import ClientOrders from '@/components/ClientOrders';
+import Home from '@/pages/Home';
+import Order from '@/pages/Order';
+import OurRates from '@/pages/OurRates';
+import Products from '@/pages/Products';
+import TermsandConditions from '@/pages/TermsandConditions';
+import Emails from '@/pages/Emails';
+import Login from '@/pages/Login';
+import Feedback from '@/pages/Feedback';
+import AdminFeedback from '@/pages/AdminFeedback';
+import ClientOrders from '@/pages/ClientOrders';
 import {
   checkAdmin,
 } from './auth';
