@@ -24,3 +24,5 @@ selenium-debug.log
 /vue-pwa/
 # server log file
 server.log
+# nuxt build
+/.nuxt/

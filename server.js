@@ -41,7 +41,7 @@ app.use(fileUpload());
 app.use(methodOverride());
 
 // serve static files in public folder
-const publicPath = path.join(__dirname, 'dist/');
+const publicPath = path.join(__dirname, 'lib/dist/');
 app.use(express.static(publicPath));
 // server compressed javascript file
 app.get('*.js', (req, res, next) => {

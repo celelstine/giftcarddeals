@@ -1,7 +1,8 @@
 import axios from 'axios';
 import * as types from '../store/mutation-types';
-import store from '../store';
+import { store } from '../store';
 
+// const store = createStore();
 export const logout = (commit, next) => {
   commit(types.LOGOUT);
   next('/');

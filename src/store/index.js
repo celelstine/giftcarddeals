@@ -11,7 +11,8 @@ import * as types from './mutation-types';
 Vue.use(Vuex);
 
 const debug = process.env.NODE_ENV !== 'production';
-export default () => new Vuex.Store({
+
+const store = new Vuex.Store({
   actions,
   mutations: {
     [types.GETTINGPRODUCTS](state) {
@@ -158,3 +159,6 @@ export default () => new Vuex.Store({
   },
   strict: debug,
 });
+
+export default () => store;
+export { store };

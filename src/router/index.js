@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/pages/Home';
-import Order from '@/pages/Order';
+import SellCard from '@/pages/SellCard';
 import OurRates from '@/pages/OurRates';
 import Products from '@/pages/Products';
 import TermsandConditions from '@/pages/TermsandConditions';
@@ -35,8 +35,8 @@ export default new Router({
     },
     {
       path: '/sellCard',
-      name: 'Order',
-      component: Order,
+      name: 'SellCard',
+      component: SellCard,
     },
     {
       path: '/products',
@@ -51,7 +51,7 @@ export default new Router({
       beforeEnter: (to, from, next) => checkAdmin(next),
     },
     {
-      path: '/orders',
+      path: '/ClientOrders',
       name: 'ClientOrders',
       component: ClientOrders,
       beforeEnter: (to, from, next) => checkAdmin(next),

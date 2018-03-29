@@ -40,7 +40,7 @@
             Sales Feedback
           </router-link>
           <router-link
-            to="/orders"
+            to="/ClientOrders"
             class="w3-bar-item w3-button w3-padding w3-theme-d4 w3-hide-small w3-right">
             View Orders
           </router-link>
