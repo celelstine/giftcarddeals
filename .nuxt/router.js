@@ -3,19 +3,18 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const _0aea4672 = () => import('../src/pages/NavBar.vue' /* webpackChunkName: "pages/NavBar" */).then(m => m.default || m)
-const _30947d4a = () => import('../src/pages/TermsandConditions.vue' /* webpackChunkName: "pages/TermsandConditions" */).then(m => m.default || m)
-const _6a5d4766 = () => import('../src/pages/Products.vue' /* webpackChunkName: "pages/Products" */).then(m => m.default || m)
 const _22283992 = () => import('../src/pages/ClientOrders.vue' /* webpackChunkName: "pages/ClientOrders" */).then(m => m.default || m)
+const _30947d4a = () => import('../src/pages/TermsandConditions.vue' /* webpackChunkName: "pages/TermsandConditions" */).then(m => m.default || m)
 const _da3c2d3c = () => import('../src/pages/AdminFeedback.vue' /* webpackChunkName: "pages/AdminFeedback" */).then(m => m.default || m)
-const _450007ae = () => import('../src/pages/OurRates.vue' /* webpackChunkName: "pages/OurRates" */).then(m => m.default || m)
-const _0f71d5bc = () => import('../src/pages/Order.vue' /* webpackChunkName: "pages/Order" */).then(m => m.default || m)
-const _7f628f52 = () => import('../src/pages/Login.vue' /* webpackChunkName: "pages/Login" */).then(m => m.default || m)
-const _74092df2 = () => import('../src/pages/Feedback.vue' /* webpackChunkName: "pages/Feedback" */).then(m => m.default || m)
 const _26457a61 = () => import('../src/pages/Home.vue' /* webpackChunkName: "pages/Home" */).then(m => m.default || m)
-const _d43b80cc = () => import('../src/pages/Signup.vue' /* webpackChunkName: "pages/Signup" */).then(m => m.default || m)
-const _cc794322 = () => import('../src/pages/CardSlide.vue' /* webpackChunkName: "pages/CardSlide" */).then(m => m.default || m)
 const _03f83f59 = () => import('../src/pages/Emails.vue' /* webpackChunkName: "pages/Emails" */).then(m => m.default || m)
+const _cc794322 = () => import('../src/pages/CardSlide.vue' /* webpackChunkName: "pages/CardSlide" */).then(m => m.default || m)
+const _0aea4672 = () => import('../src/pages/NavBar.vue' /* webpackChunkName: "pages/NavBar" */).then(m => m.default || m)
+const _01d006f8 = () => import('../src/pages/SellCard.vue' /* webpackChunkName: "pages/SellCard" */).then(m => m.default || m)
+const _74092df2 = () => import('../src/pages/Feedback.vue' /* webpackChunkName: "pages/Feedback" */).then(m => m.default || m)
+const _7f628f52 = () => import('../src/pages/Login.vue' /* webpackChunkName: "pages/Login" */).then(m => m.default || m)
+const _450007ae = () => import('../src/pages/OurRates.vue' /* webpackChunkName: "pages/OurRates" */).then(m => m.default || m)
+const _6a5d4766 = () => import('../src/pages/Products.vue' /* webpackChunkName: "pages/Products" */).then(m => m.default || m)
 
 
 
@@ -76,9 +75,9 @@ export function createRouter () {
     scrollBehavior,
     routes: [
 		{
-			path: "/NavBar",
-			component: _0aea4672,
-			name: "NavBar"
+			path: "/ClientOrders",
+			component: _22283992,
+			name: "ClientOrders"
 		},
 		{
 			path: "/TermsandConditions",
@@ -86,39 +85,9 @@ export function createRouter () {
 			name: "TermsandConditions"
 		},
 		{
-			path: "/Products",
-			component: _6a5d4766,
-			name: "Products"
-		},
-		{
-			path: "/ClientOrders",
-			component: _22283992,
-			name: "ClientOrders"
-		},
-		{
 			path: "/AdminFeedback",
 			component: _da3c2d3c,
 			name: "AdminFeedback"
-		},
-		{
-			path: "/OurRates",
-			component: _450007ae,
-			name: "OurRates"
-		},
-		{
-			path: "/Order",
-			component: _0f71d5bc,
-			name: "Order"
-		},
-		{
-			path: "/Login",
-			component: _7f628f52,
-			name: "Login"
-		},
-		{
-			path: "/Feedback",
-			component: _74092df2,
-			name: "Feedback"
 		},
 		{
 			path: "/Home",
@@ -126,9 +95,9 @@ export function createRouter () {
 			name: "Home"
 		},
 		{
-			path: "/Signup",
-			component: _d43b80cc,
-			name: "Signup"
+			path: "/Emails",
+			component: _03f83f59,
+			name: "Emails"
 		},
 		{
 			path: "/CardSlide",
@@ -136,9 +105,34 @@ export function createRouter () {
 			name: "CardSlide"
 		},
 		{
-			path: "/Emails",
-			component: _03f83f59,
-			name: "Emails"
+			path: "/NavBar",
+			component: _0aea4672,
+			name: "NavBar"
+		},
+		{
+			path: "/SellCard",
+			component: _01d006f8,
+			name: "SellCard"
+		},
+		{
+			path: "/Feedback",
+			component: _74092df2,
+			name: "Feedback"
+		},
+		{
+			path: "/Login",
+			component: _7f628f52,
+			name: "Login"
+		},
+		{
+			path: "/OurRates",
+			component: _450007ae,
+			name: "OurRates"
+		},
+		{
+			path: "/Products",
+			component: _6a5d4766,
+			name: "Products"
 		}
     ],
     
