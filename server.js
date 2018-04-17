@@ -60,16 +60,13 @@ require('./api/db/seeders');
 const giftcardsPath = path.join(__dirname, 'giftcards/');
 app.use('/nngiftCards', express.static(giftcardsPath));
 
-app.all('/', (req, res) => {
-  return res.sendFile(publicPath + 'index.html');
+// for nuxt static link to nuxt home page
+app.use('/Home', _express2.default.static(publicPath));
+
+app.all('*', function (req, res) {
+  return res.redirect('/Home');
 });
 
-// catch unknown routes
-app.all('*', function (req, res) {
-  return res.status(404).send({
-    message: 'Route was not found.'
-  });
-});
 
 // catch errors
 app.use((err, req, res, next) => {
