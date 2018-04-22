@@ -25,12 +25,12 @@ module.exports = {
     if (incomingFiles.length) {
       incomingFiles.forEach((file) => {
         randomFilename = genereateOrderNumber() + file.name;
-        file.mv(`${__dirname}/../../giftcards/${randomFilename}`,
-          (err) => {
-            if (err) {
-              logger.error('An error occurred', err);
-            }
-          });
+        // file.mv(`${__dirname}/../../giftcards/${randomFilename}`,
+        //   (err) => {
+        //     if (err) {
+        //       logger.error('An error occurred', err);
+        //     }
+        //   });
         // build the url for all files
         giftcardsUrl += `nngiftCards/${randomFilename}||`;
         attachments.push({

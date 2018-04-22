@@ -40,8 +40,20 @@ app.use(fileUpload());
 // https://www.npmjs.com/package/method-override
 app.use(methodOverride());
 
+// const { Nuxt, Builder } = require('nuxt');
+// // We instantiate nuxt.js with the options
+// const config = require('../nuxt.config.js');
+// const isProd = (process.env.NODE_ENV === 'production');
+// config.dev = !isProd
+// const nuxt = new Nuxt(config);
+
+// // Render every route with Nuxt.js
+// app.use(nuxt.render)
+
 // serve static files in public folder
+
 const publicPath = path.join(__dirname, 'dist/');
+
 app.use(express.static(publicPath));
 // server compressed javascript file
 app.get('*.js', (req, res, next) => {
@@ -57,14 +69,16 @@ app.use('/api/v1', router);
 // seed the database
 require('./api/db/seeders');
 
-const giftcardsPath = path.join(__dirname, 'giftcards/');
-app.use('/nngiftCards', express.static(giftcardsPath));
+// const giftcardsPath = path.join(__dirname, 'giftcards/');
+// app.use('/nngiftCards', express.static(giftcardsPath));
 
 // for nuxt static link to nuxt home page
-app.use('/Home', _express2.default.static(publicPath));
+app.use('/Home', express.static(publicPath));
 
-app.all('*', function (req, res) {
-  return res.redirect('/Home');
+
+app.all('*', (req, res) => {
+  console.log('serving, ', `${publicPath}index.html`);
+  res.sendFile(`${publicPath}index.html`)
 });
 
 

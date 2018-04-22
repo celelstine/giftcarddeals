@@ -2,22 +2,27 @@
   <!-- Image Header -->
   <div class="w3-row w3-animate-opacity">
     <div class="w3-half w3-padding">
-      <h6
+      <h1
         class="non_margin_top w3-container w3-deep-orange w3-center">
-        We buy ITUNES giftcards at awesome Rate
-      </h6>
+        We buy <em>ITUNES</em> Gift Cards at awesome Rate
+      </h1>
+      
       <CardSlide> </CardSlide>
     </div>
     <div class="w3-half w3-padding">
       <div class="w3-row">
         <div class="w3-card-4">
           <header class="w3-container w3-deep-orange">
-            <h6 class="signup">
+            <h1 class="signup">
                 Welcome, Life can only get better with us!!!
-                <span class="sellit" v-on:click="gotoOurRatePage">
-                  Sell Your card here
-                </span>
-            </h6>
+                <router-link
+                  class="sellit"
+                  to="/sellcard">
+                <i class="fas fa-hand-point-right">
+                  Sell Your Gift Card here
+                </i>
+                </router-link>
+            </h1>
           </header>
           <div class="w3-container">
             <ul class="companyAttribute">
@@ -45,14 +50,16 @@
               </li>
             </ul>
             <fieldset>
-              <legend class="actionLinks"> How to Sell your Cards </legend>
+              <legend class="actionLinks"> How to Sell your Gift Cards </legend>
               <ol>
                 Please ensure that your browser is updated
                 <li>
                   Go to the
-                  <span class="sellitList" v-on:click="gotoOurRatePage">
+                  <router-link
+                    class="actionLinks"
+                    to="/sellcard">
                     Sell card page.
-                  </span>
+                  </router-link>
                 </li>
                 <li>
                   Select your card Category, then the Card Denomination.
@@ -103,6 +110,7 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+  font-size: 16px;
 }
 
 a {
@@ -136,10 +144,10 @@ a {
   max-width:200px;
 }
 .sellit {
- float: right;
- color:#292929;
- text-decoration: underline;
- cursor: pointer;
+  float: right;
+  /* text-decoration: underline; */
+  color: white;
+  cursor: pointer;
 }
 .sellitList {
   color:#292929;

@@ -5,23 +5,23 @@
     "img/login_avatar.5522155.png",
     "img/feedback.746816d.png",
     "img/gift_card_blue.047c2a9.png",
-    "layouts/default.418b2ffb4060abe0c987.js",
-    "pages/NavBar.ac978e858f6eaf6b6d52.js",
+    "layouts/default.b8f23ee9cf22ab670385.js",
+    "pages/NavBar.bdd572ea491413fec908.js",
     "img/sell-gift-cards.7bb1761.jpg",
-    "app.56aae58f0ad268c84d64.js",
-    "manifest.acdded5aaa1177413945.js",
+    "app.57d2e9fdd4db8600e23a.js",
+    "manifest.c76a9926cbc4d8ddfceb.js",
     "LICENSES",
     "index.spa.html",
     "index.ssr.html"
   ],
   "initial": [
-    "manifest.acdded5aaa1177413945.js",
+    "manifest.c76a9926cbc4d8ddfceb.js",
     "vendor.081da03f052f3b89e3eb.js",
-    "app.56aae58f0ad268c84d64.js"
+    "app.57d2e9fdd4db8600e23a.js"
   ],
   "async": [
-    "layouts/default.418b2ffb4060abe0c987.js",
-    "pages/NavBar.ac978e858f6eaf6b6d52.js"
+    "layouts/default.b8f23ee9cf22ab670385.js",
+    "pages/NavBar.bdd572ea491413fec908.js"
   ],
   "modules": {
     "32434107": [

@@ -11,12 +11,12 @@
         v-on:click="openNav">
           <i class="fa fa-bars"></i>
       </a>
-      <a
-        href="/#/"
+      <router-link
+        to="/"
         class="w3-bar-item w3-button w3-padding w3-theme-d4">
         <i class="fa fa-home w3-margin-right"></i>
         Exchange Zone 9ja
-      </a>
+      </router-link>
       <div>
         <router-link
           to="/ourRates"
@@ -63,10 +63,6 @@
   <div
     id="MobileNav"
     class="w3-bar-block w3-theme-d2 w3-show w3-hide-large w3-hide-medium w3-large">
-    <span href="#"
-      class="w3-bar-item w3-button w3-padding">
-      ---------------
-    </span>
     <div>
       <div v-if="isAdmin">
         <router-link
@@ -199,9 +195,9 @@ export default {
 </script>
 
 <style>
-  #navDiv {
+  /* #navDiv {
     margin-bottom: 20px;
-  }
+  } */
   a {
     float: left;
     width: auto;
@@ -211,11 +207,15 @@ export default {
     white-space: normal;
   }
   .router-link-exact-active  {
-    background-color: #4D636E !important;
+    /* background-color: #4D636E !important; */
     border-bottom: 5px solid #4688F1 !important;
   }
   #fbnavBtn {
     background-color: #425EA7;
+  }
+
+  .w3-top {
+    position: relative;
   }
   .username {
     color: #4688F1 !important;

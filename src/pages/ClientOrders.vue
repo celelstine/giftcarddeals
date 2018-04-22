@@ -36,9 +36,9 @@
           <td>{{ order.status }}</td>
           <td>{{ new Date(order.createdAt).toLocaleDateString() }}</td>
           <td class="viewCardButton">
-            <span v-on:click="viewCards(order.orderId)" class="actionSpan">
+            <!-- <span v-on:click="viewCards(order.orderId)" class="actionSpan">
               View cards &nbsp;
-            </span>
+            </span> -->
              <span v-on:click="sendFeedback(order.orderId)" class="actionSpan">
               Send Feedback
             </span>

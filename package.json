@@ -1,5 +1,5 @@
 {
-  "name": "giftcardmarket",
+  "name": "exchangezone9ja",
   "version": "1.0.0",
   "engines": {
     "node": ">= 6.0.0",
@@ -22,10 +22,10 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build_client_only": "node build/build.js",
     "build": "npm run prepare_dir && npm run build:client",
-    "prepare_dir": "rimraf lib  && mkdir lib  && mkdir lib/api && mkdir lib/dist && mkdir lib/dist/productImages && mkdir lib/giftcards",
-    "build:client": "npm run nuxt-generate && node build/build.js && npm run build:server",
+    "prepare_dir": "rimraf lib  && mkdir lib  && mkdir lib/api && mkdir lib/dist && mkdir lib/giftcards",
+    "build:client": "npm run nuxt-generate  && npm run build_client_only && npm run build:server",
     "build:server": "babel api  -d lib/api --copy-files --ignore tests/ && npm run build-app",
-    "build-app": "babel server.js  -d lib --copy-files && npm run db:migrate && node lib/server.js",
+    "build-app": "mkdir lib/dist/productImages  && babel server.js  -d lib --copy-files && npm run db:migrate && node lib/server.js",
     "db:migrate": "sequelize db:migrate"
   },
   "dependencies": {

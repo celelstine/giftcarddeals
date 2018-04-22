@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <NavBar></NavBar>
-    <br/>
     <router-view id="pageContent"/>
     <br />
     <footer class="w3-row w3-theme-d2">
@@ -30,13 +29,13 @@
           href="https://www.instagram.com/exchangezone9ja/"
           style="margin-right: 2px;"
           target="_blank">
-          <i class="fa fa-instagram"></i>
+          <i class="fab fa-instagram"></i>
         </a>
         &nbsp;
         <a
           href="https://twitter.com/exchangezone9ja"
           target="_blank">
-          <i class="fa fa-twitter"> exchangezone9ja</i>
+          <i class="fab fa-twitter"> exchangezone9ja</i>
         </a>
       </div>
     </footer>
@@ -71,16 +70,18 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height:100vh;
-  margin: 0px;
+  margin: auto;
+  max-width: 1280px;
   top: 0px;
   font-size: 14px;
+  background: white;
 }
 #toTop{
   float: right;
 }
 #pageContent{
   padding-top: 10px;
-  min-height: 82vh;
+  min-height: 88vh;
 }
 .checkitemn{
   color: indigo;
