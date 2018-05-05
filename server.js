@@ -13,9 +13,6 @@ import fileUpload from 'express-fileupload';
 //import model from './api/db/models/index';
 import routes from './api/routes';
 import winstonlogger from './api/logger';
-import {
-  adminPass,
-} from './api/controllers/utility';
 // initailize dotenv
 dotenv.config();
 
@@ -39,17 +36,6 @@ app.use(fileUpload());
 // Lets us use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
 // https://www.npmjs.com/package/method-override
 app.use(methodOverride());
-
-// const { Nuxt, Builder } = require('nuxt');
-// // We instantiate nuxt.js with the options
-// const config = require('../nuxt.config.js');
-// const isProd = (process.env.NODE_ENV === 'production');
-// config.dev = !isProd
-// const nuxt = new Nuxt(config);
-
-// // Render every route with Nuxt.js
-// app.use(nuxt.render)
-
 // serve static files in public folder
 
 const publicPath = path.join(__dirname, 'dist/');
@@ -66,14 +52,6 @@ app.get('*.js', (req, res, next) => {
 routes(router);
 app.use('/api/v1', router);
 
-// seed the database
-require('./api/db/seeders');
-
-// const giftcardsPath = path.join(__dirname, 'giftcards/');
-// app.use('/nngiftCards', express.static(giftcardsPath));
-
-// for nuxt static link to nuxt home page
-app.use('/Home', express.static(publicPath));
 
 
 app.all('*', (req, res) => {
