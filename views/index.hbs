@@ -1,0 +1,111 @@
+{{> giftcards products=this.products}}
+<div class="w3-row">
+<p class="w3-col m1 s12 l3"></p>
+<div
+  id="sellCard"
+  name="sellCard"
+  class="w3-card w3-col m10 l6  s12 w3-animate-zoom">
+  <div class="w3-center">
+    <p class=" w3-block w3-padding w3-pink">
+      Endeavour to review your application as
+        we won't be held responsible for funding a wrong Account Number provided by you
+      <br />This transaction can not be altered after submission.
+      <br /> Please review our
+      <a href="/termsAndConditions" class="actionLink">
+        Terms and Conditions
+      </a>
+      before you proceed
+    </p>
+    <img
+      src="https://exchangezone9ja.com/static/assests/images/sell-gift-cards.7bb1761.jpg" alt="sell Cards"
+      style="width:40%" class=" w3-margin-top">
+  </div>
+    <form class="w3-container"  enctype="multipart/form-data" >
+      <div class="w3-section">
+      <label><b>Gift Cards Type</b></label>
+      <select
+        class="w3-input w3-margin-bottom" name="card">
+        <option value=0> Select the category of Card </option>
+        {{#each products}}
+          <option
+            key={{id}}
+          >
+            {{ name }} &rarr; Normal Card: ₦{{rate}}/$, High Denomination card ₦{{highDenominationRate}}
+          </option>
+        {{/each}}
+      </select>
+      <input 
+        class="w3-radio"
+        type="radio"
+        name="cardDenomination"
+        value="Normal Denomination card($0-$100)">
+      <label>
+        Normal Card ($5 - $100)
+      </label>
+      <br />
+      <input
+        class="w3-radio"
+        type="radio"
+        name="cardDenomination"
+        value="High Denomination card (above $100)"
+        >
+      <label>
+        Higher Denomination Card (above $100)
+      </label> <br /> <br />
+      <label><b>Upload Gift Cards (You can upload up to 10 images, 20MB at once)</b></label>
+        <input
+          type="file"
+          multiple
+          accept="image/*"
+          name="uploadedCards[]"
+          class="w3-input w3-margin-bottom"
+          required>
+      <label><b>Bank Name</b></label>
+      <select
+        class="w3-input w3-margin-bottom"
+        name="bank"
+        required>
+        <option value=0> Select your Bank name </option>
+        {{#each banks}}
+          <option
+            key={{this}}
+          >
+            {{ this }}
+          </option>
+        {{/each}}
+      </select>
+      <label><b>Account Name</b></label>
+      <input
+        class="w3-input  w3-margin-bottom" type="text"
+        placeholder="Enter your account name" name="bankAccountName"
+        required>
+      <label><b>Account Number</b></label>
+      <input
+        class="w3-input  w3-margin-bottom" type="text"
+        placeholder="Enter your account name" name="bankAccountNumber"
+        required>
+        <label><b>Email</b></label>
+        <input
+          class="w3-input w3-margin-bottome"
+          type="email"
+          placeholder="Enter your email address"
+          required>
+      <textarea
+        placeholder="
+        Write additonal note...
+        e.g. $100x2, $50x6, $20x4.
+        Also type out the Gift card code here if your image is blurred and not clear"
+        class="w3-input w3-margin-bottom">
+      </textarea>
+      <button
+        class="w3-button w3-block w3-green"
+        type="submit"
+        title="Endeavour to review your application,this transaction
+      can not be altered after submission"
+        >
+        Sell it
+        </button>
+    </div>
+  </form>
+</div>
+</div>
