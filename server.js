@@ -12,7 +12,6 @@ import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 
 import routes from './api/routes';
-import basicRoute from './api/routes/basicRoute';
 import winstonlogger from './api/logger';
 
 var contentType = require('content-type');
@@ -68,11 +67,6 @@ app.get('*.js', (req, res, next) => {
 app.all('/smartui', (req, res) => {
   res.sendFile(`${publicPath}template.html`)
 });
-
-
-// // register basic route
-// basicRoute(router);
-// app.use('/', router); 
 
 // Require all routes into the application.
 routes(router);
