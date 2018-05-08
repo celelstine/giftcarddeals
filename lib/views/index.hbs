@@ -40,6 +40,7 @@
       <input 
         class="w3-radio"
         type="radio"
+        id="normalRatebtn"
         name="cardDenomination"
         value="Normal Denomination card($0-$100)">
       <label id="normalRateLbl">
@@ -123,6 +124,7 @@
       .innerText = `Higher Denomination Card (above $100) ₦${records[1]} per $`;
       document.getElementById('normalRateLbl')
       .innerText = `Normal Card (above $100) ₦${records[0]} per $`;
+      document.getElementById('normalRatebtn').checked=true;
   }
   function placeOrder(element){
     element.innerText = "Registering your order...";
