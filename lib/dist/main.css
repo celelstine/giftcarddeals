@@ -1,0 +1,69 @@
+body {
+  color: white;
+  font-size: 12px;
+}
+a {
+  text-decoration: none;
+}
+.actionButton {
+  color: white;
+  background: #2d4d82;
+  padding: 5px;
+}
+.actionLink {
+  font-weight: bolder;
+}
+.bolder-text {
+  font-weight: bolder;
+}
+.no-margin-bottom {
+  margin-bottom: 0px;
+}
+.no-marginy{
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.no-margin-top {
+  margin-top: 0px;
+}
+.w3-quarter {
+  padding: 8px 8px !important;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-size: 12px;
+}
+.rating {
+  color: #134255;
+  font-weight: bolder;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.productImage {
+width: 100%;
+height: 220px;
+}
+
+.productName {
+color:darkblue;
+text-align: center;
+}
+.pink-color{
+  color: #e91e63;
+}
+.w3-container {
+  font-family: 'Karma', Georgia, 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height:100vh;
+  margin: auto;
+  max-width: 1280px;
+  top: 0px;
+  font-size: 14px;
+  background: white;
+  color: #2d4d82
+}
+.w3-col.l6 > .w3-card{
+  margin-right: 4px;
+}
+.m7.giftcards {
+  padding-right: 5px;
+}
