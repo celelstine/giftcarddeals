@@ -1,0 +1,34 @@
+<!DOCTYPE>  
+<html>  
+<head>  
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description"
+    content="Buy and sell giftcards such as Itunes (USA, Australian and
+    Canadian), Amazon, Steam cards and more. We exchange giftcards for cash">
+    <meta name="keywords"
+    content="Buy giftcards, buy itunes card, buy ssteam card, buy amazon card">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/main.css" >
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed" rel="stylesheet">
+    <title> ExchangeZone9ja - {{{ title }}}</title>
+  {{{block head}}}
+</head>
+<body>
+    <div class="w3-container">
+      {{> navbar}}
+      {{#if message}}
+        <p class="w3-center w3-sand no-margin-top"> {{message}} </p>
+      {{/if}}
+      {{{body}}}
+      <br />
+      {{> footer}}
+    </div>
+</body>
+</html> 

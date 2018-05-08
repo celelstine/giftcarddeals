@@ -1,0 +1,30 @@
+<div>
+   <div class="w3-row-padding">
+      <h4 class="w3-center no-margin-bottom no-margin-top bolder-text w3-indigo">
+      We buy the following GiftCards
+    </h4>
+     {{#each products}}
+      <div
+        class="w3-col l6 m12 s12"
+      >
+        <div class="w3-card">
+          <h5 class="productName">
+            {{ name }}
+          </h5>
+          <img
+            class="productImage w3-center"
+            src={{image_url}}>
+          <button
+            class="rating w3-button w3-block">
+            Normal Denomination Rate - &#8358; {{ rate }} per {{ cardCurrency }}
+          </button>
+          <button
+          class="rating w3-button w3-block">
+            Higher Denomination Rate &#8358; {{ highDenominationRate }} per
+            {{ cardCurrency }}
+          </button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+</div>
