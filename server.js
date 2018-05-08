@@ -11,9 +11,12 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 
-//import model from './api/db/models/index';
 import routes from './api/routes';
+import basicRoute from './api/routes/basicRoute';
 import winstonlogger from './api/logger';
+
+var contentType = require('content-type');
+var getRawBody = require('raw-body');
 // initailize dotenv
 dotenv.config();
 
@@ -29,10 +32,9 @@ app.use(compression());
 
 // Log requests to the console.
 app.use(logger('dev'));
-
 // Parse incoming requests data
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '20mb', }));
 app.use(fileUpload());
 // Lets us use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
 // https://www.npmjs.com/package/method-override
@@ -48,7 +50,8 @@ app.set('view engine', 'hbs');
 app.engine('hbs', hbs.express4({  
   defaultLayout: __dirname + '/views/layouts/default.hbs',
   partialsDir: __dirname + '/views/partials',
-  layoutsDir: __dirname + '/views/layouts'
+  layoutsDir: __dirname + '/views/layouts',
+  extname: ".hbs",
 }));
 
 // configure views path
@@ -61,63 +64,27 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
+
+app.all('/smartui', (req, res) => {
+  res.sendFile(`${publicPath}template.html`)
+});
+
+
+// // register basic route
+// basicRoute(router);
+// app.use('/', router); 
+
 // Require all routes into the application.
 routes(router);
-app.use('/api/v1', router);
+app.use('/', router);  
 
 
 
-app.all('/admin', (req, res) => {
-  res.sendFile(`${publicPath}index.html`)
-});
-
-app.get('/termsAndConditions', (req, res) => {
-  res.render('termsandConditions');
-})
-app.get('/', function(req, res) {  
-  var user = {
-    first: 'Brian',
-    last: 'Mancini',
-    site: 'http://derpturkey.com',
-    age: 32
-  }
-  var products = [
-    {"id":1,"name":"USA Itunes card","acronym":"usi","rate":220,"highDenominationRate":100,"isActive":true,"image_url":"https://www.exchangezone9ja.com/productImages/itunes-gift-card-pile.4728efc.png","extra":"","cardCurrency":"$","createdAt":"2018-03-07T16:22:35.000Z","updatedAt":"2018-05-01T17:19:33.000Z"},{"id":5,"name":"Steam Card","acronym":"StC","rate":225,"highDenominationRate":225,"isActive":true,"image_url":"https://www.exchangezone9ja.com/productImages/Steam-wallet-cards-south-africa.jpg","extra":"","cardCurrency":"$","createdAt":"2018-03-22T21:52:56.000Z","updatedAt":"2018-04-25T14:27:55.000Z"},{"id":6,"name":"Amazon Cards","acronym":"AMC","rate":240,"highDenominationRate":240,"isActive":true,"image_url":"https://www.exchangezone9ja.com/productImages/amazon-gift-cards-fanned.png","extra":"","cardCurrency":"$","createdAt":"2018-03-22T22:13:13.000Z","updatedAt":"2018-04-27T06:16:47.000Z"},{"id":7,"name":"Australian Itunes Card","acronym":"AIC","rate":120,"highDenominationRate":120,"isActive":true,"image_url":"https://www.exchangezone9ja.com/productImages/itunes-gift-card-pile.4728efc.png","extra":"","cardCurrency":"$","createdAt":"2018-03-23T06:58:24.000Z","updatedAt":"2018-04-18T08:40:08.000Z"},{"id":8,"name":"Canadian Itune Cards","acronym":"CIC","rate":120,"highDenominationRate":120,"isActive":true,"image_url":"https://www.exchangezone9ja.com/productImages/itunes-gift-card-pile.4728efc.png","extra":"","cardCurrency":"$","createdAt":"2018-03-23T06:59:16.000Z","updatedAt":"2018-04-18T08:40:01.000Z"}
-  ];
-  var banks = [
-    'Access Bank',
-    'Citibank',
-    'Diamond Bank',
-    'Ecobank Nigeria',
-    'Enterprise Bank Limited',
-    'Fidelity Bank Nigeria',
-    'First Bank of Nigeria',
-    'First City Monument Bank',
-    'FSDH Merchant Bank',
-    'Guaranty Trust Bank',
-    'Heritage Bank Plc.',
-    'Keystone Bank Limited',
-    'Mainstreet Bank Limited',
-    'Rand Merchant Bank',
-    'Savannah Bank',
-    'Skye Bank',
-    'Stanbic IBTC Bank Nigeria Limited',
-    'Standard Chartered Bank',
-    'Sterling Bank',
-    'Union Bank of Nigeria',
-    'United Bank for Africa',
-    'Unity Bank Plc.',
-    'Wema Bank',
-    'Zenith Bank',
-  ];
-  res.render('index', { user, products, banks });
-
-});
 
 // catch errors
 app.use((err, req, res, next) => {
   winstonlogger.error(err);
-  res.status(500).json({message: err.message, serving:  `${publicPath}index.html`});
+  res.status(500).json({message: err.message});
 });
 
 // start server

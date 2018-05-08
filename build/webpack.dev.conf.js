@@ -26,7 +26,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
-        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
+        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'template.html') },
       ],
     },
     hot: true,
@@ -54,8 +54,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
+      filename: 'template.html',
+      template: 'template.html',
       inject: true,
       serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
         './service-worker-dev.js'), 'utf-8')}</script>`

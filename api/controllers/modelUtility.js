@@ -1,5 +1,5 @@
 module.exports = {
-  genereateOrderNumber(acronym) {
+  genereateOrderNumber() {
     let now = Date.now().toString(); // '1492341545873'
     // pad with extra random digit
     now += Math.floor(Math.random() * 100).toString();

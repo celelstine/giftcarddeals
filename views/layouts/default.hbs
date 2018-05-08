@@ -12,7 +12,6 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/theme.css">
     <link rel="stylesheet" href="/main.css" >
     <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
@@ -24,6 +23,9 @@
 <body>
     <div class="w3-container">
       {{> navbar}}
+      {{#if message}}
+        <p class="w3-center w3-sand no-margin-top"> {{message}} </p>
+      {{/if}}
       {{{body}}}
       <br />
       {{> footer}}

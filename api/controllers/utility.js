@@ -49,15 +49,13 @@ module.exports = {
               const accountStatus = foundUser.status;
               switch (accountStatus) {
                 case 'disabled':
-                  res.status(401).send({
+                  return res.status(401).send({
                     message: 'This account is blocked, Please contact the admin',
                   });
-                  break;
                 case 'inactive':
-                  res.status(401).send({
+                  return res.status(401).send({
                     message: 'This account does not exist',
                   });
-                  break;
                 case 'active':
                   // attach user info to the request object
                   /* eslint-disable no-param-reassign */
@@ -69,7 +67,7 @@ module.exports = {
                   }
                   req.user = decoded;
                   next();
-                  return;
+                  break;
                 default:
                   return res.status(401).send({
                     message: 'Invalid operation, check your credentials'

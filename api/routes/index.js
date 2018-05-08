@@ -20,21 +20,26 @@ module.exports = (app) => {
     '/getUserwithRememberMeToken',
     authController.getUserwithRememberMeToken,
   );
-  app.get('/ourRate', productController.ourRate);
-  app.post('/order', orderController.placeOrder);
-  app.post('/sendfeedback', feedbackController.sendFeedback);
+  app.get('/api/v1/ourRate', productController.ourRate);
+  app.post('/api/v1/order', orderController.placeOrder);
+  app.post('/api/v1/order1', orderController.placeOrder1);
+  app.post('/api/v1/sendfeedback', feedbackController.sendFeedback);
 
-  app.post('/adminFeedback', feedbackController.SendAdminFeedback);
+  app.post('/api/v1/adminFeedback', feedbackController.SendAdminFeedback);
   // admin middleware here
-  app.use(adminPass);
-  app.get('/orders', orderController.getOrders);
-  app.post('/products', productController.addProduct);
-  app.post('/products/:productId', productController.updateProduct);
+  // app.use(adminPass);
+  app.get('/api/v1/orders', adminPass, orderController.getOrders);
+  app.post('/api/v1/products', adminPass, productController.addProduct);
+  app.post('/api/v1/products/:productId', adminPass, productController.updateProduct);
 
-  app.get('/staffEmail', StaffEmail.getStaffEmails);
-  app.post('/staffEmail', StaffEmail.addStaffEmails);
-  app.delete('/staffEmail/:email', StaffEmail.removeStaffEmails);
+  app.get('/api/v1/staffEmail', adminPass, StaffEmail.getStaffEmails);
+  app.post('/api/v1/staffEmail', adminPass, StaffEmail.addStaffEmails);
+  app.delete('/api/v1/staffEmail/:email', adminPass, StaffEmail.removeStaffEmails);
 
-  app.all('*',
-    (req, res) => res.status(404).json({ errorMessage: 'Unknown Route' }));
+  app.get('/termsAndConditions', (req, res) => {
+    res.render('termsandConditions');
+  });
+  app.post('/placeOrder', orderController.placeOrder1, orderController.homepage);
+  app.all('*', orderController.homepage);
+  
 };
