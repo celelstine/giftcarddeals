@@ -27,8 +27,9 @@
       <select
         class="w3-input w3-margin-bottom"
         name="card"
-        onchange="updateRate(this)">
-        <option value=0> Select the category of Card </option>
+        onchange="updateRate(this)"
+        required>
+        <option> Select the category of Card </option>
         {{#each products}}
           <option
             value={{rate}}/{{highDenominationRate}}/{{name}}
@@ -69,7 +70,7 @@
         class="w3-input w3-margin-bottom"
         name="bankName"
         required>
-        <option value=0> Select your Bank name </option>
+        <option> Select your Bank name </option>
         {{#each banks}}
           <option
             key={{this}}
