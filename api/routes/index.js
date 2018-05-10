@@ -39,7 +39,6 @@ module.exports = (app) => {
   app.get('/termsAndConditions', (req, res) => {
     res.render('termsandConditions');
   });
-  app.post('/placeOrder', orderController.placeOrder1, orderController.homepage);
+  app.post('/placeOrder', orderController.placeOrder1);
   app.all('*', orderController.homepage);
-  
 };

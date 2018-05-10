@@ -315,7 +315,7 @@ module.exports = {
         return sendError(res, { errorMessage });
       });
   },
-  placeOrder1(req, res, next) {
+  placeOrder1(req, res) {
     // create object from request
     const {
       card,
@@ -345,9 +345,7 @@ module.exports = {
     let giftcardsUrl = '';
     let randomFilename;
     if (inputValidationMessage) {
-      res.locals.message = inputValidationMessage;
-      next();
-      return;
+      return res.redirect(`/?message=${inputValidationMessage}`);
     }
     if (incomingFiles.length) {
       let fileSize = 0;
@@ -365,9 +363,7 @@ module.exports = {
         // if the file size is more than 20mb
         if (fileSize > (1 * 1024 * 1024)) {
           inputValidationMessage += '* You can only upload up to 20mb, combine the card if you have more than 10 images.';
-          res.locals.message = inputValidationMessage;
-          next();
-          return;
+          return res.redirect(`/?message=${inputValidationMessage}`);
         }
         attachments.push({
           filename: file.name,
@@ -377,9 +373,7 @@ module.exports = {
     } else {
       if (incomingFiles.data.length > (20 * 1024 * 1024)) {
         inputValidationMessage += '* You can only upload up to 20mb, combine the card if you have more than 10 images.';
-        res.locals.message = inputValidationMessage;
-        next();
-        return;
+        return res.redirect(`/?message=${inputValidationMessage}`);
       }
       attachments = { // binary buffer as an attachment
         filename: incomingFiles.name,
@@ -453,9 +447,7 @@ module.exports = {
       .then((emails) => {
         if (!emails.length) {
           logger.error('error', 'The staff Email table is empty');
-          res.locals.message = 'An  error occurred, please try again';
-          next();
-          return;
+          return res.redirect('/?message=An  error occurred, please try again');
         }
         const emailList = [];
         emails.forEach(staff => emailList.push(staff.email));
@@ -473,8 +465,7 @@ module.exports = {
         mailTransporter.sendMail(mailPayload, (error, info) => {
           if (error) {
             logger.error('error', 'An error occurred', error);
-            res.locals.message = 'An  error occurred, please try again';
-            next();
+            return res.redirect('/?message=An  error occurred, please try again');
           }
           // send mail to user email
           mailPayload = {
@@ -553,27 +544,22 @@ module.exports = {
           };
           mailTransporter.sendMail(mailPayload, (err, info1) => {
             if (err) {
-              res.locals.message = 'An  error occurred, please try again';
-              next();
-              return;
+              return res.redirect('/?message=An  error occurred, please try again');
             }
             Order.create(orderObject)
-              .then(() => {
-                res.locals.message = `Your order has been successfully registered with OrderID: ${orderId}`;
-                next();
-              })
+              .then(() =>
+                res.redirect(`/?message=Your order has been successfully registered with OrderID: ${orderId}`)
+              )
               .catch((error1) => {
                 logger.error('error', 'An error occurred', error1);
-                res.locals.message = 'An  error occurred, please try again';
-                next();
+                return res.redirect('/?message=An  error occurred, please try again');
               });
           });
         });
       })
       .catch((error) => {
         logger.error('An error occurred', error);
-        res.locals.message = 'An  error occurred, please try again';
-        next();
+        return res.redirect('/?message=An  error occurred, please try again');
       });
   },
   homepage(req, res) {
@@ -603,7 +589,7 @@ module.exports = {
       'Wema Bank',
       'Zenith Bank',
     ];
-    const message = res.locals.message || null;
+    const message = req.query.message || null;
     ProductPrice
       .findAll({
         where: {
