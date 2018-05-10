@@ -334,8 +334,12 @@ module.exports = {
     if (!isValidAccountNumber(bankAccountNumber)) {
       inputValidationMessage += '*Please provide a valid Account Number (10 digits)\n';
     }
+
     if (!isValidFullName(bankAccountName)) {
       inputValidationMessage += '*Please provide a valid Account Name (at least two name)\n';
+    }
+    if (card.split('/').length === 3) {
+      inputValidationMessage += '* Please select a card category and denomination. \n';
     }
     if (req.files['uploadedCards[]'].length > 10) {
       inputValidationMessage += '* You can only upload up to 10 images, combine the card if you have more than 10 images. \n';

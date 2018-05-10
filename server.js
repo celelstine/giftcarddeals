@@ -25,6 +25,14 @@ const app = express();
 app.set('port', process.env.PORT || 1142);
 const router = express.Router();
 
+app.use(function(req, res, next) {
+  const blockedIps = [];
+  winstonlogger.info("ip", req.ip);
+  if (blockedIps.indexOf(req.ip) === -1)
+    next();
+  else
+    return res.status(403).end('forbidden');
+});
 // use hemlet to disable settings that would leak security
 app.use(helmet());
 app.use(compression());
