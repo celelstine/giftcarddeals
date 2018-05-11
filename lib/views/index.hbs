@@ -21,6 +21,7 @@
       src="https://exchangezone9ja.com/static/assests/images/sell-gift-cards.7bb1761.jpg" alt="sell Cards"
       style="width:40%" class=" w3-margin-top">
   </div>
+    <p style="color:green" class="w3-center">Please fill every field, they are all compulsory fields</p>
     <form  enctype="multipart/form-data" id="form" method="POST" action="/placeorder">
       <div class="w3-padding">
       <label><b>Gift Cards Type</b></label>
@@ -62,12 +63,14 @@
           type="file"
           multiple
           accept="image/*"
+          onchange="inputChange(this)"
           name="uploadedCards[]"
           class="w3-input w3-margin-bottom"
           required>
       <label><b>Bank Name</b></label>
       <select
         class="w3-input w3-margin-bottom"
+        onchange="inputChange(this)"
         name="bankName"
         required>
         <option> Select your Bank name </option>
@@ -83,6 +86,7 @@
       <input
         class="w3-input  w3-margin-bottom"
         type="text"
+        onchange="inputChange(this)"
         placeholder="Enter your account name"
         name="bankAccountName"
         required>
@@ -90,27 +94,31 @@
       <input
         class="w3-input  w3-margin-bottom"
         type="number"
+        onchange="inputChange(this)"
         placeholder="Enter your account name"
         name="bankAccountNumber"
         required>
         <label><b>Email</b></label>
         <input
-          class="w3-input w3-margin-bottome"
+          class="w3-input w3-margin-bottom"
+          onchange="inputChange(this)"
           type="email"
           name="email"
           placeholder="Enter your email address"
           required>
       <textarea
+        onchange="inputChange(this)"
         placeholder="Write additonal note...  e.g. $100x2, $50x6, $20x4. Also type out the Gift card code here if your image is blurred and not clear"
         class="w3-input w3-margin-bottom"
         name="extra"></textarea>
       <button
         class="w3-button w3-block w3-green"
         type="submit"
-        id="test"
+        id="submitBtn"
         onclick="placeOrder(this)"
         title="Endeavour to review your application,this transaction
         can not be altered after submission"
+        disabled
         >
         Sell it
         </button>
@@ -119,13 +127,99 @@
 </div>
 </div>
 <script>
+  var validInputs = [];
   function updateRate(element){
-      const records = element.value.split("/");
+      var records = element.value.split("/");
       document.getElementById('HighDenRateLbl')
       .innerText = `Higher Denomination Card (above $100) ₦${records[1]} per $`;
       document.getElementById('normalRateLbl')
       .innerText = `Normal Card (above $100) ₦${records[0]} per $`;
       document.getElementById('normalRateBtn').checked = true;
+      addToValidInputs(element.name)
+  }
+  function isValidEmail(email) {
+    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (regex.test(email)) {
+      return true;
+    }
+    return false;
+  };
+  function isValidFullName(name) {
+    var regex = /^(\s)?[a-zA-Z]{2,30}(\s[a-zA-Z]{2,30})?\s[a-zA-Z]{2,30}(\s)?$/;
+    if (regex.test(name)) {
+      return true;
+    }
+    return false;
+  };
+  function isValidAccountNumber(accountNumber) {
+    var regex = /^([0-9]{10}|[0-9]{13})$/;
+    if (regex.test(accountNumber)) {
+      return true;
+    }
+    return false;
+  };
+  function isValidInput(name) {
+    var indexOfName = validInputs.indexOf(name);
+    if (indexOfName === -1) {
+      return false;
+    }
+    return indexOfName
+  }
+  function addToValidInputs(name) {
+    if (!isValidInput(name)) {
+      validInputs.push(name);
+    }
+    if (validInputs.length >= 6) {
+      document.getElementById('submitBtn').disabled = false;
+    }
+  }
+  function  removeFromValidInput(name) {
+    if (isValidInput(name)) {
+      validInputs.splice(isValidInput(name), 1);
+    }
+    document.getElementById('submitBtn').disabled = true;
+  }
+  function inputChange(input) {
+    switch (input.name) {
+      case 'bankName':
+        if(input.value) {
+          addToValidInputs(input.name);
+        } else {
+          removeFromValidInput(input.name);
+        }
+        break;
+      case 'bankAccountName':
+        if(isValidFullName(input.value)){
+          addToValidInputs(input.name);
+        } else {
+          removeFromValidInput(input.name);
+        }
+        break;
+      case 'bankAccountNumber':
+        if(isValidAccountNumber(input.value)){
+          addToValidInputs(input.name);
+        } else {
+          removeFromValidInput(input.name);
+        }
+        break;
+      case 'email':
+        if(isValidEmail(input.value)){
+          addToValidInputs(input.name);
+        } else {
+          removeFromValidInput(input.name);
+        }
+        break;
+      case 'uploadedCards[]':
+        if(input.value) {
+          addToValidInputs(input.name);
+        } else {
+          removeFromValidInput(input.name);
+        }
+        break;
+      default:
+        break;
+
+    }
   }
   function placeOrder(element){
     element.innerText = "Registering your order...";
