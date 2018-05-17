@@ -1,4 +1,8 @@
+import Sequelize from 'sequelize';
+
 require('dotenv').config();
+
+const Op = Sequelize.Op;
 
 module.exports = {
   development: {
@@ -7,12 +11,14 @@ module.exports = {
     database: process.env.DATABASE_NAME,
     host: '127.0.0.1',
     dialect: 'postgres',
+    operatorsAliases: Op,
     logging: false,
   },
   test: {
     use_env_variable: 'DATABASE_URL',
     logging: false,
     dialect: 'postgres',
+    operatorsAliases: Op,
   },
   dev2: {
     username: process.env.MYSQL_DATABASE_USERNAME,
@@ -20,6 +26,7 @@ module.exports = {
     database: process.env.MYSQL_DATABASE_NAME,
     host: '127.0.0.1',
     dialect: 'mysql',
+    operatorsAliases: Op,
   },
   production: {
     username: process.env.MYSQL_DATABASE_USERNAME,
@@ -28,5 +35,6 @@ module.exports = {
     host: process.env.MYSQL_DATABASE_HOST,
     dialect: 'mysql',
     port: 3306,
+    operatorsAliases: Op,
   },
 };
