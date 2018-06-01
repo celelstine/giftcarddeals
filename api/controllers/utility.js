@@ -66,8 +66,7 @@ module.exports = {
                     });
                   }
                   req.user = decoded;
-                  next();
-                  break;
+                  return next();
                 default:
                   return res.status(401).send({
                     message: 'Invalid operation, check your credentials'

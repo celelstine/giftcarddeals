@@ -6,7 +6,6 @@
         class="non_margin_top w3-container w3-deep-orange w3-center">
         We buy <em>ITUNES</em> Gift Cards at awesome Rate
       </h1>
-      
       <CardSlide> </CardSlide>
     </div>
     <div class="w3-half w3-padding">

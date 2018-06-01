@@ -12,12 +12,12 @@ const StaffEmail = Controllers.StaffEmail;
 
 module.exports = (app) => {
   // unathenticated routes
-  app.post('/users/login', authController.login);
-  app.post('/users/logout', authController.logout);
-  app.post('/users/signup', authController.signup);
+  app.post('/api/v1/users/login', authController.login);
+  app.post('/api/v1/users/logout', authController.logout);
+  app.post('/api/v1/users/signup', authController.signup);
 
   app.post(
-    '/getUserwithRememberMeToken',
+    '/api/v1/getUserwithRememberMeToken',
     authController.getUserwithRememberMeToken,
   );
   app.get('/api/v1/ourRate', productController.ourRate);
@@ -26,6 +26,7 @@ module.exports = (app) => {
   app.post('/api/v1/sendfeedback', feedbackController.sendFeedback);
 
   app.post('/api/v1/adminFeedback', feedbackController.SendAdminFeedback);
+
   // admin middleware here
   // app.use(adminPass);
   app.get('/api/v1/orders', adminPass, orderController.getOrders);
