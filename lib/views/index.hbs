@@ -111,6 +111,16 @@
         placeholder="Write additonal note...  e.g. $100x2, $50x6, $20x4. Also type out the Gift card code here if your image is blurred and not clear"
         class="w3-input w3-margin-bottom"
         name="extra"></textarea>
+      {{#if message}}
+        <p class="w3-center w3-sand no-margin-top"> {{message}} </p>
+        {{!-- <p>
+          We are sorry about this error and we are working on it.
+          You can also reach via 
+          <i class="fa fa-phone">
+          09095113492
+          whatsapp only » 08149677155</i>
+        </p> --}}
+      {{/if}}
       <button
         class="w3-button w3-block w3-green"
         type="submit"
